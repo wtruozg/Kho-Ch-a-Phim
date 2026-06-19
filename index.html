@@ -1800,6 +1800,24 @@ body{
   .bottom-shell .nav-item .ico{width:24px!important;height:24px!important;flex-basis:24px!important;}
 }
 
+
+
+/* v145: tăng nhẹ Khám phá + Lịch chiếu để cân bằng với Home đang active */
+.bottom-shell .nav-item .tab-discover-ico,
+.bottom-shell .nav-item .tab-schedule-ico{
+  width:27px!important;
+  height:27px!important;
+  flex-basis:27px!important;
+  stroke-width:2.65!important;
+}
+@media(max-width:430px){
+  .bottom-shell .nav-item .tab-discover-ico,
+  .bottom-shell .nav-item .tab-schedule-ico{
+    width:27px!important;
+    height:27px!important;
+    flex-basis:27px!important;
+  }
+}
 </style>
 </head>
 <body>
@@ -3278,6 +3296,101 @@ if('serviceWorker' in navigator){
 }
 load();
 </script>
+
+
+<!-- v146: keep top bar and search float fixed; hide/show only the 3-item bottom tab on scroll -->
+<style id="v146-fixed-top-searchfloat-bottom-scroll">
+  /* Tab trên luôn đứng yên, không trượt lên nữa */
+  .top-glass,
+  .top-glass.hide,
+  .top-glass.show{
+    transform:translate3d(-50%,0,0)!important;
+    opacity:1!important;
+  }
+
+  /* Nút tìm kiếm tròn bên dưới giữ nguyên vị trí, kể cả khi body có nav-hidden */
+  .nav-hidden .search-float,
+  body.nav-hidden .search-float,
+  .nav-hidden #searchFloat,
+  body.nav-hidden #searchFloat{
+    transform:none!important;
+    opacity:1!important;
+    pointer-events:auto!important;
+  }
+
+  /* Chỉ thanh tab 3 mục trượt xuống và tan khi ẩn */
+  body.nav-hidden .bottom-shell{
+    transform:translate(-50%,calc(130px + env(safe-area-inset-bottom,0px)))!important;
+    opacity:0!important;
+    pointer-events:none!important;
+  }
+
+  body:not(.nav-hidden) .bottom-shell{
+    opacity:1!important;
+    pointer-events:auto!important;
+  }
+</style>
+<script id="v146-fixed-top-searchfloat-bottom-scroll-js">
+(function(){
+  let lastY = window.scrollY || 0;
+  let ticking = false;
+
+  function keepTopFixed(){
+    const tb = document.getElementById('topbar');
+    if(!tb) return;
+    tb.classList.remove('hide');
+    tb.classList.add('show');
+  }
+
+  function updateBottomOnly(){
+    const y = window.scrollY || 0;
+    const active = document.querySelector('.page.show')?.id || '';
+    const goingDown = y > lastY + 8;
+    const goingUp = y < lastY - 8;
+
+    keepTopFixed();
+
+    // Đang mở bàn phím/tìm kiếm thì không tự kéo nút tìm kiếm tròn đi đâu cả.
+    if(active === 'search'){
+      document.body.classList.remove('nav-hidden');
+      lastY = y;
+      return;
+    }
+
+    // Vuốt lên/scroll xuống: thanh 3 tab trượt xuống ẩn.
+    if(goingDown && y > 80){
+      document.body.classList.add('nav-hidden');
+    }
+
+    // Vuốt xuống/scroll lên hoặc gần đầu trang: thanh 3 tab trượt lên hiện lại.
+    if(goingUp || y < 40){
+      document.body.classList.remove('nav-hidden');
+    }
+
+    lastY = y;
+  }
+
+  // Ghi đè hàm cũ để nó không còn điều khiển tab trên nữa, đúng là một cuộc đảo chính nhỏ của JavaScript.
+  try{
+    window.updateTopbar = function(){ keepTopFixed(); updateBottomOnly(); };
+  }catch(e){}
+
+  window.addEventListener('scroll', function(){
+    if(ticking) return;
+    ticking = true;
+    requestAnimationFrame(function(){
+      updateBottomOnly();
+      ticking = false;
+    });
+  }, {passive:true});
+
+  document.addEventListener('DOMContentLoaded', function(){
+    keepTopFixed();
+    document.body.classList.remove('nav-hidden');
+  });
+})();
+</script>
+
 </body>
 </html>
 <!-- v118: hard fix mobile scroll + bottom tab safe layout -->
@@ -3545,4 +3658,175 @@ body{
   .schedule-list{grid-template-columns:1fr 1fr}
   .schedule-day-title{grid-column:1/-1}
 }
+</style>
+
+
+<style id="v147-smooth-bottom-only">
+/* v147: thanh trên + nút tìm kiếm dưới đứng yên, chỉ thanh tab dưới trượt thẳng mượt */
+.top-glass,
+.top-glass.hide,
+.top-glass.show{
+  opacity:1!important;
+  pointer-events:auto!important;
+}
+@media (max-width:599px){
+  .top-glass,
+  .top-glass.hide,
+  .top-glass.show{
+    transform:none!important;
+  }
+}
+@media (min-width:600px){
+  .top-glass,
+  .top-glass.hide,
+  .top-glass.show{
+    transform:translate3d(-50%,0,0)!important;
+  }
+}
+.bottom-shell{
+  will-change:transform,opacity!important;
+  transition:transform .34s cubic-bezier(.22,.61,.36,1), opacity .24s ease!important;
+  opacity:1!important;
+  backface-visibility:hidden!important;
+  -webkit-backface-visibility:hidden!important;
+}
+.search-float,
+.nav-hidden .search-float{
+  transform:none!important;
+  opacity:1!important;
+  pointer-events:auto!important;
+  transition:none!important;
+}
+@media (max-width:599px){
+  .bottom-shell{
+    transform:translate3d(0,0,0)!important;
+  }
+  .nav-hidden .bottom-shell{
+    transform:translate3d(0,calc(118px + env(safe-area-inset-bottom,0px)),0)!important;
+    opacity:0!important;
+    pointer-events:none!important;
+  }
+}
+@media (min-width:600px){
+  .bottom-shell{
+    transform:translate3d(-50%,0,0)!important;
+  }
+  .nav-hidden .bottom-shell{
+    transform:translate3d(-50%,calc(128px + env(safe-area-inset-bottom,0px)),0)!important;
+    opacity:0!important;
+    pointer-events:none!important;
+  }
+}
+</style>
+<script id="v147-smooth-bottom-scroll">
+(function(){
+  let lastY = window.scrollY || 0;
+  let ticking = false;
+  let lockedUntil = 0;
+  const THRESHOLD = 10;
+  function activePage(){
+    const page = document.querySelector('.page.show');
+    return page ? page.id : 'home';
+  }
+  function setHidden(hidden){
+    document.body.classList.toggle('nav-hidden', !!hidden);
+  }
+  function onScroll(){
+    if(ticking) return;
+    ticking = true;
+    requestAnimationFrame(function(){
+      const y = window.scrollY || 0;
+      const diff = y - lastY;
+      const now = Date.now();
+      const ae = document.activeElement;
+      const typing = ae && (ae.tagName === 'INPUT' || ae.tagName === 'TEXTAREA' || ae.isContentEditable);
+      if(now > lockedUntil && !typing){
+        if(diff > THRESHOLD && y > 70){ setHidden(true); lockedUntil = now + 80; }
+        else if(diff < -THRESHOLD || y < 35){ setHidden(false); lockedUntil = now + 80; }
+      }
+      lastY = y;
+      ticking = false;
+    });
+  }
+  window.addEventListener('scroll', onScroll, {passive:true});
+  window.addEventListener('resize', function(){ lastY = window.scrollY || 0; }, {passive:true});
+  const oldShowPage = window.showPage;
+  if(typeof oldShowPage === 'function'){
+    window.showPage = function(){
+      setHidden(false);
+      lastY = window.scrollY || 0;
+      return oldShowPage.apply(this, arguments);
+    };
+  }
+})();
+</script>
+
+<!-- v148: bottom tab slides straight by bottom, no diagonal transform jump -->
+<style id="v148-straight-bottom-slide-fix">
+  /* Tab trên đứng yên */
+  .top-glass,
+  .top-glass.hide,
+  .top-glass.show{
+    opacity:1!important;
+  }
+  @media (max-width:599px){
+    .top-glass,
+    .top-glass.hide,
+    .top-glass.show{transform:none!important;}
+  }
+  @media (min-width:600px){
+    .top-glass,
+    .top-glass.hide,
+    .top-glass.show{transform:translate3d(-50%,0,0)!important;}
+  }
+
+  /* Nút tìm kiếm tròn giữ nguyên, không đi theo nav-hidden */
+  .search-float,
+  #searchFloat,
+  body.nav-hidden .search-float,
+  body.nav-hidden #searchFloat,
+  .nav-hidden .search-float,
+  .nav-hidden #searchFloat{
+    transform:none!important;
+    opacity:1!important;
+    pointer-events:auto!important;
+  }
+
+  /* Không animate transform nữa, vì transform đang dùng để căn vị trí nên dễ bị hất chéo */
+  .bottom-shell{
+    opacity:1!important;
+    pointer-events:auto!important;
+    transition:bottom .34s cubic-bezier(.22,.61,.36,1), opacity .22s ease!important;
+    will-change:bottom,opacity!important;
+    backface-visibility:hidden!important;
+    -webkit-backface-visibility:hidden!important;
+  }
+
+  @media (max-width:599px){
+    .bottom-shell{
+      transform:none!important;
+      bottom:calc(12px + env(safe-area-inset-bottom,0px))!important;
+    }
+    body.nav-hidden .bottom-shell,
+    .nav-hidden .bottom-shell{
+      transform:none!important;
+      bottom:calc(-86px - env(safe-area-inset-bottom,0px))!important;
+      opacity:0!important;
+      pointer-events:none!important;
+    }
+  }
+
+  @media (min-width:600px){
+    .bottom-shell{
+      transform:translateX(-50%)!important;
+      bottom:calc(18px + env(safe-area-inset-bottom,0px))!important;
+    }
+    body.nav-hidden .bottom-shell,
+    .nav-hidden .bottom-shell{
+      transform:translateX(-50%)!important;
+      bottom:calc(-96px - env(safe-area-inset-bottom,0px))!important;
+      opacity:0!important;
+      pointer-events:none!important;
+    }
+  }
 </style>
