@@ -3391,6 +3391,159 @@ load();
 })();
 </script>
 
+
+
+<!-- v151: safe smooth polish from v148 - no HTML tab changes -->
+<style id="v151-safe-ios-smooth-bottom-tab">
+  /* Chỉ làm mượt + font iOS cho thanh tab dưới, không đổi cấu trúc */
+  .bottom-shell,
+  .bottom-shell .nav-item,
+  .bottom-shell .nav-item small{
+    font-family:"SF Pro Display","SF Pro Text",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif!important;
+    -webkit-font-smoothing:antialiased!important;
+    text-rendering:optimizeLegibility!important;
+  }
+
+  .bottom-shell{
+    will-change:transform,opacity!important;
+    backface-visibility:hidden!important;
+    -webkit-backface-visibility:hidden!important;
+    contain:layout paint style!important;
+    transition:transform .32s cubic-bezier(.22,1,.36,1), opacity .22s linear!important;
+    opacity:1!important;
+  }
+
+  .bottom-shell .liquid-pill{
+    display:none!important;
+    opacity:0!important;
+    pointer-events:none!important;
+  }
+
+  .bottom-shell .nav-item{
+    transition:color .16s linear, transform .18s cubic-bezier(.22,1,.36,1)!important;
+    will-change:transform,color!important;
+    transform:translate3d(0,0,0)!important;
+  }
+
+  .bottom-shell .nav-item .ico{
+    transform:translate3d(0,0,0)!important;
+    backface-visibility:hidden!important;
+    -webkit-backface-visibility:hidden!important;
+    transition:transform .18s cubic-bezier(.22,1,.36,1), color .16s linear!important;
+    will-change:transform,color!important;
+  }
+
+  .bottom-shell .nav-item:active,
+  .bottom-shell .nav-item.tap-pop{
+    transform:translate3d(0,-1px,0) scale(.965)!important;
+  }
+
+  .bottom-shell .nav-item.active{
+    color:#7feaff!important;
+  }
+
+  .search-float,
+  body.nav-hidden .search-float,
+  .nav-hidden .search-float,
+  #searchFloat,
+  body.nav-hidden #searchFloat,
+  .nav-hidden #searchFloat{
+    transform:none!important;
+    opacity:1!important;
+    pointer-events:auto!important;
+    transition:none!important;
+    will-change:auto!important;
+  }
+
+  @media (max-width:599px){
+    .bottom-shell{
+      transform:translate3d(0,0,0)!important;
+    }
+    body.nav-hidden .bottom-shell,
+    .nav-hidden .bottom-shell{
+      transform:translate3d(0,calc(132px + env(safe-area-inset-bottom,0px)),0)!important;
+      opacity:0!important;
+      pointer-events:none!important;
+    }
+  }
+
+  @media (min-width:600px){
+    .bottom-shell{
+      transform:translate3d(-50%,0,0)!important;
+    }
+    body.nav-hidden .bottom-shell,
+    .nav-hidden .bottom-shell{
+      transform:translate3d(-50%,calc(132px + env(safe-area-inset-bottom,0px)),0)!important;
+      opacity:0!important;
+      pointer-events:none!important;
+    }
+  }
+</style>
+<script id="v151-safe-ios-smooth-bottom-tab-js">
+(function(){
+  var raf = 0;
+  var lastY = window.scrollY || 0;
+  var hidden = false;
+  var lastChange = 0;
+  var THRESHOLD = 12;
+  var LOCK = 90;
+
+  function isTyping(){
+    var a = document.activeElement;
+    return !!(a && (a.tagName === 'INPUT' || a.tagName === 'TEXTAREA' || a.isContentEditable));
+  }
+
+  function setHidden(next){
+    if(hidden === next) return;
+    hidden = next;
+    document.body.classList.toggle('nav-hidden', next);
+  }
+
+  function tick(){
+    raf = 0;
+    var y = window.scrollY || 0;
+    var diff = y - lastY;
+    var now = performance.now();
+
+    if(!isTyping() && now - lastChange > LOCK){
+      if(diff > THRESHOLD && y > 80){
+        setHidden(true);
+        lastChange = now;
+      }else if(diff < -THRESHOLD || y < 40){
+        setHidden(false);
+        lastChange = now;
+      }
+    }
+    lastY = y;
+  }
+
+  function onScroll(){
+    if(!raf) raf = requestAnimationFrame(tick);
+  }
+
+  window.addEventListener('scroll', onScroll, {passive:true});
+  window.addEventListener('resize', function(){ lastY = window.scrollY || 0; }, {passive:true});
+
+  document.addEventListener('DOMContentLoaded', function(){
+    document.querySelectorAll('.bottom-shell .nav-item').forEach(function(item){
+      item.addEventListener('pointerdown', function(){
+        item.classList.add('tap-pop');
+      }, {passive:true});
+      ['pointerup','pointercancel','mouseleave'].forEach(function(ev){
+        item.addEventListener(ev, function(){
+          setTimeout(function(){ item.classList.remove('tap-pop'); }, 120);
+        }, {passive:true});
+      });
+    });
+
+    document.querySelectorAll('img').forEach(function(img){
+      if(!img.hasAttribute('loading')) img.setAttribute('loading','lazy');
+      if(!img.hasAttribute('decoding')) img.setAttribute('decoding','async');
+    });
+  });
+})();
+</script>
+
 </body>
 </html>
 <!-- v118: hard fix mobile scroll + bottom tab safe layout -->
@@ -3828,5 +3981,39 @@ body{
       opacity:0!important;
       pointer-events:none!important;
     }
+  }
+</style>
+
+<!-- v152: remove cyan underline + force iOS font for bottom tab -->
+<style id="v152-remove-tab-underline-ios-font">
+  .bottom-shell .liquid-pill,
+  .bottom-shell .nav-item::before,
+  .bottom-shell .nav-item::after,
+  .bottom-shell .nav-item.active::before,
+  .bottom-shell .nav-item.active::after{
+    display:none!important;
+    content:none!important;
+    opacity:0!important;
+    width:0!important;
+    height:0!important;
+    background:transparent!important;
+    box-shadow:none!important;
+    border:0!important;
+  }
+
+  .bottom-shell,
+  .bottom-shell .nav-item,
+  .bottom-shell .nav-item small,
+  .bottom-shell .nav-item .ico{
+    font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text","Helvetica Neue",Arial,sans-serif!important;
+    -webkit-font-smoothing:antialiased!important;
+    text-rendering:geometricPrecision!important;
+  }
+
+  .bottom-shell .nav-item small{
+    font-size:11px!important;
+    font-weight:700!important;
+    letter-spacing:-0.25px!important;
+    line-height:1!important;
   }
 </style>
