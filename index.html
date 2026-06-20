@@ -7700,6 +7700,87 @@ load();
 })();
 </script>
 
+
+
+<!-- v316: fixed bottom tab bar overlap/overflow on phones -->
+<style id="v316-bottom-tab-hard-fix">
+  :root{--kcp-bottom-safe:env(safe-area-inset-bottom,0px);--kcp-tab-gap:12px;--kcp-search-size:64px;--kcp-side-pad:14px;}
+  body{padding-bottom:calc(112px + var(--kcp-bottom-safe))!important;overflow-x:hidden!important;}
+  .app{max-width:520px!important;overflow-x:hidden!important;}
+  .bottom-shell,
+  body:not(.nav-hidden) .bottom-shell,
+  body.nav-hidden:not(.force-nav) .bottom-shell{
+    position:fixed!important;
+    left:max(var(--kcp-side-pad),calc((100vw - min(520px,100vw)) / 2 + var(--kcp-side-pad)))!important;
+    right:auto!important;
+    bottom:calc(14px + var(--kcp-bottom-safe))!important;
+    width:min(calc(100vw - (var(--kcp-side-pad) * 2) - var(--kcp-search-size) - var(--kcp-tab-gap)), calc(520px - (var(--kcp-side-pad) * 2) - var(--kcp-search-size) - var(--kcp-tab-gap)))!important;
+    max-width:none!important;
+    min-width:0!important;
+    height:64px!important;
+    padding:0 8px!important;
+    margin:0!important;
+    transform:none!important;
+    border-radius:34px!important;
+    overflow:hidden!important;
+    display:flex!important;
+    align-items:center!important;
+    justify-content:space-between!important;
+    z-index:120!important;
+    background:rgba(32,45,50,.72)!important;
+    border:1px solid rgba(126,238,255,.14)!important;
+    box-shadow:0 14px 36px rgba(0,0,0,.46),inset 0 1px 10px rgba(255,255,255,.08)!important;
+    -webkit-backdrop-filter:blur(24px)!important;
+    backdrop-filter:blur(24px)!important;
+  }
+  .search-float,
+  body:not(.nav-hidden) .search-float{
+    position:fixed!important;
+    right:max(var(--kcp-side-pad),calc((100vw - min(520px,100vw)) / 2 + var(--kcp-side-pad)))!important;
+    bottom:calc(14px + var(--kcp-bottom-safe))!important;
+    width:var(--kcp-search-size)!important;
+    height:var(--kcp-search-size)!important;
+    min-width:var(--kcp-search-size)!important;
+    min-height:var(--kcp-search-size)!important;
+    margin:0!important;
+    transform:none!important;
+    z-index:121!important;
+    border-radius:50%!important;
+    background:rgba(32,45,50,.78)!important;
+    border:1px solid rgba(126,238,255,.14)!important;
+    box-shadow:0 14px 36px rgba(0,0,0,.46),inset 0 1px 10px rgba(255,255,255,.08)!important;
+    -webkit-backdrop-filter:blur(24px)!important;
+    backdrop-filter:blur(24px)!important;
+  }
+  .bottom-shell .liquid-pill,
+  .bottom-shell::before,
+  .bottom-shell::after,
+  .bottom-shell .nav-item::before,
+  .bottom-shell .nav-item::after,
+  .bottom-shell .nav-item.active::before,
+  .bottom-shell .nav-item.active::after{
+    display:none!important;content:none!important;opacity:0!important;width:0!important;height:0!important;background:transparent!important;box-shadow:none!important;border:0!important;
+  }
+  .bottom-shell .nav-item{
+    flex:1 1 0!important;min-width:0!important;height:100%!important;padding:0 2px!important;margin:0!important;
+    display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:center!important;gap:5px!important;
+    color:rgba(235,252,255,.72)!important;background:transparent!important;border:0!important;box-shadow:none!important;border-radius:0!important;transform:none!important;
+    font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text",Roboto,Arial,sans-serif!important;
+  }
+  .bottom-shell .nav-item.active{color:#83efff!important;background:transparent!important;transform:none!important;}
+  .bottom-shell .nav-item .ico{width:24px!important;height:24px!important;flex:0 0 24px!important;stroke-width:2.35!important;filter:none!important;transform:none!important;}
+  .bottom-shell .nav-item.active .ico{transform:none!important;filter:drop-shadow(0 0 8px rgba(127,234,255,.36))!important;}
+  .bottom-shell .nav-item small{font-size:11px!important;font-weight:750!important;line-height:1!important;letter-spacing:-.35px!important;white-space:nowrap!important;max-width:100%!important;overflow:hidden!important;text-overflow:ellipsis!important;transform:none!important;}
+  .nav-hidden .bottom-shell,body.nav-hidden .bottom-shell{transform:translateY(calc(120px + var(--kcp-bottom-safe)))!important;opacity:0!important;pointer-events:none!important;}
+  .nav-hidden .search-float,body.nav-hidden .search-float{transform:translateY(calc(120px + var(--kcp-bottom-safe)))!important;opacity:0!important;pointer-events:none!important;}
+  .light-mode .bottom-shell,.light-mode .search-float{background:rgba(255,255,255,.86)!important;color:#5b6470!important;border-color:rgba(43,108,176,.14)!important;box-shadow:0 14px 34px rgba(15,23,42,.14),inset 0 1px 10px rgba(255,255,255,.75)!important;}
+  .light-mode .bottom-shell .nav-item{color:#6b7280!important}.light-mode .bottom-shell .nav-item.active{color:#2b9bd8!important}
+  @media(max-width:380px){:root{--kcp-search-size:60px;--kcp-side-pad:12px;--kcp-tab-gap:10px}.bottom-shell{height:60px!important;padding:0 6px!important}.bottom-shell .nav-item .ico{width:22px!important;height:22px!important}.bottom-shell .nav-item small{font-size:10px!important}}
+</style>
+<script id="v316-title-cache-tag">
+  try{document.title='KHO CHỨA PHIM v316 Tab Fix'}catch(e){}
+</script>
+
 </body>
 </html>
 <!-- v118: hard fix mobile scroll + bottom tab safe layout -->
@@ -12629,5 +12710,67 @@ body.light-mode .top-profile-bubble{
   ['DOMContentLoaded','load','click','storage'].forEach(function(ev){window.addEventListener(ev,function(){setTimeout(patchProfile,60);},true);});
   try{new MutationObserver(function(){patchProfile();}).observe(document.body,{childList:true,subtree:true,characterData:true});}catch(e){}
   setTimeout(patchProfile,80);setTimeout(patchProfile,500);setInterval(patchProfile,1200);
+})();
+</script>
+
+<!-- v315: final stability sweep for v314 home/recommend layout -->
+<style id="v315-total-bug-fix-css">
+  html,body{overscroll-behavior-y:auto!important;touch-action:pan-y!important;}
+  body{background:#000!important;}
+  .app{background:transparent!important;}
+  #home{padding-bottom:calc(130px + env(safe-area-inset-bottom,0px))!important;}
+  #home .home-recommend-section{padding:24px 12px calc(150px + env(safe-area-inset-bottom,0px))!important;max-width:760px!important;margin:0 auto!important;}
+  #home .home-recommend-section h2{font-size:clamp(22px,6vw,34px)!important;margin:0 0 16px!important;letter-spacing:-.8px!important;}
+  #home #recommendGrid{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:16px 10px!important;align-items:start!important;}
+  #home #recommendGrid .card{min-width:0!important;overflow:visible!important;}
+  #home #recommendGrid .poster-wrap{aspect-ratio:2/3!important;border-radius:10px!important;overflow:hidden!important;background:#111!important;}
+  #home #recommendGrid .poster-wrap img{width:100%!important;height:100%!important;object-fit:cover!important;display:block!important;}
+  #home #recommendGrid .card h3{font-size:clamp(11px,3.05vw,15px)!important;line-height:1.16!important;margin:7px 0 3px!important;min-height:0!important;display:-webkit-box!important;-webkit-line-clamp:2!important;-webkit-box-orient:vertical!important;overflow:hidden!important;letter-spacing:-.2px!important;}
+  #home #recommendGrid .sub{font-size:clamp(9.5px,2.55vw,12px)!important;line-height:1.2!important;white-space:nowrap!important;overflow:hidden!important;text-overflow:ellipsis!important;}
+  #home #recommendGrid .labels{top:5px!important;left:5px!important;right:5px!important;gap:3px!important;max-width:calc(100% - 10px)!important;}
+  #home #recommendGrid .label,#home #recommendGrid .score-badge,#home #recommendGrid .ep{font-size:8.5px!important;padding:3px 4px!important;border-radius:6px!important;line-height:1!important;max-width:86%!important;white-space:nowrap!important;overflow:hidden!important;text-overflow:ellipsis!important;}
+  #home #recommendGrid .score-badge{top:5px!important;right:5px!important;}
+  #home #recommendGrid .ep{right:5px!important;bottom:5px!important;}
+  .bottom-shell{left:50%!important;right:auto!important;transform:translateX(-50%)!important;width:min(540px,calc(100vw - 112px))!important;max-width:calc(100vw - 112px)!important;}
+  body.nav-hidden .bottom-shell{transform:translate(-50%,calc(130px + env(safe-area-inset-bottom,0px)))!important;}
+  .search-float{transform:none!important;}
+  .top-glass{max-width:calc(100vw - 24px)!important;}
+  .top-search-input{min-width:0!important;}
+  .hero-wrap{overflow:hidden!important;}
+  @media(max-width:380px){#home #recommendGrid{gap:14px 8px!important;}#home .home-recommend-section{padding-left:10px!important;padding-right:10px!important}.bottom-shell{width:calc(100vw - 122px)!important;max-width:calc(100vw - 122px)!important}.nav-item small{font-size:10px!important}}
+  @media(min-width:700px){#home .home-recommend-section{max-width:900px!important}#home #recommendGrid{gap:22px 16px!important}#home #recommendGrid .card h3{font-size:16px!important}#home #recommendGrid .sub{font-size:13px!important}}
+  body.light-mode{background:#f4f6f8!important;} body.light-mode #home #recommendGrid .sub{color:#667085!important;}
+</style>
+<script id="v315-total-bug-fix-js">
+(function(){
+  function byId(id){return document.getElementById(id)}
+  function safeSetHTML(id,html){var el=byId(id); if(el) el.innerHTML=html;}
+  function safeImgLoad(root){try{(root||document).querySelectorAll('img[data-src]').forEach(function(img,i){ if(typeof window.setImg==='function') window.setImg(img,img.dataset.src); else img.src=img.dataset.src; if(i<6){img.loading='eager'; try{img.fetchPriority='high'}catch(e){}}});}catch(e){}}
+  function cardListHTML(arr){try{return (arr||[]).map(function(m,i){return typeof window.cardHTML==='function'?window.cardHTML(m,i):''}).join('');}catch(e){return '<div class="empty-mini" style="grid-column:1/-1">Không dựng được danh sách phim.</div>';}}
+  window.renderGrid=function(id,arr){var el=byId(id); if(!el) return ''; var html=cardListHTML(arr||[]); el.innerHTML=html || '<div class="empty-mini" style="grid-column:1/-1">Chưa có phim để hiển thị.</div>'; var run=function(){safeImgLoad(el)}; if('requestIdleCallback' in window) requestIdleCallback(run,{timeout:450}); else setTimeout(run,0); return html;};
+  window.renderDiscover=function(){
+    var list=Array.isArray(window.movies)?window.movies:[];
+    if(byId('top3')) safeSetHTML('top3',list.slice(0,3).map(function(m,i){return '<div class="top-person"><img class="avatar '+(i===1?'big':'')+'" data-src="'+(m.thumb||m.poster||'')+'" alt=""><b>'+(m.name||'Phim').slice(0,12)+'</b><div class="muted">'+(m.view||100)+'p</div><div class="rank-box">🏆 #'+(i+1)+'</div></div>';}).join(''));
+    if(byId('rankList')) safeSetHTML('rankList',list.slice(3,12).map(function(m,i){return '<div class="list-row" onclick="openDetail(\''+(m.slug||'')+'\')"><div class="num">'+(i+4)+'</div><img class="small-avatar" data-src="'+(m.thumb||m.poster||'')+'" alt=""><b style="flex:1">'+(m.name||'Phim')+'</b><span class="muted">🏆 '+(m.view||99)+'p</span></div>';}).join(''));
+    safeImgLoad(byId('discover'));
+  };
+  var oldRenderProfileView=window.renderProfileView;
+  window.renderProfileView=function(){
+    try{
+      var u=(typeof window.getCurrentUser==='function'&&window.getCurrentUser())||{};
+      var saved=(typeof window.storeGet==='function'?window.storeGet('saved',[]):[])||[];
+      var history=(typeof window.storeGet==='function'?window.storeGet('history',[]):[])||[];
+      var mins=typeof window.totalWatchMinutes==='function'?window.totalWatchMinutes():0;
+      var journal=history.slice(0,4).concat(saved.filter(function(s){return !history.some(function(h){return h.slug===s.slug})}).slice(0,2)).slice(0,6);
+      var moviesHTML=journal.length?cardListHTML(journal):'<div class="empty-mini" style="grid-column:1/-1">Chưa có phim nào trong nhật ký.</div>';
+      var avatar=typeof window.getEffectiveAvatar==='function'?window.getEffectiveAvatar(u):(u.avatar||'');
+      var joined=typeof window.formatJoined==='function'?window.formatJoined(u.joinedAt):'hôm nay';
+      var socials=typeof window.renderSocialLinks==='function'?window.renderSocialLinks():'';
+      return '<div class="profile-full"><div class="profile-cover"><button class="profile-share" onclick="shareProfile()">⌯</button><img class="profile-full-avatar" data-user-avatar="1" onclick="pickAvatar()" src="'+avatar+'" alt="avatar"><div class="profile-full-name">'+(u.name||u.username||'wtruozg')+'</div><div class="join-date">▣ Tham gia '+joined+'</div><button class="social-add" onclick="addSocialLink()">＋ Thêm liên kết mạng xã hội</button>'+socials+'</div><div class="profile-stats"><div class="stat-card"><div class="stat-ico" style="color:#7ee8ff">▱</div><div class="stat-num">'+saved.length+'</div><div class="stat-label">Đã lưu</div></div><div class="stat-card"><div class="stat-ico" style="color:#bb63ff">◷</div><div class="stat-num">'+mins+' phút</div><div class="stat-label">Đã xem</div></div><div class="stat-card"><div class="stat-ico">🏆</div><div class="stat-num">'+(history.length||'Chưa có')+'</div><div class="stat-label">Phim đã xem</div></div></div><div class="journal-head"><h3>Nhật ký tâm hồn</h3><span class="muted">Công khai <b class="theme-switch"><i></i></b></span></div><div class="profile-movies">'+moviesHTML+'</div></div>';
+    }catch(e){return typeof oldRenderProfileView==='function'?oldRenderProfileView():'';}
+  };
+  function finalRender(){try{if(Array.isArray(window.movies)&&window.movies.length){var hot=[].concat(window.movies).sort(function(a,b){try{return (window.hotScore?hotScore(b):0)-(window.hotScore?hotScore(a):0)}catch(e){return 0}}); window.renderGrid('recommendGrid',hot.slice(0,36)); window.renderDiscover();}}catch(e){console.warn('v315 render guard',e)}}
+  window.addEventListener('load',function(){setTimeout(finalRender,80);setTimeout(finalRender,900)}, {once:true});
+  document.addEventListener('DOMContentLoaded',function(){setTimeout(finalRender,120)}, {once:true});
 })();
 </script>
