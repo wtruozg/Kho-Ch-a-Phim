@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
-<title>KHO CHỨA PHIM v255 Rank Claim Fix</title>
+<title>KHO CHỨA PHIM v293 Stats Icon Real</title>
 <link rel="preconnect" href="https://img.ophim.cc" crossorigin>
 <link rel="preconnect" href="https://img.ophim.live" crossorigin>
 <link rel="dns-prefetch" href="https://img.ophim.cc">
@@ -1874,6 +1874,60 @@ body{
 
 
 
+<style id="v277-diamond-actually-fat">
+/* v277: diamond icon shape visibly fatter - only inner SVG, keep badge background */
+.rank-emblem.rank-diamond svg{width:32px!important;height:32px!important;stroke-width:3.8!important;}
+.tpb-rank-badge .rank-emblem.rank-diamond svg{width:15px!important;height:15px!important;stroke-width:3.8!important;}
+.rank-now .rank-emblem.rank-diamond svg{width:18px!important;height:18px!important;stroke-width:3.8!important;}
+.rank-medal .rank-emblem.rank-diamond svg{width:34px!important;height:34px!important;stroke-width:3.8!important;}
+</style>
+
+<style id="v314-home-three-recommend-only">
+/* Trang chủ: xoá các mục cũ, giữ duy nhất Đề Xuất Cho Bạn và chia poster thành 3 cột */
+#home .home-recommend-section{
+  padding:26px 14px 120px!important;
+}
+#home .home-recommend-section h2{
+  font-size:clamp(28px,7.5vw,42px)!important;
+  line-height:1.05!important;
+  margin:0 0 22px!important;
+  font-weight:950!important;
+  letter-spacing:-1.3px!important;
+}
+#home #recommendGrid,
+#home .home-three-grid{
+  display:grid!important;
+  grid-template-columns:repeat(3,minmax(0,1fr))!important;
+  gap:22px 18px!important;
+}
+#home #recommendGrid .poster-wrap{
+  border-radius:12px!important;
+}
+#home #recommendGrid .card h3{
+  font-size:clamp(15px,3.6vw,20px)!important;
+  margin:9px 0 4px!important;
+  line-height:1.18!important;
+  font-weight:950!important;
+}
+#home #recommendGrid .sub{
+  font-size:clamp(12px,3vw,15px)!important;
+  color:rgba(255,255,255,.50)!important;
+}
+#home #recommendGrid .label,
+#home #recommendGrid .score-badge,
+#home #recommendGrid .ep{
+  font-size:clamp(9px,2.3vw,12px)!important;
+  padding:4px 6px!important;
+  border-radius:7px!important;
+}
+#home #recommendGrid .labels{top:7px!important;left:7px!important;gap:4px!important;}
+#home #recommendGrid .score-badge{right:7px!important;top:7px!important;}
+#home #recommendGrid .ep{right:7px!important;bottom:7px!important;}
+@media(max-width:380px){
+  #home .home-recommend-section{padding-left:12px!important;padding-right:12px!important;}
+  #home #recommendGrid{gap:18px 14px!important;}
+}
+</style>
 </head>
 <body>
 <div class="app">
@@ -1881,10 +1935,7 @@ body{
 
 <section id="home" class="page show">
   <div class="hero-wrap" id="heroWrap"><div class="hero-slide" id="heroSlide"><img id="heroImg" alt=""><img id="heroImgNext" class="hero-next-img" alt="" aria-hidden="true"></div><div class="hero-content"><div class="badges"><span class="badge cyan">♨ PHIM SIÊU HAY</span><span class="badge" id="heroYear">2026</span><span class="badge" id="heroScore">☆ 9</span></div><h1 class="hero-title" id="heroTitle">KHO CHỨA PHIM</h1><p class="hero-origin" id="heroOrigin">Movie Universe</p><p class="hero-desc" id="heroDesc">Đang tải dữ liệu phim...</p><div class="hero-meta"><span>◷ <b id="heroTime">45 phút/tập</b></span><span>◉ <b id="heroView">0 lượt xem</b></span></div><div class="complete" id="heroEp">Hoàn tất</div></div><div class="hero-pager" id="heroPager"><button class="hero-arrow hero-prev" onclick="changeHero(-1)" aria-label="Phim trước">‹</button><div class="dots" id="heroDots"></div><button class="hero-arrow hero-next" onclick="changeHero(1)" aria-label="Phim sau">›</button></div><button class="watch-btn" onclick="openCurrentMovie()">▶ Xem ngay</button></div>
-  <section class="section"><h2>🔥 Phim mới nổi 2026</h2><div class="grid" id="netflixGrid"></div></section>
-  <section class="section"><h2>Phim Việt · Hàn · Trung mới</h2><div class="grid" id="privateGrid"></div></section>
-  <section class="section"><h2>Coi gì thì quẹo lựa nè</h2><div class="quick"><div class="quick-card" onclick="openFilterPage('the-loai')"><div class="quick-left"><div class="quick-icon"><svg class="ico" viewBox="0 0 24 24"><path d="M20 12 12 20 4 12l8-8 8 8Z"/></svg></div><div><div class="quick-title">Thể Loại</div><div class="quick-desc">Lọc tất cả phim theo thể loại</div></div></div><div class="arrow">›</div></div><div class="quick-card cyan" onclick="openFilterPage('quoc-gia')"><div class="quick-left"><div class="quick-icon"><svg class="ico" viewBox="0 0 24 24"><path d="M12 21s7-5.2 7-11a7 7 0 1 0-14 0c0 5.8 7 11 7 11Z"/><circle cx="12" cy="10" r="2"/></svg></div><div><div class="quick-title">Quốc Gia</div><div class="quick-desc">Lọc tất cả phim theo quốc gia</div></div></div><div class="arrow">›</div></div></div></section>
-  <section class="section"><h2>Đề xuất phim mới</h2><div class="grid" id="recommendGrid"></div></section>
+  <section class="section home-recommend-section"><h2>Đề Xuất Cho Bạn</h2><div class="grid home-three-grid" id="recommendGrid"></div></section>
 </section>
 
 <section id="discover" class="page discover explore-hub">
@@ -1995,11 +2046,11 @@ body{
       <div class="setting-row save" onclick="openPanel('saved')"><div class="setting-icon icon-save"><svg viewBox="0 0 24 24"><path d="M6 4h12a1 1 0 0 1 1 1v16l-7-4-7 4V5a1 1 0 0 1 1-1z"/></svg></div><span>Phim đã lưu</span><b class="chev">›</b></div>
       <div class="setting-row history" onclick="openPanel('history')"><div class="setting-icon icon-history"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><path d="M12 7v5l4 2"/></svg></div><span>Lịch sử xem</span><b class="chev">›</b></div>
       <div class="setting-row notify" onclick="openPanel('notifications')"><div class="setting-icon icon-bell"><svg viewBox="0 0 24 24"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9"/><path d="M10 21h4"/></svg></div><span>Thông báo</span><b class="chev">›</b></div>
-      <div class="setting-row settings" onclick="openPanel('settings')"><div class="setting-icon icon-gear"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9.6 3.9c.1-.5.6-.9 1.1-.9h2.6c.5 0 1 .4 1.1.9l.2 1.3c.1.4.3.7.7.9l.2.1c.3.2.7.3 1.1.1l1.2-.5c.5-.2 1.1 0 1.4.5l1.3 2.2c.3.5.2 1.1-.3 1.4l-1 .8c-.3.2-.4.6-.4 1v.5c0 .4.1.7.4 1l1 .8c.4.4.5 1 .3 1.4l-1.3 2.2c-.3.5-.9.7-1.4.5l-1.2-.5c-.4-.1-.8-.1-1.1.1l-.2.1c-.3.2-.6.5-.7.9l-.2 1.3c-.1.5-.6.9-1.1.9h-2.6c-.5 0-1-.4-1.1-.9l-.2-1.3c-.1-.4-.3-.7-.7-.9l-.2-.1c-.3-.2-.7-.3-1.1-.1l-1.2.5c-.5.2-1.1 0-1.4-.5l-1.3-2.2c-.3-.5-.2-1.1.3-1.4l1-.8c.3-.2.4-.6.4-1v-.5c0-.4-.1-.7-.4-1l-1-.8c-.4-.4-.5-1-.3-1.4l1.3-2.2c.3-.5.9-.7 1.4-.5l1.2.5c.4.1.8.1 1.1-.1l.2-.1c.3-.2.6-.5.7-.9l.2-1.3z"/><circle cx="12" cy="12" r="3.2"/></svg></div><span>Cài đặt tài khoản</span><b class="chev">›</b></div>
       <div class="setting-row theme" onclick="toggleDarkMode()"><div class="setting-icon icon-theme"><svg viewBox="0 0 24 24"><path d="M21 13.2A8.6 8.6 0 1 1 10.8 3a7 7 0 0 0 10.2 10.2z"/></svg></div><span id="themeLabel">Chế độ sáng</span><b class="theme-switch" id="darkState"><i></i></b></div>
       <div class="setting-row contact" onclick="openPanel('contact')"><div class="setting-icon icon-contact"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 11.5a8.5 8.5 0 0 1-12.3 7.6L3 21l1.9-5.7A8.5 8.5 0 1 1 21 11.5z"/></svg></div><span>Liên hệ & Phản hồi</span><b class="chev">›</b></div>
     </div>
     <button class="danger" onclick="showLogoutConfirmBubble(event)"><svg class="logout-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M10 6H6.8A2.8 2.8 0 0 0 4 8.8v6.4A2.8 2.8 0 0 0 6.8 18H10"/><path d="M14 8l4 4-4 4"/><path d="M18 12H9"/></svg><span>Đăng xuất</span></button>
+    <button class="profile-settings-icon-btn" onclick="openPanel('settings')" aria-label="Cài đặt tài khoản" title="Cài đặt tài khoản"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9.6 3.9c.1-.5.6-.9 1.1-.9h2.6c.5 0 1 .4 1.1.9l.2 1.3c.1.4.3.7.7.9l.2.1c.3.2.7.3 1.1.1l1.2-.5c.5-.2 1.1 0 1.4.5l1.3 2.2c.3.5.2 1.1-.3 1.4l-1 .8c-.3.2-.4.6-.4 1v.5c0 .4.1.7.4 1l1 .8c.4.4.5 1 .3 1.4l-1.3 2.2c-.3.5-.9.7-1.4.5l-1.2-.5c-.4-.1-.8-.1-1.1.1l-.2.1c-.3.2-.6.5-.7.9l-.2 1.3c-.1.5-.6.9-1.1.9h-2.6c-.5 0-1-.4-1.1-.9l-.2-1.3c-.1-.4-.3-.7-.7-.9l-.2-.1c-.3-.2-.7-.3-1.1-.1l-1.2.5c-.5.2-1.1 0-1.4-.5l-1.3-2.2c-.3-.5-.2-1.1.3-1.4l1-.8c.3-.2.4-.6.4-1v-.5c0-.4-.1-.7-.4-1l-1-.8c-.4-.4-.5-1-.3-1.4l1.3-2.2c.3-.5.9-.7 1.4-.5l1.2.5c.4.1.8.1 1.1-.1l.2-.1c.3-.2.6-.5.7-.9l.2-1.3z"/><circle cx="12" cy="12" r="3.2"/></svg></button>
     <p class="muted" style="text-align:center;margin-top:34px">Kho Chứa Phim v128</p>
   </div>
 </section>
@@ -2295,9 +2346,9 @@ function renderAll(){
   const target=[...movies].filter(m=>movieYear(m)>=2025 && isTargetCountry(m)).sort((a,b)=>hotScore(b)-hotScore(a));
   const hot=[...movies].sort((a,b)=>hotScore(b)-hotScore(a));
   const newHot=[...movies].filter(m=>movieYear(m)>=2026).sort((a,b)=>hotScore(b)-hotScore(a));
-  renderGrid('netflixGrid',(newHot.length?newHot:hot).slice(0,8));
-  renderGrid('privateGrid',(target.length?target:newest).slice(0,8));
-  renderGrid('recommendGrid',(target.length?target:newest).slice(8,22));
+  // Trang chủ chỉ giữ 1 mục đề xuất, chia 3 cột như mẫu. Loài người thích lược bớt rồi lại thêm lại, nên đây.
+  const recSource=(target.length?target:(newHot.length?newHot:hot.length?hot:newest));
+  renderGrid('recommendGrid',recSource.slice(0,36));
   renderDiscover();
   renderSchedule();
   startHero();
@@ -4249,7 +4300,7 @@ load();
       bronze:barIcon('rank-bronze',2),
       silver:barIcon('rank-silver',1),
       gold:barIcon('rank-gold',0),
-      diamond:'<span class="rank-emblem rank-diamond" aria-hidden="true"><svg viewBox="0 0 48 48"><path d="M10 18 17 9h14l7 9-14 21L10 18Z"/><path d="M10 18h28M17 9l7 30 7-30"/></svg></span>',
+      diamond:'<span class="rank-emblem rank-diamond" aria-hidden="true"><svg viewBox="0 0 64 48" style="transform:scale(1.18);transform-origin:center;overflow:visible" fill="none" stroke="currentColor" stroke-width="4.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20 L13 9 H51 L60 20 L32 45 Z"/><path d="M4 20 H60"/><path d="M13 9 L22 20 L32 9 L42 20 L51 9"/><path d="M22 20 L32 45 L42 20"/><path d="M13 9 H51"/><path d="M49 5 C51 12 52 13 59 15 C52 17 51 18 49 25 C47 18 46 17 39 15 C46 13 47 12 49 5 Z" stroke-width="3.4"/></svg></span>',
       master:'<span class="rank-emblem rank-master" aria-hidden="true"><svg viewBox="0 0 48 48"><path d="M24 6c7 8 3 13 8 18 2-4 4-7 4-12 6 7 7 15 4 21-3 6-9 9-16 9S11 39 8 33c-4-8 1-16 7-22 0 7 3 10 6 13-2-7 1-12 3-18Z"/></svg></span>',
       challenger:'<span class="rank-emblem rank-challenger" aria-hidden="true"><svg viewBox="0 0 48 48"><path d="M9 36h30l3-21-10 8-8-13-8 13-10-8 3 21Z"/><path d="M12 40h24"/><circle cx="16" cy="18" r="2"/><circle cx="32" cy="18" r="2"/></svg></span>'
     };
@@ -4257,7 +4308,7 @@ load();
   }
   function rankInfo(count){
     var ranks=[
-      {name:'Nhựa',need:0,type:'plastic'},
+      
       {name:'Đồng',need:5,type:'bronze'},
       {name:'Bạc',need:10,type:'silver'},
       {name:'Vàng',need:20,type:'gold'},
@@ -4300,7 +4351,7 @@ load();
     var b=getBubble();
     var u=(typeof getCurrentUser==='function')?getCurrentUser():null;
     if(!u){
-      b.innerHTML='<div class="tpb-row"><div style="width:56px;height:56px;border-radius:999px;display:grid;place-items:center;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16)">'+accountIconSvg()+'</div><div><div class="tpb-name">Chưa đăng nhập</div><div class="tpb-email">Đăng nhập để xem hồ sơ</div></div></div><div class="tpb-actions" style="margin-top:13px"><button class="tpb-btn primary" onclick="hideTopProfileBubble();showPage(\'profile\')">Đăng nhập</button></div>';
+      b.innerHTML='<div class="tpb-row"><div class="tpb-login-circle">'+accountIconSvg()+'</div><div><div class="tpb-name">Chưa đăng nhập</div><div class="tpb-email">Đăng nhập để xem hồ sơ</div></div></div><div class="tpb-actions" style="margin-top:13px"><button class="tpb-btn primary" onclick="hideTopProfileBubble();showPage(\'profile\')">Đăng nhập</button></div>';
       return;
     }
     var saved=(typeof storeGet==='function')?storeGet('saved',[]):[];
@@ -4527,7 +4578,7 @@ load();
       return '<div class="tpb-rank-mini-item '+(done?'done':'')+'"><div class="rank-medal">'+r.icon+'</div><div><div class="tpb-rank-mini-title">'+esc3(r.name)+'</div><div class="tpb-rank-mini-desc">'+desc+'</div></div><div class="tpb-rank-mini-status">'+(done?'Đã nhận':(count+'/'+r.need))+'</div></div>';
     }).join('');
     var tail=document.createElement('div'); tail.id='topRankTail';
-    tail.innerHTML='<div class="tpb-tail-head"><b><span class="rank-title-cup" aria-hidden="true"><svg viewBox="0 0 48 48"><path d="M16 12h16v7c0 7-4 12-8 12s-8-5-8-12v-7Z"/><path d="M16 16H9c0 7 4 11 9 11M32 16h7c0 7-4 11-9 11"/><path d="M24 31v6M18 40h12"/></svg></span><span>Hạng của bạn</span></b><button class="tpb-tail-close" onclick="hideTopRankTail()">×</button></div><div class="tpb-mini-note"><b>Hiện tại: '+info.current.icon+' '+esc3(info.current.name)+'</b><br>Đã xem '+count+' phim khác nhau. '+esc3(next)+'</div><div class="tpb-rank-mini-list">'+rows+'</div>';
+    tail.innerHTML='<div class="tpb-tail-head"><b><span class="tpb-title-icon rank" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 21h8"/><path d="M12 17v4"/><path d="M7 4h10v4a5 5 0 0 1-10 0V4Z"/><path d="M7 6H4a3 3 0 0 0 3 5"/><path d="M17 6h3a3 3 0 0 1-3 5"/></svg></span><span>Hạng của bạn</span></b><button class="tpb-tail-close" onclick="event.stopPropagation();hideTopRankTail()">×</button></div><div class="tpb-mini-note"><b>Hiện tại: '+info.current.icon+' '+esc3(info.current.name)+'</b><br>Đã xem '+count+' phim khác nhau. '+esc3(next)+'</div><div class="tpb-rank-mini-list">'+rows+'</div>';
     b.appendChild(tail);
   };
   window.showTopSavedTail=function(){
@@ -4601,15 +4652,15 @@ load();
       bronze:barIcon('rank-bronze',2),
       silver:barIcon('rank-silver',1),
       gold:barIcon('rank-gold',0),
-      diamond:'<span class="rank-emblem rank-diamond" aria-hidden="true"><svg viewBox="0 0 48 48"><path d="M8 20 16 9h16l8 11-16 20L8 20Z"/><path d="M8 20h32M16 9l8 31 8-31M16 9l-2 11M32 9l2 11"/></svg></span>',
-      master:'<span class="rank-emblem rank-master" aria-hidden="true"><svg viewBox="0 0 48 48"><path d="M24 7 34 13 39 29 24 41 9 29 14 13 24 7Z"/><path d="M17 28h14M19 21l5-5 5 5"/></svg></span>',
+      diamond:'<span class="rank-emblem rank-diamond" aria-hidden="true"><svg viewBox="0 0 64 48" style="transform:scale(1.18);transform-origin:center;overflow:visible" fill="none" stroke="currentColor" stroke-width="4.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20 L13 9 H51 L60 20 L32 45 Z"/><path d="M4 20 H60"/><path d="M13 9 L22 20 L32 9 L42 20 L51 9"/><path d="M22 20 L32 45 L42 20"/><path d="M13 9 H51"/><path d="M49 5 C51 12 52 13 59 15 C52 17 51 18 49 25 C47 18 46 17 39 15 C46 13 47 12 49 5 Z" stroke-width="3.4"/></svg></span>',
+      master:'<span class="rank-emblem rank-master" aria-hidden="true"><svg viewBox="0 0 48 48"><path d="M24 6c7 8 3 13 8 18 2-4 4-7 4-12 6 7 7 15 4 21-3 6-9 9-16 9S11 39 8 33c-4-8 1-16 7-22 0 7 3 10 6 13-2-7 1-12 3-18Z"/></svg></span>',
       challenger:'<span class="rank-emblem rank-challenger" aria-hidden="true"><svg viewBox="0 0 48 48"><path d="M9 36h30l3-21-10 8-8-13-8 13-10-8 3 21Z"/><path d="M12 40h24"/><circle cx="16" cy="18" r="2"/><circle cx="32" cy="18" r="2"/></svg></span>'
     };
     return icons[type]||icons.plastic;
   }
   function rankData(count){
     var ranks=[
-      {name:'Nhựa',need:0,type:'plastic'},
+      
       {name:'Đồng',need:5,type:'bronze'},
       {name:'Bạc',need:10,type:'silver'},
       {name:'Vàng',need:20,type:'gold'},
@@ -4640,7 +4691,7 @@ load();
     }).join('');
     var tail=document.createElement('div');
     tail.id='topRankTail';
-    tail.innerHTML='<div class="tpb-tail-head"><b><span class="rank-title-cup" aria-hidden="true"><svg viewBox="0 0 48 48"><path d="M16 12h16v7c0 7-4 12-8 12s-8-5-8-12v-7Z"/><path d="M16 16H9c0 7 4 11 9 11M32 16h7c0 7-4 11-9 11"/><path d="M24 31v6M18 40h12"/></svg></span><span>Hạng của bạn</span></b><button class="tpb-tail-close" onclick="event.stopPropagation();hideTopRankTail()">×</button></div><div class="tpb-mini-note"><b>Hiện tại: '+info.current.icon+' '+esc(info.current.name)+'</b><br>Đã xem '+count+' phim khác nhau. '+esc(next)+'</div><div class="tpb-rank-mini-list">'+rows+'</div>';
+    tail.innerHTML='<div class="tpb-tail-head"><b><span class="tpb-title-icon rank" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 21h8"/><path d="M12 17v4"/><path d="M7 4h10v4a5 5 0 0 1-10 0V4Z"/><path d="M7 6H4a3 3 0 0 0 3 5"/><path d="M17 6h3a3 3 0 0 1-3 5"/></svg></span><span>Hạng của bạn</span></b><button class="tpb-tail-close" onclick="event.stopPropagation();hideTopRankTail()">×</button></div><div class="tpb-mini-note"><b>Hiện tại: '+info.current.icon+' '+esc(info.current.name)+'</b><br>Đã xem '+count+' phim khác nhau. '+esc(next)+'</div><div class="tpb-rank-mini-list">'+rows+'</div>';
     b.appendChild(tail);
   };
   window.showTopSavedTail=function(){
@@ -5441,8 +5492,8 @@ load();
   function getList(key){try{return (typeof window.storeGet==='function')?window.storeGet(key,[]):JSON.parse(localStorage.getItem('kcp_'+key)||'[]');}catch(e){return [];}}
   function uniqueWatchedCount(){var history=getList('history'), set={}; history.forEach(function(m){var k=(m&&(m.slug||m.name||m.id||m.origin_name))||''; k=String(k).trim().toLowerCase(); if(k)set[k]=1;}); return Object.keys(set).length;}
   function barIcon(cls,bars){var lines=bars===3?'<path d="M17 18h14M17 24h14M17 30h14"/>':bars===2?'<path d="M17 21h14M17 29h14"/>':bars===1?'<path d="M17 24h14"/>':''; return '<span class="rank-emblem '+cls+'" aria-hidden="true"><svg viewBox="0 0 48 48"><rect x="8" y="8" width="32" height="32" rx="12"/>'+lines+'</svg></span>';}
-  function rankIcon(type){var icons={plastic:barIcon('rank-plastic',3),bronze:barIcon('rank-bronze',2),silver:barIcon('rank-silver',1),gold:barIcon('rank-gold',0),diamond:'<span class="rank-emblem rank-diamond" aria-hidden="true"><svg viewBox="0 0 48 48"><path d="M8 20 16 9h16l8 11-16 20L8 20Z"/><path d="M8 20h32M16 9l8 31 8-31M16 9l-2 11M32 9l2 11"/></svg></span>',master:'<span class="rank-emblem rank-master" aria-hidden="true"><svg viewBox="0 0 48 48"><path d="M24 7 34 13 39 29 24 41 9 29 14 13 24 7Z"/><path d="M17 28h14M19 21l5-5 5 5"/></svg></span>',challenger:'<span class="rank-emblem rank-challenger" aria-hidden="true"><svg viewBox="0 0 48 48"><path d="M9 36h30l3-21-10 8-8-13-8 13-10-8 3 21Z"/><path d="M12 40h24"/><circle cx="16" cy="18" r="2"/><circle cx="32" cy="18" r="2"/></svg></span>'}; return icons[type]||icons.plastic;}
-  function rankData(count){var ranks=[{name:'Nhựa',need:0,type:'plastic'},{name:'Đồng',need:5,type:'bronze'},{name:'Bạc',need:10,type:'silver'},{name:'Vàng',need:20,type:'gold'},{name:'Kim cương',need:40,type:'diamond'},{name:'Cao thủ',need:80,type:'master'},{name:'Thách đấu',need:101,type:'challenger'}]; ranks.forEach(function(r){r.icon=rankIcon(r.type);}); var cur=ranks[0]; ranks.forEach(function(r){if(count>=r.need)cur=r;}); var next=ranks.find(function(r){return count<r.need;}); return {current:cur,next:next,ranks:ranks};}
+  function rankIcon(type){var icons={plastic:barIcon('rank-plastic',3),bronze:barIcon('rank-bronze',2),silver:barIcon('rank-silver',1),gold:barIcon('rank-gold',0),diamond:'<span class="rank-emblem rank-diamond" aria-hidden="true"><svg viewBox="0 0 64 48" style="transform:scale(1.18);transform-origin:center;overflow:visible" fill="none" stroke="currentColor" stroke-width="4.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20 L13 9 H51 L60 20 L32 45 Z"/><path d="M4 20 H60"/><path d="M13 9 L22 20 L32 9 L42 20 L51 9"/><path d="M22 20 L32 45 L42 20"/><path d="M13 9 H51"/><path d="M49 5 C51 12 52 13 59 15 C52 17 51 18 49 25 C47 18 46 17 39 15 C46 13 47 12 49 5 Z" stroke-width="3.4"/></svg></span>',master:'<span class="rank-emblem rank-master" aria-hidden="true"><svg viewBox="0 0 48 48"><path d="M24 6c7 8 3 13 8 18 2-4 4-7 4-12 6 7 7 15 4 21-3 6-9 9-16 9S11 39 8 33c-4-8 1-16 7-22 0 7 3 10 6 13-2-7 1-12 3-18Z"/></svg></span>',challenger:'<span class="rank-emblem rank-challenger" aria-hidden="true"><svg viewBox="0 0 48 48"><path d="M9 36h30l3-21-10 8-8-13-8 13-10-8 3 21Z"/><path d="M12 40h24"/><circle cx="16" cy="18" r="2"/><circle cx="32" cy="18" r="2"/></svg></span>'}; return icons[type]||icons.plastic;}
+  function rankData(count){var ranks=[{name:'Đồng',need:5,type:'bronze'},{name:'Bạc',need:10,type:'silver'},{name:'Vàng',need:20,type:'gold'},{name:'Kim cương',need:40,type:'diamond'},{name:'Cao thủ',need:80,type:'master'},{name:'Thách đấu',need:101,type:'challenger'}]; ranks.forEach(function(r){r.icon=rankIcon(r.type);}); var cur=ranks[0]; ranks.forEach(function(r){if(count>=r.need)cur=r;}); var next=ranks.find(function(r){return count<r.need;}); return {current:cur,next:next,ranks:ranks};}
   function titleIcon(kind){
     var svg={
       rank:'<svg viewBox="0 0 24 24"><path d="M8 21h8"/><path d="M12 17v4"/><path d="M7 4h10v4a5 5 0 0 1-10 0V4Z"/><path d="M7 6H4a3 3 0 0 0 3 5"/><path d="M17 6h3a3 3 0 0 1-3 5"/></svg>',
@@ -5467,6 +5518,144 @@ load();
 </script>
 
 
+
+
+
+<!-- v266: stable account bubble metrics + compact rank tail title -->
+<style id="v266-account-bubble-stability-fix">
+  /* Khóa layout dòng Tham gia/Phút xem để khi chữ tự đổi không kéo giật cả bong bóng. */
+  #topProfileBubble .tpb-row > div:last-child{
+    min-width:0!important;
+    width:calc(100% - 74px)!important;
+    max-width:206px!important;
+    contain:layout style!important;
+  }
+  #topProfileBubble .tpb-joined{
+    height:16px!important;
+    min-height:16px!important;
+    line-height:16px!important;
+    max-width:206px!important;
+    display:block!important;
+    overflow:hidden!important;
+    white-space:nowrap!important;
+    text-overflow:ellipsis!important;
+    contain:layout paint style!important;
+  }
+  #topProfileBubble .tpb-joined-cycle{
+    display:block!important;
+    width:206px!important;
+    max-width:206px!important;
+    height:16px!important;
+    line-height:16px!important;
+    overflow:hidden!important;
+    white-space:nowrap!important;
+    text-overflow:ellipsis!important;
+    transform:none!important;
+    transition:opacity .16s ease!important;
+    will-change:opacity!important;
+  }
+  #topProfileBubble .tpb-joined-cycle.flip{
+    transform:none!important;
+  }
+  #topProfileBubble .tpb-stats{
+    grid-template-columns:repeat(3,minmax(0,1fr))!important;
+    align-items:stretch!important;
+    contain:layout style!important;
+  }
+  #topProfileBubble .tpb-stat{
+    min-width:0!important;
+    height:64px!important;
+    min-height:64px!important;
+    max-height:64px!important;
+    overflow:hidden!important;
+    box-sizing:border-box!important;
+    contain:layout paint style!important;
+  }
+  #topProfileBubble .tpb-stat b{
+    height:24px!important;
+    min-height:24px!important;
+    max-height:24px!important;
+    overflow:hidden!important;
+  }
+  #topProfileBubble .tpb-stat span{
+    height:13px!important;
+    line-height:13px!important;
+    overflow:hidden!important;
+    text-overflow:ellipsis!important;
+  }
+
+  /* Chữ “Hạng của bạn” nhỏ lại cho ngang cảm giác với bong bóng Đã lưu, đỡ gào vào mặt người xem. */
+  #topRankTail .tpb-tail-head{
+    min-height:34px!important;
+    margin-top:-2px!important;
+    margin-bottom:7px!important;
+  }
+  #topRankTail .tpb-tail-head b{
+    font-size:16px!important;
+    line-height:1!important;
+    gap:7px!important;
+    letter-spacing:-.2px!important;
+  }
+  #topRankTail .tpb-title-icon.rank{
+    width:24px!important;
+    height:24px!important;
+    min-width:24px!important;
+    border-radius:9px!important;
+  }
+  #topRankTail .tpb-title-icon.rank svg{
+    width:15px!important;
+    height:15px!important;
+  }
+  #topRankTail .tpb-tail-close{
+    width:28px!important;
+    height:28px!important;
+    min-width:28px!important;
+    font-size:18px!important;
+    line-height:26px!important;
+  }
+  @media(max-width:430px){
+    #topProfileBubble .tpb-row > div:last-child,#topProfileBubble .tpb-joined,#topProfileBubble .tpb-joined-cycle{max-width:196px!important;width:196px!important;}
+    #topRankTail .tpb-tail-head b{font-size:15.5px!important;}
+  }
+</style>
+<script id="v266-account-bubble-stability-fix-js">
+(function(){
+  function freezeJoinedLine(){
+    var b=document.getElementById('topProfileBubble');
+    if(!b)return;
+    var joined=b.querySelector('.tpb-joined');
+    var cyc=b.querySelector('.tpb-joined-cycle');
+    if(!joined)return;
+    var mins=0;
+    try{mins=(typeof window.totalWatchMinutes==='function')?window.totalWatchMinutes():0;}catch(e){}
+    if(cyc){
+      var date=cyc.getAttribute('data-date') || (cyc.textContent||'').replace(/^Phút xem:.*$/,'').trim() || 'Tham gia: hôm nay';
+      cyc.textContent=date;
+      cyc.setAttribute('data-mins','Phút xem: '+mins+' phút');
+      cyc.classList.remove('flip');
+    }else{
+      joined.classList.remove('flip');
+    }
+  }
+  var oldShow=window.showTopProfileBubble;
+  if(typeof oldShow==='function'){
+    window.showTopProfileBubble=function(){
+      var r=oldShow.apply(this,arguments);
+      setTimeout(freezeJoinedLine,0);
+      setTimeout(freezeJoinedLine,220);
+      return r;
+    };
+  }
+  document.addEventListener('click',function(e){
+    if(e.target && e.target.closest && e.target.closest('#topProfileBubble')){
+      setTimeout(freezeJoinedLine,0);
+      setTimeout(freezeJoinedLine,220);
+    }
+  },true);
+  setInterval(freezeJoinedLine,900);
+  setTimeout(freezeJoinedLine,120);
+})();
+</script>
 
 <!-- v203: login/register bubble layout refinements -->
 <style id="v203-auth-bubble-refine-css">
@@ -6458,110 +6647,6 @@ load();
   .avatar-rank-challenger{--profile-ring-color:#ff55d8;--profile-ring-glow:rgba(255,80,220,.76)}
 </style>
 
-<!-- v252 TEST: force all rank challenges complete + test highest rank border -->
-<style id="v252-rank-test-mode-css">
-  body::after{
-    content:"TEST RANK";
-    position:fixed;
-    left:14px;
-    top:calc(env(safe-area-inset-top,0px) + 8px);
-    z-index:9999;
-    pointer-events:none;
-    font-size:10px;
-    font-weight:950;
-    letter-spacing:.8px;
-    padding:4px 7px;
-    border-radius:999px;
-    color:#061014;
-    background:rgba(127,234,255,.88);
-    box-shadow:0 0 18px rgba(127,234,255,.45);
-    opacity:.72;
-  }
-</style>
-<script id="v252-rank-test-mode-js">
-(function(){
-  window.KCP_RANK_TEST_MODE = true;
-
-  function uniqueKey(m){
-    return String((m && (m.slug || m.name || m.id || m.origin_name)) || '').trim().toLowerCase();
-  }
-
-  function uniqueCount(list){
-    var set = {};
-    (list || []).forEach(function(m){
-      var k = uniqueKey(m);
-      if(k) set[k] = 1;
-    });
-    return Object.keys(set).length;
-  }
-
-  function makeTestMovie(i){
-    return {
-      name: "Rank Test " + i,
-      origin: "Rank Border Test",
-      origin_name: "Rank Border Test",
-      slug: "rank-test-movie-" + i,
-      id: "rank-test-movie-" + i,
-      poster: "",
-      thumb: "",
-      ep: "Hoàn thành",
-      year: "2026",
-      time: "45 phút/tập",
-      view: 0,
-      imdb: "N/A",
-      progress: 100,
-      watchedAt: Date.now() - i * 1000,
-      at: Date.now() - i * 1000,
-      rankTest: true
-    };
-  }
-
-  function seedRankTest(){
-    try{
-      if(typeof getCurrentUser === "function" && !getCurrentUser()) return false;
-      if(typeof storeGet !== "function" || typeof storeSet !== "function") return false;
-
-      var history = storeGet("history", []);
-      var map = {};
-      history.forEach(function(m){ var k = uniqueKey(m); if(k) map[k] = m; });
-
-      /* 105 phim khác nhau để vượt mốc Thách đấu (>100) và tất cả thử thách hiện Đã nhận */
-      for(var i = 1; i <= 105; i++){
-        var mv = makeTestMovie(i);
-        if(!map[mv.slug]) map[mv.slug] = mv;
-      }
-
-      var merged = Object.keys(map).map(function(k){ return map[k]; });
-      storeSet("history", merged);
-
-      try{ if(typeof renderAuth === "function") renderAuth(); }catch(e){}
-      try{ if(typeof forceAvatarSync === "function") forceAvatarSync(); }catch(e){}
-      try{
-        var b = document.getElementById("topProfileBubble");
-        if(b && b.classList.contains("show") && typeof showTopProfileBubble === "function") showTopProfileBubble();
-      }catch(e){}
-      return true;
-    }catch(e){
-      return false;
-    }
-  }
-
-  var tries = 0;
-  var timer = setInterval(function(){
-    tries++;
-    var ok = seedRankTest();
-    if(ok || tries >= 25) clearInterval(timer);
-  }, 300);
-
-  if(document.readyState === "loading"){
-    document.addEventListener("DOMContentLoaded", seedRankTest);
-  }else{
-    setTimeout(seedRankTest, 0);
-  }
-
-  window.rankTestCompleteAll = seedRankTest;
-})();
-</script>
 
 
 
@@ -6603,7 +6688,7 @@ load();
 (function(){
   var KEY='kcp_manual_claimed_rank_type_v254';
   var ranks=[
-    {name:'Nhựa',need:0,type:'plastic',color:'transparent',glow:'transparent'},
+    
     {name:'Đồng',need:5,type:'bronze',color:'#c8793d',glow:'rgba(255,143,67,.48)'},
     {name:'Bạc',need:10,type:'silver',color:'#e8f3ff',glow:'rgba(230,246,255,.55)'},
     {name:'Vàng',need:20,type:'gold',color:'#ffd84a',glow:'rgba(255,216,64,.62)'},
@@ -6695,6 +6780,923 @@ load();
   document.addEventListener('DOMContentLoaded',function(){setTimeout(applyRing,0);setTimeout(applyRing,250);},false);
   document.addEventListener('click',function(e){setTimeout(applyRing,0);},true);
   setTimeout(applyRing,100);
+})();
+</script>
+
+
+<style id="v280-diamond-real-visible-fix">
+/* v280: FORCE diamond rank icon to use wide diamond + sparkle; keep original badge background */
+.rank-emblem.rank-diamond svg{width:34px!important;height:34px!important;stroke-width:4.2!important;overflow:visible!important;}
+.tpb-rank-badge .rank-emblem.rank-diamond svg{width:16px!important;height:16px!important;stroke-width:4.4!important;}
+.rank-now .rank-emblem.rank-diamond svg{width:19px!important;height:19px!important;stroke-width:4.2!important;}
+.rank-medal .rank-emblem.rank-diamond svg{width:36px!important;height:36px!important;stroke-width:4.2!important;}
+</style>
+
+<!-- v285: account bubble rank stat aligned like saved/history: icon only on number row, rank name as label -->
+<style id="v285-rank-stat-align-like-saved">
+  #topProfileBubble .tpb-stats .tpb-stat.tpb-rank-simple-card{
+    display:flex!important;
+    flex-direction:column!important;
+    align-items:center!important;
+    justify-content:center!important;
+    min-height:64px!important;
+    padding:9px 6px!important;
+    text-align:center!important;
+    background:rgba(255,255,255,.07)!important;
+    border:1px solid rgba(255,255,255,.10)!important;
+    box-shadow:none!important;
+    overflow:hidden!important;
+  }
+  #topProfileBubble .tpb-stats .tpb-stat.tpb-rank-simple-card:before{display:none!important;}
+  #topProfileBubble .tpb-stats .tpb-stat.tpb-rank-simple-card .tpb-rank-card-mini{display:none!important;}
+  #topProfileBubble .tpb-stats .tpb-stat.tpb-rank-simple-card b.tpb-rank-icon-only{
+    display:flex!important;
+    align-items:center!important;
+    justify-content:center!important;
+    width:100%!important;
+    min-height:24px!important;
+    line-height:1!important;
+    margin:0!important;
+    color:#7feaff!important;
+  }
+  #topProfileBubble .tpb-stats .tpb-stat.tpb-rank-simple-card > span{
+    display:block!important;
+    margin-top:3px!important;
+    font-size:10px!important;
+    line-height:1.15!important;
+    font-weight:850!important;
+    color:rgba(235,250,255,.66)!important;
+    white-space:nowrap!important;
+    overflow:hidden!important;
+    text-overflow:ellipsis!important;
+    max-width:100%!important;
+  }
+  #topProfileBubble .tpb-stats .tpb-stat.tpb-rank-simple-card .rank-emblem{
+    width:26px!important;
+    height:26px!important;
+    min-width:26px!important;
+    min-height:26px!important;
+    border-radius:9px!important;
+    margin:0!important;
+    display:grid!important;
+    place-items:center!important;
+    transform:none!important;
+  }
+  #topProfileBubble .tpb-stats .tpb-stat.tpb-rank-simple-card .rank-emblem:before{display:none!important;}
+  #topProfileBubble .tpb-stats .tpb-stat.tpb-rank-simple-card .rank-emblem svg{
+    width:17px!important;
+    height:17px!important;
+    max-width:70%!important;
+    max-height:70%!important;
+    transform:none!important;
+  }
+  .light-mode #topProfileBubble .tpb-stats .tpb-stat.tpb-rank-simple-card{background:rgba(255,255,255,.55)!important;border-color:rgba(15,23,42,.08)!important;}
+  .light-mode #topProfileBubble .tpb-stats .tpb-stat.tpb-rank-simple-card > span{color:#667085!important;}
+</style>
+<script id="v285-rank-stat-align-like-saved-js">
+(function(){
+  function esc(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]});}
+  function getRank(){try{var c=typeof uniqueWatchedCount==='function'?uniqueWatchedCount():0;return (typeof rankInfo==='function'?rankInfo(c).current:(typeof rankData==='function'?rankData(c).current:null));}catch(e){return null;}}
+  function getIcon(r){try{if(r&&r.icon)return r.icon; if(r&&typeof rankIconSvg==='function')return rankIconSvg(r.type);}catch(e){} return '';}
+  function patch(){
+    var b=document.getElementById('topProfileBubble'); if(!b)return;
+    var card=b.querySelectorAll('.tpb-stats .tpb-stat')[2]; if(!card)return;
+    var r=getRank()||{name:'Đồng',type:'bronze'};
+    ['plastic','bronze','silver','gold','diamond','master','challenger'].forEach(function(t){card.classList.remove('rank-profile-'+t);});
+    card.classList.remove('rank-card-redesign','rank-profile-full');
+    card.classList.add('is-clickable','tpb-rank-simple-card');
+    card.setAttribute('onclick','event.stopPropagation();showTopRankTail()');
+    card.innerHTML='<b class="tpb-rank-icon-only">'+getIcon(r)+'</b><span>'+esc(r.name||'Đồng')+'</span>';
+  }
+  var oldApply=window.applyRankAvatarBorder;
+  if(typeof oldApply==='function'){window.applyRankAvatarBorder=function(){var x=oldApply.apply(this,arguments);setTimeout(patch,0);return x;};}
+  var oldShow=window.showTopProfileBubble;
+  if(typeof oldShow==='function'){window.showTopProfileBubble=function(){var x=oldShow.apply(this,arguments);[0,60,180,360,700].forEach(function(ms){setTimeout(patch,ms);});return x;};}
+  document.addEventListener('click',function(){setTimeout(patch,80);},true);
+  document.addEventListener('DOMContentLoaded',function(){setTimeout(patch,200);setTimeout(patch,700);});
+  setTimeout(patch,300);
+})();
+</script>
+
+
+
+<!-- v288 force restore Cao thủ in final rank override -->
+<script id="v288-force-master-rank-js">
+(function(){
+  function patch(){
+    if(typeof window.rankData==='function'){
+      var old=window.rankData;
+      // already patched in source; this hook only refreshes current UI after load
+      if(typeof window.applyRankAvatar==='function')try{window.applyRankAvatar();}catch(e){}
+      if(typeof window.applyRankBubbleFix==='function')try{window.applyRankBubbleFix();}catch(e){}
+    }
+  }
+  document.addEventListener('DOMContentLoaded',function(){setTimeout(patch,80);setTimeout(patch,300);});
+})();
+</script>
+
+
+<!-- v289: final account bubble smoothness + verified badge -->
+<style id="v289-account-bubble-smooth-verified">
+  #topProfileBubble,
+  #topSettingsTail,#topRankTail,#topSavedTail,#topHistoryTail,#topLoginTail{
+    contain:layout paint!important;
+    transform:translate3d(0,0,0)!important;
+    backface-visibility:hidden!important;
+    -webkit-backface-visibility:hidden!important;
+    will-change:transform,opacity!important;
+    transition:opacity .26s cubic-bezier(.22,.61,.36,1),transform .26s cubic-bezier(.22,.61,.36,1)!important;
+  }
+  #topProfileBubble *{
+    transition-property:opacity,transform,background-color,border-color,color,box-shadow!important;
+  }
+  #topProfileBubble .tpb-row,
+  #topProfileBubble .tpb-stats,
+  #topProfileBubble .tpb-stat{
+    transform:translate3d(0,0,0)!important;
+    backface-visibility:hidden!important;
+  }
+  #topProfileBubble .tpb-stats{
+    grid-auto-rows:64px!important;
+    align-items:stretch!important;
+  }
+  #topProfileBubble .tpb-stat{
+    min-height:64px!important;
+    height:64px!important;
+    overflow:hidden!important;
+  }
+  #topProfileBubble .tpb-stat b{
+    min-height:26px!important;
+    height:26px!important;
+    line-height:1!important;
+    font-variant-numeric:tabular-nums!important;
+  }
+  #topProfileBubble .tpb-stat span{
+    height:14px!important;
+    line-height:14px!important;
+  }
+  #topProfileBubble .tpb-joined{
+    width:196px!important;
+    max-width:196px!important;
+    min-height:18px!important;
+    height:18px!important;
+    overflow:hidden!important;
+    contain:layout paint!important;
+    white-space:nowrap!important;
+  }
+  #topProfileBubble .tpb-joined-smooth{
+    display:inline-block!important;
+    max-width:196px!important;
+    width:196px!important;
+    white-space:nowrap!important;
+    overflow:hidden!important;
+    text-overflow:ellipsis!important;
+    opacity:1!important;
+    transform:translate3d(0,0,0)!important;
+    transition:opacity .55s cubic-bezier(.22,.61,.36,1),transform .55s cubic-bezier(.22,.61,.36,1)!important;
+    will-change:opacity,transform!important;
+  }
+  #topProfileBubble .tpb-joined-smooth.is-changing{
+    opacity:0!important;
+    transform:translate3d(0,-4px,0)!important;
+  }
+  #topProfileBubble .tpb-name,
+  .profile-full-name{
+    display:inline-flex!important;
+    align-items:center!important;
+    justify-content:center!important;
+    gap:6px!important;
+    max-width:100%!important;
+    vertical-align:middle!important;
+  }
+  #topProfileBubble .tpb-name.verified-name::after,
+  .profile-full-name.verified-name::after{
+    content:""!important;
+    width:17px!important;
+    height:17px!important;
+    min-width:17px!important;
+    border-radius:50%!important;
+    display:inline-block!important;
+    background:#1d9bf0!important;
+    box-shadow:0 0 0 2px rgba(255,255,255,.12),0 3px 10px rgba(29,155,240,.35)!important;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='none' stroke='white' stroke-width='3.2' stroke-linecap='round' stroke-linejoin='round' d='M6.2 12.3 10.1 16 18 7.8'/%3E%3C/svg%3E")!important;
+    background-repeat:no-repeat!important;
+    background-position:center!important;
+    background-size:13px 13px!important;
+    transform:translateY(1px)!important;
+  }
+  .profile-full-name.verified-name::after{
+    width:20px!important;height:20px!important;min-width:20px!important;background-size:15px 15px!important;
+  }
+  #topProfileBubble .tpb-name.no-verified::after{display:none!important;content:none!important;}
+  #topProfileBubble .tpb-stats .tpb-stat.tpb-rank-simple-card b.tpb-rank-icon-only{
+    height:26px!important;min-height:26px!important;
+  }
+  #topProfileBubble .tpb-stats .tpb-stat.tpb-rank-simple-card > span{
+    height:14px!important;line-height:14px!important;margin-top:3px!important;
+  }
+</style>
+<script id="v289-account-bubble-smooth-verified-js">
+(function(){
+  var cycleTimer=null, showingDate=true;
+  function esc(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]});}
+  function getUser(){try{return (typeof window.getCurrentUser==='function')?window.getCurrentUser():null;}catch(e){return null;}}
+  function joinedDate(u){
+    try{
+      if(typeof window.formatJoined==='function') return 'Tham gia: '+window.formatJoined(u&&u.joinedAt);
+      return 'Tham gia: '+new Date((u&&u.joinedAt)||Date.now()).toLocaleDateString('vi-VN',{day:'2-digit',month:'2-digit',year:'numeric'});
+    }catch(e){return 'Tham gia: hôm nay';}
+  }
+  function minutesText(){
+    var mins=0;
+    try{mins=(typeof window.totalWatchMinutes==='function')?window.totalWatchMinutes():0;}catch(e){}
+    return 'Phút xem: '+mins+' phút';
+  }
+  function applyVerified(){
+    var u=getUser();
+    document.querySelectorAll('#topProfileBubble .tpb-name').forEach(function(n){
+      if(u){n.classList.add('verified-name');n.classList.remove('no-verified');}
+      else{n.classList.remove('verified-name');n.classList.add('no-verified');}
+    });
+    document.querySelectorAll('.profile-full-name').forEach(function(n){
+      if(u){n.classList.add('verified-name');}
+      else{n.classList.remove('verified-name');}
+    });
+  }
+  function setupJoined(){
+    var b=document.getElementById('topProfileBubble'); if(!b)return;
+    var u=getUser(); if(!u)return;
+    var joined=b.querySelector('.tpb-joined'); if(!joined)return;
+    var date=joinedDate(u), mins=minutesText();
+    var el=joined.querySelector('.tpb-joined-smooth');
+    if(!el){
+      joined.innerHTML='<span class="tpb-joined-smooth" data-date="'+esc(date)+'" data-mins="'+esc(mins)+'">'+esc(date)+'</span>';
+      el=joined.querySelector('.tpb-joined-smooth');
+      showingDate=true;
+    }else{
+      el.setAttribute('data-date',date);
+      el.setAttribute('data-mins',mins);
+    }
+    joined.classList.remove('flip');
+  }
+  function swapJoined(){
+    var el=document.querySelector('#topProfileBubble .tpb-joined-smooth');
+    if(!el)return;
+    var date=el.getAttribute('data-date')||'Tham gia: hôm nay';
+    var mins=minutesText();
+    el.setAttribute('data-mins',mins);
+    var next=showingDate?mins:date;
+    showingDate=!showingDate;
+    el.classList.add('is-changing');
+    setTimeout(function(){
+      if(!document.body.contains(el))return;
+      el.textContent=next;
+      requestAnimationFrame(function(){el.classList.remove('is-changing');});
+    },520);
+  }
+  function patchAll(){setupJoined();applyVerified();}
+  function restartCycle(){
+    if(cycleTimer)clearInterval(cycleTimer);
+    cycleTimer=setInterval(function(){setupJoined();swapJoined();},4000);
+  }
+  var oldShow=window.showTopProfileBubble;
+  if(typeof oldShow==='function'){
+    window.showTopProfileBubble=function(){
+      var r=oldShow.apply(this,arguments);
+      [0,80,220,520,920,1400].forEach(function(ms){setTimeout(patchAll,ms);});
+      restartCycle();
+      return r;
+    };
+  }
+  var oldHide=window.hideTopProfileBubble;
+  if(typeof oldHide==='function'){
+    window.hideTopProfileBubble=function(){if(cycleTimer){clearInterval(cycleTimer);cycleTimer=null;} return oldHide.apply(this,arguments);};
+  }
+  document.addEventListener('click',function(){setTimeout(patchAll,120);},true);
+  document.addEventListener('DOMContentLoaded',function(){[100,500,1000].forEach(function(ms){setTimeout(patchAll,ms);});restartCycle();});
+  var mo=new MutationObserver(function(){patchAll();});
+  setTimeout(function(){try{mo.observe(document.body,{childList:true,subtree:true});}catch(e){}},200);
+  setInterval(patchAll,1200);
+})();
+</script>
+
+
+<!-- v290: REAL final anti-jump rank tail + 4s joined/minutes smooth + verified name -->
+<style id="v290-final-rank-tail-no-jump-css">
+  #topProfileBubble,
+  #topProfileBubble *{
+    -webkit-font-smoothing:antialiased!important;
+    text-rendering:geometricPrecision!important;
+  }
+  #topProfileBubble .tpb-name{
+    display:inline-flex!important;
+    align-items:center!important;
+    gap:6px!important;
+    max-width:210px!important;
+    vertical-align:middle!important;
+  }
+  #topProfileBubble .tpb-name.verified-name::after,
+  .profile-full-name.verified-name::after{
+    content:""!important;
+    width:16px!important;
+    height:16px!important;
+    min-width:16px!important;
+    display:inline-block!important;
+    vertical-align:-2px!important;
+    border-radius:999px!important;
+    background:#1d9bf0!important;
+    box-shadow:0 0 0 2px rgba(255,255,255,.16),0 0 10px rgba(29,155,240,.42)!important;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='white' d='M9.2 16.6 4.9 12.3l1.8-1.8 2.5 2.5 8.1-8.1 1.8 1.8z'/%3E%3C/svg%3E")!important;
+    background-repeat:no-repeat!important;
+    background-position:center!important;
+    background-size:13px 13px!important;
+  }
+  #topProfileBubble .tpb-joined{
+    height:18px!important;
+    line-height:18px!important;
+    overflow:hidden!important;
+    contain:layout paint style!important;
+  }
+  #topProfileBubble .tpb-joined-cycle{
+    display:inline-block!important;
+    width:206px!important;
+    max-width:206px!important;
+    height:18px!important;
+    line-height:18px!important;
+    white-space:nowrap!important;
+    overflow:hidden!important;
+    text-overflow:ellipsis!important;
+    transform:translate3d(0,0,0)!important;
+    opacity:1!important;
+    transition:opacity .45s ease,transform .45s cubic-bezier(.22,.61,.36,1)!important;
+    will-change:opacity,transform!important;
+    backface-visibility:hidden!important;
+  }
+  #topProfileBubble .tpb-joined-cycle.flip{
+    opacity:0!important;
+    transform:translate3d(0,-4px,0)!important;
+  }
+  #topRankTail{
+    animation:tpbTailIn .18s cubic-bezier(.22,1,.36,1) both!important;
+    transform:translate3d(0,0,0)!important;
+    will-change:transform,opacity!important;
+    contain:layout paint style!important;
+  }
+  #topRankTail .tpb-tail-head b{
+    display:flex!important;
+    align-items:center!important;
+    gap:10px!important;
+  }
+  #topRankTail .tpb-tail-head b > .rank-emblem{
+    width:44px!important;
+    height:44px!important;
+    min-width:44px!important;
+    border-radius:15px!important;
+    display:grid!important;
+    place-items:center!important;
+  }
+  #topRankTail .tpb-tail-head b > .rank-emblem svg{
+    width:28px!important;
+    height:28px!important;
+  }
+  #topRankTail .tpb-current-line .rank-emblem{
+    width:23px!important;height:23px!important;min-width:23px!important;border-radius:8px!important;
+  }
+  #topRankTail .tpb-current-line .rank-emblem svg{width:14px!important;height:14px!important;}
+</style>
+<script id="v290-final-rank-tail-no-jump-js">
+(function(){
+  var RANK_TAIL_LOCK=false;
+  var JOIN_TIMER=null;
+  var tailIds=['topRankTail','topSavedTail','topSettingsTail','topHistoryTail','topLoginTail','topLogoutTail'];
+  var ranks=[
+    {name:'Đồng',need:5,type:'bronze',color:'#c8793d',glow:'rgba(255,143,67,.48)'},
+    {name:'Bạc',need:10,type:'silver',color:'#e8f3ff',glow:'rgba(230,246,255,.55)'},
+    {name:'Vàng',need:20,type:'gold',color:'#ffd84a',glow:'rgba(255,216,64,.62)'},
+    {name:'Kim cương',need:40,type:'diamond',color:'#9bf8ff',glow:'rgba(155,248,255,.75)'},
+    {name:'Cao thủ',need:80,type:'master',color:'#ff8a1f',glow:'rgba(255,138,31,.72)'},
+    {name:'Thách đấu',need:101,type:'challenger',color:'#ff55d8',glow:'rgba(255,80,220,.86)'}
+  ];
+  function esc(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]});}
+  function closeAllExcept(except){tailIds.forEach(function(id){if(id!==except){var x=document.getElementById(id);if(x)x.remove();}});}
+  function getHistory(){try{return (typeof window.storeGet==='function'?window.storeGet('history',[]):JSON.parse(localStorage.getItem('kcp_history')||'[]'))||[];}catch(e){return [];}}
+  function countWatched(){var set={};getHistory().forEach(function(m){var k=String((m&&(m.slug||m.id||m.name||m.origin_name))||'').trim().toLowerCase();if(k)set[k]=1;});return Object.keys(set).length;}
+  window.uniqueWatchedCount=countWatched;
+  function idx(type){for(var i=0;i<ranks.length;i++)if(ranks[i].type===type)return i;return 0;}
+  function eligibleIndex(c){var out=0;ranks.forEach(function(r,i){if(c>=r.need)out=i;});return out;}
+  function claimType(){var keys=['kcp_manual_claimed_rank_type_v284','kcp_manual_claimed_rank_type_v255','kcp_manual_claimed_rank_type_v254','kcp_manual_claimed_rank_type_v253'];var t='bronze';for(var i=0;i<keys.length;i++){var v=localStorage.getItem(keys[i]);if(v){t=v;break;}}if(t==='plastic'||idx(t)<0)t='bronze';return t;}
+  function currentRank(c){var ci=Math.min(idx(claimType()),eligibleIndex(c));return ranks[ci];}
+  function barIcon(cls,bars){var lines=bars===2?'<path d="M17 21h14M17 29h14"/>':bars===1?'<path d="M17 24h14"/>':'';return '<span class="rank-emblem '+cls+'" aria-hidden="true"><svg viewBox="0 0 48 48"><rect x="8" y="8" width="32" height="32" rx="12"/>'+lines+'</svg></span>';}
+  function icon(type){
+    if(type==='bronze')return barIcon('rank-bronze',2);
+    if(type==='silver')return barIcon('rank-silver',1);
+    if(type==='gold')return barIcon('rank-gold',0);
+    if(type==='diamond')return '<span class="rank-emblem rank-diamond" aria-hidden="true"><svg viewBox="0 0 64 48" fill="none" stroke="#fff" stroke-width="3.1" stroke-linecap="round" stroke-linejoin="round"><path d="M6 20 L16 9 H48 L58 20 L32 43 Z"/><path d="M6 20 H58"/><path d="M16 9 L24 20 L32 9 L40 20 L48 9"/><path d="M24 20 L32 43 L40 20"/><path d="M16 9 H48"/><path d="M52 4 L54 10 L60 12 L54 14 L52 20 L50 14 L44 12 L50 10 Z" stroke-width="2.4"/></svg></span>';
+    if(type==='master')return '<span class="rank-emblem rank-master" aria-hidden="true"><svg viewBox="0 0 48 48"><path d="M24 6c7 8 3 13 8 18 2-4 4-7 4-12 6 7 7 15 4 21-3 6-9 9-16 9S11 39 8 33c-4-8 1-16 7-22 0 7 3 10 6 13-2-7 1-12 3-18Z"/></svg></span>';
+    return '<span class="rank-emblem rank-challenger" aria-hidden="true"><svg viewBox="0 0 48 48"><path d="M9 36h30l3-21-10 8-8-13-8 13-10-8 3 21Z"/><path d="M12 40h24"/><circle cx="16" cy="18" r="2"/><circle cx="32" cy="18" r="2"/></svg></span>';
+  }
+  window.rankIconSvg=icon; window.rankIcon=icon;
+  window.rankData=window.rankInfo=function(c){c=Number(c==null?countWatched():c)||0;var cur=currentRank(c);return {current:Object.assign({icon:icon(cur.type)},cur),ranks:ranks.map(function(r){return Object.assign({icon:icon(r.type)},r);})};};
+  window.hideTopRankTail=function(){var t=document.getElementById('topRankTail');if(t)t.remove();RANK_TAIL_LOCK=false;};
+  window.claimRank=function(type){var c=countWatched();var target=idx(type);if(target<0||target>eligibleIndex(c))return;localStorage.setItem('kcp_manual_claimed_rank_type_v284',ranks[target].type);applyRankCard();window.hideTopRankTail();requestAnimationFrame(function(){window.showTopRankTail();});};
+  function applyRankCard(){var b=document.getElementById('topProfileBubble');if(!b)return;var c=countWatched(),r=currentRank(c);var card=b.querySelectorAll('.tpb-stats .tpb-stat')[2];if(card){card.classList.add('is-clickable','tpb-rank-simple-card');card.setAttribute('onclick','event.stopPropagation();showTopRankTail()');card.innerHTML='<b class="tpb-rank-icon-only">'+icon(r.type)+'</b><span>'+esc(r.name)+'</span>';}
+    var badge=b.querySelector('.tpb-rank-badge'); if(badge)badge.innerHTML=icon(r.type)+' '+esc(r.name);
+    b.querySelectorAll('.tpb-avatar-wrap').forEach(function(w){['bronze','silver','gold','diamond','master','challenger','plastic'].forEach(function(t){w.classList.remove('avatar-rank-'+t,'rank-'+t);});w.classList.add('avatar-rank-'+r.type);w.style.setProperty('--manual-rank-color',r.color);w.style.setProperty('--manual-rank-glow',r.glow);});
+  }
+  window.applyRankAvatarBorder=applyRankCard;
+  window.showTopRankTail=function(){
+    var existing=document.getElementById('topRankTail');
+    if(existing)return;
+    if(RANK_TAIL_LOCK)return;
+    RANK_TAIL_LOCK=true;
+    setTimeout(function(){RANK_TAIL_LOCK=false;},260);
+    var b=document.getElementById('topProfileBubble');
+    if(!b&&typeof window.showTopProfileBubble==='function'){window.showTopProfileBubble();b=document.getElementById('topProfileBubble');}
+    if(!b)return;
+    closeAllExcept('topRankTail');
+    var c=countWatched(),claimed=idx(claimType()),max=eligibleIndex(c),ci=Math.min(claimed,max),cur=ranks[ci];
+    var rows=ranks.map(function(r,i){var got=i<=ci,eligible=c>=r.need;var desc=r.name==='Thách đấu'?'Trên 100 phim khác nhau':'Xem '+r.need+' phim khác nhau';var status=got?'<span class="rank-claimed-text">Đã nhận</span>':(eligible?'<button class="rank-claim-btn" onclick="event.stopPropagation();claimRank(\''+r.type+'\')">Nhận</button>':'<span class="rank-claimed-text">'+c+'/'+r.need+'</span>');return '<div class="tpb-rank-mini-item '+(got?'done':'')+'"><div class="rank-medal">'+icon(r.type)+'</div><div><div class="tpb-rank-mini-title">'+esc(r.name)+'</div><div class="tpb-rank-mini-desc">'+esc(desc)+'</div></div><div class="tpb-rank-mini-status">'+status+'</div></div>';}).join('');
+    var nextEligible=ranks.find(function(r,i){return i>ci&&c>=r.need;});
+    var nextNeed=ranks.find(function(r,i){return i>ci&&c<r.need;});
+    var msg=nextEligible?'Có hạng mới có thể nhận: '+nextEligible.name:(nextNeed?'Còn '+Math.max(0,nextNeed.need-c)+' phim nữa lên '+nextNeed.name:'Đã đạt hạng cao nhất.');
+    var tail=document.createElement('div');tail.id='topRankTail';
+    tail.innerHTML='<div class="tpb-tail-head"><b>'+icon(cur.type)+'<span>Hạng của bạn</span></b><button class="tpb-tail-close" onclick="event.stopPropagation();hideTopRankTail()">×</button></div><div class="tpb-mini-note current-rank-note"><div class="tpb-current-line"><span>Hiện tại:</span>'+icon(cur.type)+'<span class="tpb-current-name">'+esc(cur.name)+'</span></div><div class="tpb-current-desc">Đã xem '+c+' phim khác nhau. '+esc(msg)+'</div></div><div class="tpb-rank-mini-list">'+rows+'</div>';
+    b.appendChild(tail);
+    applyRankCard();
+  };
+  function patchVerified(){var u=null;try{u=(typeof window.getCurrentUser==='function')?window.getCurrentUser():null;}catch(e){}document.querySelectorAll('#topProfileBubble .tpb-name,.profile-full-name').forEach(function(n){if(u)n.classList.add('verified-name');else n.classList.remove('verified-name');});}
+  function initJoinCycle(){
+    var b=document.getElementById('topProfileBubble'); if(!b)return;
+    var joined=b.querySelector('.tpb-joined'); if(!joined)return;
+    var el=joined.querySelector('.tpb-joined-cycle');
+    if(!el){var date=(joined.textContent||'').trim()||'Tham gia: hôm nay'; joined.innerHTML='<span class="tpb-joined-cycle"></span>'; el=joined.querySelector('.tpb-joined-cycle'); el.dataset.date=date;}
+    if(!el.dataset.date)el.dataset.date=(el.textContent||'Tham gia: hôm nay').replace(/^Phút xem:.*$/,'Tham gia: hôm nay');
+    if(!el.dataset.mode)el.dataset.mode='date';
+    if(!el.textContent)el.textContent=el.dataset.date;
+    if(JOIN_TIMER)clearInterval(JOIN_TIMER);
+    JOIN_TIMER=setInterval(function(){
+      var target=document.querySelector('#topProfileBubble .tpb-joined-cycle'); if(!target)return;
+      var mins=0;try{mins=(typeof window.totalWatchMinutes==='function')?window.totalWatchMinutes():0;}catch(e){}
+      var date=target.dataset.date||'Tham gia: hôm nay';
+      var mode=target.dataset.mode||'date';
+      var next=(mode==='date')?'Phút xem: '+mins+' phút':date;
+      target.classList.add('flip');
+      setTimeout(function(){target.textContent=next;target.dataset.mode=(mode==='date')?'mins':'date';target.classList.remove('flip');},450);
+    },4000);
+  }
+  function afterProfile(){setTimeout(function(){patchVerified();applyRankCard();initJoinCycle();},0);setTimeout(function(){patchVerified();applyRankCard();initJoinCycle();},90);}
+  var oldShow=window.showTopProfileBubble;
+  if(typeof oldShow==='function')window.showTopProfileBubble=function(){var r=oldShow.apply(this,arguments);afterProfile();return r;};
+  document.addEventListener('click',function(e){var stat=e.target&&e.target.closest&&e.target.closest('#topProfileBubble .tpb-stats .tpb-stat');if(!stat)return;var txt=(stat.textContent||'').toLowerCase();if(txt.indexOf('đồng')>-1||txt.indexOf('bạc')>-1||txt.indexOf('vàng')>-1||txt.indexOf('kim')>-1||txt.indexOf('cao thủ')>-1||txt.indexOf('thách đấu')>-1||txt.indexOf('hạng')>-1){e.preventDefault();e.stopPropagation();if(e.stopImmediatePropagation)e.stopImmediatePropagation();window.showTopRankTail();}},true);
+  document.addEventListener('DOMContentLoaded',afterProfile);setTimeout(afterProfile,300);
+})();
+</script>
+
+
+
+<!-- v291: hard kill old rank popup flash, single renderer only -->
+<style id="v291-rank-tail-hard-clean-css">
+  #topRankTail{
+    animation:none!important;
+    transition:opacity .22s cubic-bezier(.22,.61,.36,1),transform .22s cubic-bezier(.22,.61,.36,1)!important;
+    transform:translate3d(0,0,0)!important;
+    backface-visibility:hidden!important;
+    -webkit-backface-visibility:hidden!important;
+    contain:layout paint style!important;
+  }
+  #topRankTail .tpb-tail-head b{
+    font-size:21px!important;
+    line-height:1!important;
+    letter-spacing:-.55px!important;
+    display:flex!important;
+    align-items:center!important;
+    gap:10px!important;
+  }
+  #topRankTail .tpb-tail-head > b > .rank-emblem{
+    width:50px!important;height:50px!important;min-width:50px!important;border-radius:17px!important;display:grid!important;place-items:center!important;margin-right:4px!important;
+  }
+  #topRankTail .tpb-tail-head > b > .rank-emblem svg{width:31px!important;height:31px!important;max-width:72%!important;max-height:72%!important;}
+  #topRankTail .tpb-mini-note.current-rank-note{position:relative!important;z-index:2!important;margin-top:8px!important;}
+  #topRankTail .tpb-current-line{display:flex!important;align-items:center!important;gap:8px!important;font-size:19px!important;font-weight:950!important;line-height:1.15!important;}
+  #topRankTail .tpb-current-line .rank-emblem{width:24px!important;height:24px!important;min-width:24px!important;border-radius:8px!important;display:inline-grid!important;place-items:center!important;}
+  #topRankTail .tpb-current-line .rank-emblem svg{width:15px!important;height:15px!important;}
+  #topRankTail .tpb-rank-mini-list{position:relative!important;z-index:2!important;display:grid!important;gap:10px!important;}
+  #topRankTail .tpb-rank-mini-item{grid-template-columns:62px minmax(0,1fr) auto!important;align-items:center!important;gap:16px!important;}
+  #topRankTail .rank-medal{width:58px!important;height:58px!important;min-width:58px!important;display:grid!important;place-items:center!important;border-radius:20px!important;}
+  #topRankTail .rank-medal .rank-emblem{width:52px!important;height:52px!important;min-width:52px!important;border-radius:18px!important;display:grid!important;place-items:center!important;}
+  #topRankTail .rank-medal .rank-emblem svg{width:32px!important;height:32px!important;max-width:72%!important;max-height:72%!important;}
+  #topProfileBubble .tpb-stats .tpb-stat.tpb-rank-simple-card{cursor:pointer!important;}
+</style>
+<script id="v291-rank-tail-hard-clean-js">
+(function(){
+  var LOCK=false, CLEAN_TIMER=null;
+  function esc(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]});}
+  function getList(key){try{return (typeof window.storeGet==='function')?window.storeGet(key,[]):JSON.parse(localStorage.getItem('kcp_'+key)||'[]');}catch(e){return [];}}
+  function watchedCount(){var h=getList('history'), o={}; h.forEach(function(m){var k=String((m&&(m.slug||m.name||m.id||m.origin_name))||'').trim().toLowerCase(); if(k)o[k]=1;}); return Object.keys(o).length;}
+  var ranks=[
+    {name:'Đồng',need:5,type:'bronze',color:'#d98a43',glow:'rgba(217,138,67,.55)'},
+    {name:'Bạc',need:10,type:'silver',color:'#dbe4ec',glow:'rgba(219,228,236,.55)'},
+    {name:'Vàng',need:20,type:'gold',color:'#ffd84a',glow:'rgba(255,216,74,.58)'},
+    {name:'Kim cương',need:40,type:'diamond',color:'#83f4ff',glow:'rgba(131,244,255,.58)'},
+    {name:'Cao thủ',need:80,type:'master',color:'#ff8b38',glow:'rgba(255,139,56,.58)'},
+    {name:'Thách đấu',need:101,type:'challenger',color:'#ff69df',glow:'rgba(255,105,223,.58)'}
+  ];
+  function bar(cls,bars){var lines=bars===2?'<path d="M17 21h14M17 29h14"/>':bars===1?'<path d="M17 24h14"/>':'';return '<span class="rank-emblem rank-'+cls+'" aria-hidden="true"><svg viewBox="0 0 48 48"><rect x="8" y="8" width="32" height="32" rx="12"/>'+lines+'</svg></span>';}
+  function icon(type){
+    if(type==='bronze')return bar('bronze',2);
+    if(type==='silver')return bar('silver',1);
+    if(type==='gold')return bar('gold',0);
+    if(type==='diamond')return '<span class="rank-emblem rank-diamond" aria-hidden="true"><svg viewBox="0 0 64 48" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 20 15 9h34l10 11-27 24Z"/><path d="M5 20h54"/><path d="M15 9l8 11 9-11 9 11 8-11"/><path d="M23 20l9 24 9-24"/><path d="M47 5c2 7 3 8 10 10-7 2-8 3-10 10-2-7-3-8-10-10 7-2 8-3 10-10Z" stroke-width="3"/></svg></span>';
+    if(type==='master')return '<span class="rank-emblem rank-master" aria-hidden="true"><svg viewBox="0 0 48 48"><path d="M24 6c7 8 3 13 8 18 2-4 4-7 4-12 6 7 7 15 4 21-3 6-9 9-16 9S11 39 8 33c-4-8 1-16 7-22 0 7 3 10 6 13-2-7 1-12 3-18Z"/></svg></span>';
+    return '<span class="rank-emblem rank-challenger" aria-hidden="true"><svg viewBox="0 0 48 48"><path d="M9 36h30l3-21-10 8-8-13-8 13-10-8 3 21Z"/><path d="M12 40h24"/><circle cx="16" cy="18" r="2"/><circle cx="32" cy="18" r="2"/></svg></span>';
+  }
+  function claimedType(){try{return localStorage.getItem('kcp_claimed_rank_type_v284')||localStorage.getItem('kcp_claimed_rank_type')||'';}catch(e){return '';}}
+  function idx(type){var i=ranks.findIndex(function(r){return r.type===type;});return i<0?0:i;}
+  function maxEligible(c){var m=0;ranks.forEach(function(r,i){if(c>=r.need)m=i;});return m;}
+  function currentRank(c){var ci=Math.min(idx(claimedType()),maxEligible(c));return ranks[ci]||ranks[0];}
+  function closeTails(){['topRankTail','topSavedTail','topSettingsTail','topHistoryTail','topLoginTail'].forEach(function(id){var x=document.getElementById(id); if(x)x.remove();});document.querySelectorAll('.rank-modal,.rank-card').forEach(function(x){x.remove();});}
+  function bubble(){var b=document.getElementById('topProfileBubble'); if(!b&&typeof window.showTopProfileBubble==='function'){window.showTopProfileBubble(); b=document.getElementById('topProfileBubble');} return b;}
+  function applyCard(){var b=document.getElementById('topProfileBubble'); if(!b)return; var c=watchedCount(), r=currentRank(c), card=b.querySelectorAll('.tpb-stats .tpb-stat')[2]; if(card){card.classList.add('is-clickable','tpb-rank-simple-card'); card.setAttribute('onclick','event.stopPropagation();event.preventDefault();showTopRankTail()'); card.innerHTML='<b class="tpb-rank-icon-only">'+icon(r.type)+'</b><span>'+esc(r.name)+'</span>';}}
+  window.hideTopRankTail=function(){var t=document.getElementById('topRankTail');if(t)t.remove();};
+  window.showTopRankTail=function(){
+    if(LOCK)return; LOCK=true; setTimeout(function(){LOCK=false;},220);
+    var b=bubble(); if(!b)return;
+    closeTails();
+    var c=watchedCount(), max=maxEligible(c), claimed=idx(claimedType()), ci=Math.min(claimed,max), cur=ranks[ci]||ranks[0];
+    var nextEligible=ranks.find(function(r,i){return i>ci&&c>=r.need;});
+    var nextNeed=ranks.find(function(r,i){return i>ci&&c<r.need;});
+    var msg=nextEligible?'Có hạng mới có thể nhận: '+nextEligible.name:(nextNeed?'Còn '+Math.max(0,nextNeed.need-c)+' phim nữa lên '+nextNeed.name:'Đã đạt hạng cao nhất.');
+    var rows=ranks.map(function(r,i){var got=i<=ci, eligible=c>=r.need, desc=r.name==='Thách đấu'?'Trên 100 phim khác nhau':'Xem '+r.need+' phim khác nhau';var status=got?'<span class="rank-claimed-text">Đã nhận</span>':(eligible?'<button class="rank-claim-btn" onclick="event.stopPropagation();claimRank(\''+r.type+'\')">Nhận</button>':'<span class="rank-claimed-text">'+c+'/'+r.need+'</span>');return '<div class="tpb-rank-mini-item '+(got?'done':'')+'"><div class="rank-medal">'+icon(r.type)+'</div><div><div class="tpb-rank-mini-title">'+esc(r.name)+'</div><div class="tpb-rank-mini-desc">'+esc(desc)+'</div></div><div class="tpb-rank-mini-status">'+status+'</div></div>';}).join('');
+    var tail=document.createElement('div'); tail.id='topRankTail';
+    tail.innerHTML='<div class="tpb-tail-head"><b>'+icon(cur.type)+'<span>Hạng của bạn</span></b><button class="tpb-tail-close" onclick="event.stopPropagation();hideTopRankTail()">×</button></div><div class="tpb-mini-note current-rank-note"><div class="tpb-current-line"><span>Hiện tại:</span>'+icon(cur.type)+'<span class="tpb-current-name">'+esc(cur.name)+'</span></div><div class="tpb-current-desc">Đã xem '+c+' phim khác nhau. '+esc(msg)+'</div></div><div class="tpb-rank-mini-list">'+rows+'</div>';
+    b.appendChild(tail); applyCard();
+    if(CLEAN_TIMER)clearInterval(CLEAN_TIMER); var n=0; CLEAN_TIMER=setInterval(function(){n++; document.querySelectorAll('.rank-modal,.rank-card').forEach(function(x){x.remove();}); var tails=document.querySelectorAll('#topRankTail'); tails.forEach(function(x,i){if(i>0)x.remove();}); if(n>18){clearInterval(CLEAN_TIMER);CLEAN_TIMER=null;}},32);
+  };
+  window.claimRank=function(type){var c=watchedCount(), mi=maxEligible(c), target=idx(type); if(target<=mi){try{localStorage.setItem('kcp_claimed_rank_type_v284',ranks[target].type);}catch(e){} applyCard(); window.showTopRankTail();}};
+  var oldShow=window.showTopProfileBubble; if(typeof oldShow==='function'){window.showTopProfileBubble=function(){var r=oldShow.apply(this,arguments);setTimeout(applyCard,0);setTimeout(applyCard,90);return r;};}
+  document.addEventListener('click',function(e){var card=e.target&&e.target.closest&&e.target.closest('#topProfileBubble .tpb-stats .tpb-stat:nth-child(3)'); if(!card)return; e.preventDefault();e.stopPropagation(); if(e.stopImmediatePropagation)e.stopImmediatePropagation(); window.showTopRankTail();},true);
+  document.addEventListener('DOMContentLoaded',function(){setTimeout(applyCard,150);}); setTimeout(applyCard,250);
+})();
+</script>
+
+
+<!-- v293: đồng bộ 3 ô Đã lưu/Lịch sử/Hạng, icon hiện-ẩn mượt 4s -->
+<style id="v293-stat-cycle-sync-css">
+  #topProfileBubble .tpb-stats{grid-template-columns:repeat(3,1fr)!important;gap:8px!important;align-items:stretch!important;}
+  #topProfileBubble .tpb-stats .tpb-stat{position:relative!important;overflow:hidden!important;min-height:64px!important;display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:center!important;padding:8px 6px!important;transform:translateZ(0)!important;will-change:transform,opacity!important;contain:layout paint!important;}
+  #topProfileBubble .tpb-stats .tpb-stat b.kcp-v293-stage{position:relative!important;display:block!important;width:100%!important;height:28px!important;min-height:28px!important;margin:0!important;color:#7feaff!important;line-height:28px!important;text-align:center!important;}
+  #topProfileBubble .kcp-v293-face{position:absolute!important;inset:0!important;display:flex!important;align-items:center!important;justify-content:center!important;transition:opacity .55s cubic-bezier(.22,.61,.36,1),transform .55s cubic-bezier(.22,.61,.36,1),filter .55s ease!important;backface-visibility:hidden!important;-webkit-backface-visibility:hidden!important;will-change:opacity,transform!important;}
+  #topProfileBubble .kcp-v293-face.val{opacity:1!important;transform:translate3d(0,0,0) scale(1)!important;filter:none!important;font-size:20px!important;font-weight:950!important;letter-spacing:-.25px!important;}
+  #topProfileBubble .kcp-v293-face.ico{opacity:0!important;transform:translate3d(0,6px,0) scale(.88)!important;filter:blur(1px)!important;}
+  #topProfileBubble .tpb-stats.v293-show-icons .kcp-v293-face.val{opacity:0!important;transform:translate3d(0,-6px,0) scale(.88)!important;filter:blur(1px)!important;}
+  #topProfileBubble .tpb-stats.v293-show-icons .kcp-v293-face.ico{opacity:1!important;transform:translate3d(0,0,0) scale(1)!important;filter:none!important;}
+  #topProfileBubble .tpb-stats .tpb-stat > span.kcp-v293-label{display:block!important;margin-top:3px!important;font-size:12px!important;font-weight:900!important;line-height:1.08!important;color:rgba(235,250,255,.72)!important;white-space:nowrap!important;text-align:center!important;letter-spacing:-.1px!important;}
+  #topProfileBubble .kcp-v293-icon{width:30px!important;height:30px!important;min-width:30px!important;min-height:30px!important;border-radius:12px!important;display:inline-flex!important;align-items:center!important;justify-content:center!important;background:linear-gradient(145deg,rgba(142,247,255,.95),rgba(84,222,255,.72))!important;color:#03151b!important;box-shadow:0 0 18px rgba(126,238,255,.45),inset 0 1px 7px rgba(255,255,255,.72)!important;}
+  #topProfileBubble .kcp-v293-icon svg{width:20px!important;height:20px!important;stroke:currentColor!important;stroke-width:2.25!important;fill:none!important;stroke-linecap:round!important;stroke-linejoin:round!important;display:block!important;}
+  #topProfileBubble .kcp-v293-icon.rank{background:linear-gradient(145deg,#fff36f,#ffc739 58%,#b87512)!important;color:#3b2500!important;box-shadow:0 0 22px rgba(255,215,72,.42),inset 0 1px 7px rgba(255,255,255,.72)!important;}
+  #topProfileBubble .kcp-v293-rank-wrap .rank-emblem{width:30px!important;height:30px!important;min-width:30px!important;min-height:30px!important;border-radius:12px!important;display:inline-flex!important;align-items:center!important;justify-content:center!important;margin:0!important;}
+  #topProfileBubble .kcp-v293-rank-wrap .rank-emblem svg{width:20px!important;height:20px!important;}
+  #topProfileBubble .tpb-stats .tpb-stat:active{transform:translateZ(0) scale(.965)!important;}
+  .light-mode #topProfileBubble .tpb-stats .tpb-stat > span.kcp-v293-label{color:#667085!important;}
+  .light-mode #topProfileBubble .kcp-v293-face.val{color:#2b6cb0!important;}
+</style>
+<script id="v293-stat-cycle-sync-js">
+(function(){
+  var TIMER=null;
+  function esc(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]});}
+  function getList(key){try{return typeof window.storeGet==='function'?window.storeGet(key,[]):JSON.parse(localStorage.getItem('kcp_'+key)||'[]');}catch(e){return [];}}
+  function uniqueWatchedCount(){try{if(typeof window.uniqueWatchedCount==='function')return window.uniqueWatchedCount();}catch(e){}var h=getList('history'),m={};h.forEach(function(x){var k=String((x&&(x.slug||x.id||x.name||x.origin_name))||'').trim().toLowerCase();if(k)m[k]=1;});return Object.keys(m).length;}
+  function currentRank(){try{if(typeof window.rankData==='function')return window.rankData(uniqueWatchedCount()).current;}catch(e){}return {name:'Đồng',type:'bronze',icon:''};}
+  function rankIcon(r){try{if(r&&r.icon)return r.icon;if(typeof window.rankIconSvg==='function')return window.rankIconSvg(r&&r.type||'bronze');}catch(e){}return '<span class="kcp-v293-icon rank"><svg viewBox="0 0 24 24"><path d="M8 21h8"/><path d="M12 17v4"/><path d="M7 4h10v4a5 5 0 0 1-10 0V4Z"/><path d="M7 6H4a3 3 0 0 0 3 5"/><path d="M17 6h3a3 3 0 0 1-3 5"/></svg></span>';}
+  function icon(kind){
+    var paths={
+      save:'<path d="M6 3h10l2 2v16l-6-4-6 4V3Z"/><path d="M9 7h6"/>',
+      history:'<path d="M3 12a9 9 0 1 0 3-6.7"/><path d="M3 4v5h5"/><path d="M12 7v5l3 2"/>',
+      rank:'<path d="M8 21h8"/><path d="M12 17v4"/><path d="M7 4h10v4a5 5 0 0 1-10 0V4Z"/><path d="M7 6H4a3 3 0 0 0 3 5"/><path d="M17 6h3a3 3 0 0 1-3 5"/>'
+    }[kind];
+    return '<span class="kcp-v293-icon '+kind+'"><svg viewBox="0 0 24 24">'+paths+'</svg></span>';
+  }
+  function cardHTML(value,label,iconHTML){
+    return '<b class="kcp-v293-stage"><span class="kcp-v293-face val">'+esc(value)+'</span><span class="kcp-v293-face ico">'+iconHTML+'</span></b>'+(label?'<span class="kcp-v293-label">'+esc(label)+'</span>':'');
+  }
+  function patchStats(){
+    var b=document.getElementById('topProfileBubble'); if(!b)return;
+    var stats=b.querySelectorAll('.tpb-stats .tpb-stat'); if(stats.length<3)return;
+    var saved=getList('saved').length;
+    var history=getList('history').length;
+    var rank=currentRank();
+    stats[0].classList.add('is-clickable','kcp-v293-stat-save');
+    stats[0].setAttribute('onclick','event.stopPropagation();showTopSavedTail&&showTopSavedTail()');
+    stats[0].innerHTML=cardHTML(saved,'',icon('save'));
+    stats[1].classList.add('is-clickable','kcp-v293-stat-history');
+    stats[1].setAttribute('onclick','event.stopPropagation();showTopHistoryTail&&showTopHistoryTail()');
+    stats[1].innerHTML=cardHTML(history,'',icon('history'));
+    stats[2].classList.add('is-clickable','tpb-rank-simple-card','kcp-v293-stat-rank');
+    stats[2].setAttribute('onclick','event.stopPropagation();showTopRankTail&&showTopRankTail()');
+    stats[2].innerHTML=cardHTML(rank.name,rank.name,'<span class="kcp-v293-rank-wrap">'+rankIcon(rank)+'</span>');
+    var box=b.querySelector('.tpb-stats');
+    if(box&&!box.dataset.v293Cycle){
+      box.dataset.v293Cycle='1';
+      clearInterval(TIMER);
+      TIMER=setInterval(function(){var live=document.querySelector('#topProfileBubble .tpb-stats'); if(!live){clearInterval(TIMER);TIMER=null;return;} live.classList.toggle('v293-show-icons');},4000);
+    }
+  }
+  var old=window.showTopProfileBubble;
+  if(typeof old==='function'&&!old.__v293StatsCycle){
+    var wrap=function(){var r=old.apply(this,arguments);setTimeout(patchStats,0);setTimeout(patchStats,80);setTimeout(patchStats,240);return r;};
+    wrap.__v293StatsCycle=true; window.showTopProfileBubble=wrap;
+  }
+  document.addEventListener('click',function(){setTimeout(patchStats,60);},true);
+  document.addEventListener('DOMContentLoaded',function(){setTimeout(patchStats,150);});
+  setTimeout(patchStats,300);
+})();
+</script>
+
+
+<!-- v297: xoá chữ Đã lưu/Lịch sử xem trong ô thống kê, giữ icon/value ở giữa -->
+<style id="v297-hide-save-history-label-css">
+  #topProfileBubble .tpb-stats .kcp-v293-stat-save,
+  #topProfileBubble .tpb-stats .kcp-v293-stat-history{justify-content:center!important;}
+  #topProfileBubble .tpb-stats .kcp-v293-stat-save b.kcp-v293-stage,
+  #topProfileBubble .tpb-stats .kcp-v293-stat-history b.kcp-v293-stage{margin:0!important;}
+</style>
+
+
+<!-- v305: profile settings as icon under logout, remove settings row -->
+<style id="v305-profile-settings-icon-css">
+  #profileBox .profile-settings-icon-btn{
+    width:46px!important;height:46px!important;min-width:46px!important;
+    margin:10px auto 0!important;padding:0!important;
+    display:grid!important;place-items:center!important;
+    border-radius:999px!important;
+    border:1px solid rgba(255,210,80,.34)!important;
+    background:linear-gradient(145deg,rgba(255,217,92,.18),rgba(255,255,255,.055))!important;
+    color:#ffd45c!important;
+    box-shadow:0 12px 28px rgba(0,0,0,.28), inset 0 1px 0 rgba(255,255,255,.16)!important;
+    backdrop-filter:blur(18px)!important;-webkit-backdrop-filter:blur(18px)!important;
+    cursor:pointer!important;
+  }
+  #profileBox .profile-settings-icon-btn svg{
+    width:24px!important;height:24px!important;display:block!important;
+    stroke:currentColor!important;fill:none!important;stroke-width:2.1!important;
+    stroke-linecap:round!important;stroke-linejoin:round!important;
+  }
+  #profileBox .profile-settings-icon-btn:active{transform:scale(.96)!important;}
+  body.light-mode #profileBox .profile-settings-icon-btn{
+    background:#fff8dd!important;color:#d19400!important;border-color:#f4d56d!important;
+    box-shadow:0 10px 24px rgba(15,23,42,.10), inset 0 1px 0 rgba(255,255,255,.9)!important;
+  }
+</style>
+
+<!-- v308: fix rank test leftovers, bronze threshold, no-rank plain state, settings icon corner -->
+<style id="v308-total-rank-profile-fix-css">
+  /* Ẩn thanh Cài đặt tài khoản dạng dài trong bong bóng hồ sơ, chỉ giữ icon nhỏ */
+  #topProfileBubble.kcp-logged-in .tpb-actions,
+  #topProfileBubble.kcp-logged-in .tpb-actions .tpb-btn.primary,
+  #topProfileBubble .tpb-actions.kcp-hide-settings-action{
+    display:none!important;
+    visibility:hidden!important;
+    pointer-events:none!important;
+  }
+
+  /* Icon cài đặt nằm góc phải, thẳng dưới nút đăng xuất */
+  #topProfileBubble .tpb-settings-mini{
+    position:absolute!important;
+    top:58px!important;
+    right:18px!important;
+    width:38px!important;
+    height:38px!important;
+    min-width:38px!important;
+    padding:0!important;
+    border-radius:999px!important;
+    display:grid!important;
+    place-items:center!important;
+    z-index:40!important;
+    color:#ffd45c!important;
+    border:1px solid rgba(255,213,92,.38)!important;
+    background:rgba(255,213,92,.13)!important;
+    box-shadow:0 10px 24px rgba(0,0,0,.28), inset 0 1px 0 rgba(255,255,255,.18)!important;
+    backdrop-filter:blur(16px) saturate(165%)!important;
+    -webkit-backdrop-filter:blur(16px) saturate(165%)!important;
+  }
+  #topProfileBubble .tpb-settings-mini svg{
+    width:20px!important;
+    height:20px!important;
+    display:block!important;
+    fill:none!important;
+    stroke:currentColor!important;
+    stroke-width:2.35!important;
+    stroke-linecap:round!important;
+    stroke-linejoin:round!important;
+  }
+
+  /* Chưa có hạng: hồ sơ thật sự bình thường, không màu rank, không glow rank */
+  #topProfileBubble.kcp-no-rank,
+  #topProfileBubble.kcp-no-rank::before,
+  #topProfileBubble.kcp-no-rank::after{
+    animation:none!important;
+  }
+  #topProfileBubble.kcp-no-rank{
+    background:linear-gradient(145deg,rgba(20,25,28,.86),rgba(7,11,14,.72))!important;
+    border-color:rgba(255,255,255,.15)!important;
+    box-shadow:inset 0 1px 1px rgba(255,255,255,.18),0 14px 34px rgba(0,0,0,.34)!important;
+    filter:none!important;
+  }
+  #topProfileBubble.kcp-no-rank .tpb-name,
+  #topProfileBubble.kcp-no-rank .tpb-name *,
+  #profileBox.kcp-no-rank #profileName{
+    background:none!important;
+    background-image:none!important;
+    -webkit-background-clip:border-box!important;
+    background-clip:border-box!important;
+    -webkit-text-fill-color:currentColor!important;
+    color:#fff!important;
+    text-shadow:none!important;
+    filter:none!important;
+    animation:none!important;
+  }
+  #topProfileBubble.kcp-no-rank .tpb-avatar,
+  #topProfileBubble.kcp-no-rank .tpb-avatar-wrap{
+    box-shadow:none!important;
+    filter:none!important;
+    animation:none!important;
+    border-color:rgba(255,255,255,.28)!important;
+  }
+
+  /* Ô hạng trên hồ sơ: căn icon giữa, không chữ, không bị cắt */
+  #topProfileBubble .tpb-stats .tpb-stat:nth-child(3){
+    display:grid!important;
+    place-items:center!important;
+    min-height:58px!important;
+    overflow:hidden!important;
+  }
+  #topProfileBubble .tpb-stats .tpb-stat:nth-child(3) > b{
+    display:grid!important;
+    place-items:center!important;
+    width:100%!important;
+    height:100%!important;
+    min-height:48px!important;
+    margin:0!important;
+  }
+  #topProfileBubble .tpb-stats .tpb-stat:nth-child(3) > span,
+  #topProfileBubble .tpb-rank-badge{
+    display:none!important;
+  }
+  #topProfileBubble .tpb-stats .tpb-stat:nth-child(3) .rank-emblem,
+  #topProfileBubble .tpb-stats .tpb-stat:nth-child(3) .kcp-v307-no-rank-icon{
+    width:34px!important;
+    height:34px!important;
+    display:grid!important;
+    place-items:center!important;
+    margin:auto!important;
+    overflow:visible!important;
+  }
+  #topProfileBubble .tpb-stats .tpb-stat:nth-child(3) svg{
+    width:28px!important;
+    height:28px!important;
+    overflow:visible!important;
+  }
+
+  /* Rank modal: tránh chữ bị cắt trong danh sách */
+  #topRankTail .tpb-rank-mini-title,
+  #topRankTail .tpb-rank-mini-desc{
+    overflow:visible!important;
+    text-overflow:clip!important;
+    white-space:normal!important;
+    line-height:1.22!important;
+  }
+  #topRankTail .tpb-rank-mini-item{
+    grid-template-columns:48px minmax(0,1fr) auto!important;
+    align-items:center!important;
+  }
+</style>
+<script id="v308-total-rank-profile-fix-js">
+(function(){
+  window.KCP_RANK_TEST_MODE=false;
+
+  var RANKS=[
+    {name:'Đồng',need:5,type:'bronze'},
+    {name:'Bạc',need:10,type:'silver'},
+    {name:'Vàng',need:20,type:'gold'},
+    {name:'Kim cương',need:40,type:'diamond'},
+    {name:'Cao thủ',need:80,type:'master'},
+    {name:'Thách đấu',need:101,type:'challenger'}
+  ];
+
+  function esc(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]});}
+  function storeGetSafe(k,d){try{return typeof window.storeGet==='function'?window.storeGet(k,d):JSON.parse(localStorage.getItem(k)||JSON.stringify(d));}catch(e){return d;}}
+  function storeSetSafe(k,v){try{if(typeof window.storeSet==='function')return window.storeSet(k,v); localStorage.setItem(k,JSON.stringify(v));}catch(e){}}
+  function movieKey(m){return String((m&&(m.slug||m.id||m.name||m.origin_name||m.origin))||'').trim().toLowerCase();}
+
+  function removeRankTestHistory(){
+    var h=storeGetSafe('history',[]);
+    if(!Array.isArray(h)) return;
+    var cleaned=h.filter(function(m){
+      var k=movieKey(m);
+      return !(m&&m.rankTest) && k.indexOf('rank-test-movie-')!==0 && (String(m&&m.origin||'')!=='Rank Border Test');
+    });
+    if(cleaned.length!==h.length) storeSetSafe('history',cleaned);
+  }
+
+  function watchedCount(){
+    removeRankTestHistory();
+    var h=storeGetSafe('history',[]), map={};
+    (Array.isArray(h)?h:[]).forEach(function(m){
+      var k=movieKey(m);
+      if(k) map[k]=1;
+    });
+    return Object.keys(map).length;
+  }
+  window.uniqueWatchedCount=watchedCount;
+  window.movieUniqueCount=watchedCount;
+
+  function icon(type){
+    try{ if(type!=='none' && typeof window.rankIconSvg==='function') return window.rankIconSvg(type); }catch(e){}
+    if(type==='none') return '<span class="kcp-v307-no-rank-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M8 21h8"/><path d="M12 17v4"/><path d="M7 4h10v4a5 5 0 0 1-10 0V4Z"/><path d="M7 6H4a3 3 0 0 0 3 5"/><path d="M17 6h3a3 3 0 0 1-3 5"/></svg></span>';
+    return '<span class="rank-emblem rank-'+type+'" aria-hidden="true"><svg viewBox="0 0 48 48"><rect x="8" y="8" width="32" height="32" rx="12"/></svg></span>';
+  }
+  function ranksWithIcons(){return RANKS.map(function(r){return Object.assign({},r,{icon:icon(r.type)});});}
+  function currentRank(c){
+    c=Number(c)||0;
+    if(c<5) return {name:'Chưa có hạng',need:5,type:'none',icon:icon('none')};
+    var cur=RANKS[0];
+    RANKS.forEach(function(r){if(c>=r.need)cur=r;});
+    return Object.assign({},cur,{icon:icon(cur.type)});
+  }
+  window.rankInfo=window.rankData=function(count){
+    var c=Number(count)||0, cur=currentRank(c), rs=ranksWithIcons();
+    return {current:cur,next:rs.find(function(r){return c<r.need;})||null,ranks:rs};
+  };
+
+  function gearSvg(){return '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 15.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7Z"/><path d="M19.4 15a1.7 1.7 0 0 0 .34 1.88l.04.04a2 2 0 0 1-2.83 2.83l-.04-.04A1.7 1.7 0 0 0 15 19.4a1.7 1.7 0 0 0-1 1.55V21a2 2 0 0 1-4 0v-.06a1.7 1.7 0 0 0-1-1.55 1.7 1.7 0 0 0-1.88.34l-.04.04a2 2 0 0 1-2.83-2.83l.04-.04A1.7 1.7 0 0 0 4.6 15a1.7 1.7 0 0 0-1.55-1H3a2 2 0 0 1 0-4h.06a1.7 1.7 0 0 0 1.55-1 1.7 1.7 0 0 0-.34-1.88l-.04-.04a2 2 0 0 1 2.83-2.83l.04.04A1.7 1.7 0 0 0 9 4.6a1.7 1.7 0 0 0 1-1.55V3a2 2 0 0 1 4 0v.06a1.7 1.7 0 0 0 1 1.55 1.7 1.7 0 0 0 1.88-.34l.04-.04a2 2 0 0 1 2.83 2.83l-.04.04A1.7 1.7 0 0 0 19.4 9c.18.58.72 1 1.55 1H21a2 2 0 0 1 0 4h-.06A1.7 1.7 0 0 0 19.4 15Z"/></svg>';}
+
+  function patchBubble(){
+    removeRankTestHistory();
+    var b=document.getElementById('topProfileBubble');
+    if(!b) return;
+    var user=null; try{user=typeof window.getCurrentUser==='function'?window.getCurrentUser():null;}catch(e){}
+    var logged=!!user, count=watchedCount(), hasRank=logged && count>=5;
+    b.classList.toggle('kcp-logged-in',logged);
+    b.classList.toggle('kcp-logged-out',!logged);
+    b.classList.toggle('kcp-no-rank',logged && !hasRank);
+
+    if(logged){
+      b.querySelectorAll('.tpb-actions').forEach(function(a){a.classList.add('kcp-hide-settings-action');});
+      var oldSettings=b.querySelectorAll('.tpb-settings-mini');
+      for(var i=1;i<oldSettings.length;i++) oldSettings[i].remove();
+      if(!oldSettings[0]){
+        var btn=document.createElement('button');
+        btn.className='tpb-settings-mini';
+        btn.type='button';
+        btn.title='Cài đặt tài khoản';
+        btn.setAttribute('aria-label','Cài đặt tài khoản');
+        btn.innerHTML=gearSvg();
+        btn.onclick=function(e){e.stopPropagation(); if(typeof window.showTopSettingsTail==='function') window.showTopSettingsTail(); else if(typeof window.openPanel==='function') window.openPanel('settings');};
+        var logout=b.querySelector('.tpb-logout');
+        if(logout && logout.parentNode) logout.parentNode.insertBefore(btn, logout.nextSibling);
+        else b.appendChild(btn);
+      }
+    }
+
+    var stat=b.querySelector('.tpb-stats .tpb-stat:nth-child(3)');
+    if(stat){
+      var r=currentRank(count);
+      stat.classList.add('is-clickable','tpb-rank-simple-card');
+      stat.onclick=function(e){e.stopPropagation(); if(typeof window.showTopRankTail==='function') window.showTopRankTail();};
+      stat.innerHTML='<b><span class="kcp-v293-stage"><span class="kcp-v293-face val">'+icon(r.type)+'</span><span class="kcp-v293-face ico">'+(hasRank?icon('gold'):icon('none'))+'</span></span></b>';
+    }
+  }
+
+  var oldShow=window.showTopProfileBubble;
+  if(typeof oldShow==='function' && !oldShow.__v308TotalFix){
+    var show=function(){var out=oldShow.apply(this,arguments); [0,60,150,350,700].forEach(function(ms){setTimeout(patchBubble,ms);}); return out;};
+    show.__v308TotalFix=true;
+    window.showTopProfileBubble=show;
+  }
+
+  window.showTopRankTail=function(){
+    var b=document.getElementById('topProfileBubble');
+    if(!b){ if(typeof window.showTopProfileBubble==='function') window.showTopProfileBubble(); b=document.getElementById('topProfileBubble'); }
+    if(!b) return;
+    ['topRankTail','topSavedTail','topSettingsTail','topHistoryTail','topLoginTail'].forEach(function(id){var x=document.getElementById(id); if(x)x.remove();});
+    var c=watchedCount(), cur=currentRank(c), rs=ranksWithIcons();
+    var curIndex=RANKS.findIndex(function(r){return r.type===cur.type;});
+    var rows=rs.map(function(r,i){
+      var done=curIndex>=0 && i<=curIndex, eligible=c>=r.need;
+      var status=done?'Đã nhận':(eligible?'Nhận':(c+'/'+r.need));
+      return '<div class="tpb-rank-mini-item '+(done?'done':'')+'"><div class="rank-medal">'+r.icon+'</div><div><div class="tpb-rank-mini-title">'+esc(r.name)+'</div><div class="tpb-rank-mini-desc">Xem '+r.need+' phim khác nhau</div></div><div class="tpb-rank-mini-status">'+esc(status)+'</div></div>';
+    }).join('');
+    var msg=c<5?'Còn '+Math.max(0,5-c)+' phim nữa mới có hạng Đồng.':((rs.find(function(r){return c<r.need;}))?'Tiếp tục xem để lên hạng cao hơn.':'Đã đạt hạng cao nhất.');
+    var tail=document.createElement('div');
+    tail.id='topRankTail';
+    tail.innerHTML='<div class="tpb-tail-head"><b>'+icon(cur.type)+'<span>Hạng của bạn</span></b><button class="tpb-tail-close" onclick="event.stopPropagation();hideTopRankTail&&hideTopRankTail()">×</button></div><div class="tpb-mini-note current-rank-note"><div class="tpb-current-line"><span>Hiện tại:</span>'+icon(cur.type)+'<span class="tpb-current-name">'+esc(cur.name)+'</span></div><div class="tpb-current-desc">Đã xem '+c+' phim khác nhau. '+esc(msg)+'</div></div><div class="tpb-rank-mini-list">'+rows+'</div>';
+    b.appendChild(tail);
+    patchBubble();
+  };
+
+  ['DOMContentLoaded','load','click','storage'].forEach(function(ev){window.addEventListener(ev,function(){setTimeout(patchBubble,80);},true);});
+  try{new MutationObserver(function(){patchBubble();}).observe(document.body,{childList:true,subtree:true,characterData:true});}catch(e){}
+  setTimeout(patchBubble,80); setTimeout(patchBubble,600); setInterval(patchBubble,1600);
 })();
 </script>
 
@@ -10314,7 +11316,7 @@ body{
   var KEY='kcp_manual_claimed_rank_type_v255';
   var OLD_KEYS=['kcp_manual_claimed_rank_type_v254','kcp_manual_claimed_rank_type_v253'];
   var ranks=[
-    {name:'Nhựa',need:0,type:'plastic',color:'transparent',glow:'transparent'},
+    
     {name:'Đồng',need:5,type:'bronze',color:'#c8793d',glow:'rgba(255,143,67,.48)'},
     {name:'Bạc',need:10,type:'silver',color:'#e8f3ff',glow:'rgba(230,246,255,.55)'},
     {name:'Vàng',need:20,type:'gold',color:'#ffd84a',glow:'rgba(255,216,64,.62)'},
@@ -10659,5 +11661,973 @@ body{
     new MutationObserver(function(){clearTimeout(window.__rankIconFixT);window.__rankIconFixT=setTimeout(run,80);})
       .observe(document.body,{childList:true,subtree:true});
   }catch(e){}
+})();
+</script>
+
+
+<style id="v265-rank-header-js-real-fix-css">
+#topRankTail .tpb-tail-head{
+  margin-top:-4px!important;
+  margin-bottom:8px!important;
+  min-height:44px!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:space-between!important;
+  gap:10px!important;
+  position:relative!important;
+  z-index:50!important;
+}
+#topRankTail .tpb-tail-head b{
+  display:flex!important;
+  align-items:center!important;
+  gap:10px!important;
+  min-width:0!important;
+  line-height:1!important;
+  font-size:22px!important;
+  font-weight:950!important;
+  letter-spacing:-.6px!important;
+  color:#fff!important;
+}
+#topRankTail .tpb-title-icon.rank{
+  width:30px!important;
+  height:30px!important;
+  min-width:30px!important;
+  flex:0 0 30px!important;
+  display:inline-grid!important;
+  place-items:center!important;
+  border-radius:12px!important;
+  color:#281700!important;
+  background:linear-gradient(145deg,#fff5a8,#ffd84a 52%,#f4a400)!important;
+  border:1px solid rgba(255,255,255,.42)!important;
+  box-shadow:inset 0 2px 5px rgba(255,255,255,.72),0 8px 18px rgba(255,216,74,.25),0 0 20px rgba(255,216,74,.22)!important;
+  margin:0!important;
+}
+#topRankTail .tpb-title-icon.rank svg{
+  width:19px!important;
+  height:19px!important;
+  display:block!important;
+  fill:none!important;
+  stroke:currentColor!important;
+  stroke-width:2.5!important;
+  stroke-linecap:round!important;
+  stroke-linejoin:round!important;
+  filter:drop-shadow(0 1px 0 rgba(255,255,255,.32))!important;
+}
+#topRankTail .tpb-tail-close{
+  width:30px!important;
+  height:30px!important;
+  min-width:30px!important;
+  border-radius:999px!important;
+  border:1px solid rgba(255,255,255,.12)!important;
+  background:rgba(255,255,255,.08)!important;
+  color:#fff!important;
+  font-size:20px!important;
+  line-height:28px!important;
+  display:grid!important;
+  place-items:center!important;
+  padding:0!important;
+  margin-left:auto!important;
+}
+.light-mode #topRankTail .tpb-tail-head b{color:#111827!important;}
+.light-mode #topRankTail .tpb-tail-close{
+  background:rgba(15,23,42,.06)!important;
+  color:#111827!important;
+  border-color:rgba(15,23,42,.08)!important;
+}
+</style>
+<script id="v265-rank-header-js-real-fix">
+(function(){
+  function cup(){
+    return '<span class="tpb-title-icon rank" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 21h8"/><path d="M12 17v4"/><path d="M7 4h10v4a5 5 0 0 1-10 0V4Z"/><path d="M7 6H4a3 3 0 0 0 3 5"/><path d="M17 6h3a3 3 0 0 1-3 5"/></svg></span><span>Hạng của bạn</span>';
+  }
+  function fix(){
+    var head=document.querySelector('#topRankTail .tpb-tail-head');
+    if(!head) return;
+    var b=head.querySelector('b');
+    if(b) b.innerHTML=cup();
+    var x=head.querySelector('.tpb-tail-close');
+    if(x){
+      x.textContent='×';
+      x.setAttribute('onclick','event.stopPropagation();hideTopRankTail()');
+    }
+  }
+  var oldShow=window.showTopRankTail;
+  if(typeof oldShow==='function' && !oldShow.__v265patched){
+    var wrapped=function(){
+      var r=oldShow.apply(this,arguments);
+      fix();
+      setTimeout(fix,0);
+      setTimeout(fix,80);
+      return r;
+    };
+    wrapped.__v265patched=true;
+    window.showTopRankTail=wrapped;
+  }
+  window.__v265FixRankHeader=fix;
+  document.addEventListener('DOMContentLoaded',function(){setTimeout(fix,100);});
+  document.addEventListener('click',function(){setTimeout(fix,40);setTimeout(fix,160);},true);
+  try{
+    new MutationObserver(function(){
+      clearTimeout(window.__v265rankT);
+      window.__v265rankT=setTimeout(fix,40);
+    }).observe(document.body,{childList:true,subtree:true});
+  }catch(e){}
+})();
+</script>
+
+<style id="v269-rank-title-match-history-fix">
+/* v269: đồng bộ chữ 'Hạng của bạn' với tiêu đề 'Lịch sử xem', giữ nguyên icon cúp vàng. */
+#topRankTail .tpb-tail-head b{
+  font-family:inherit!important;
+  font-size:19px!important;
+  font-weight:950!important;
+  line-height:1.08!important;
+  letter-spacing:-.35px!important;
+  gap:10px!important;
+  display:flex!important;
+  align-items:center!important;
+  min-width:0!important;
+}
+#topRankTail .tpb-tail-head b > span:not(.tpb-title-icon):not(.rank-title-cup){
+  font-family:inherit!important;
+  font-size:19px!important;
+  font-weight:950!important;
+  line-height:1.08!important;
+  letter-spacing:-.35px!important;
+  white-space:nowrap!important;
+}
+/* Giữ nguyên kích thước cúp vàng ở header rank */
+#topRankTail .tpb-title-icon.rank{
+  width:30px!important;
+  height:30px!important;
+  min-width:30px!important;
+  flex:0 0 30px!important;
+}
+#topRankTail .tpb-title-icon.rank svg{
+  width:19px!important;
+  height:19px!important;
+}
+@media(max-width:430px){
+  #topRankTail .tpb-tail-head b,
+  #topRankTail .tpb-tail-head b > span:not(.tpb-title-icon):not(.rank-title-cup){
+    font-size:19px!important;
+    line-height:1.08!important;
+  }
+}
+</style>
+<script id="v269-rank-title-match-history-js">
+(function(){
+  function apply(){
+    var title=document.querySelector('#topRankTail .tpb-tail-head b > span:not(.tpb-title-icon):not(.rank-title-cup)');
+    if(title){
+      title.style.fontFamily='inherit';
+      title.style.fontSize='19px';
+      title.style.fontWeight='950';
+      title.style.lineHeight='1.08';
+      title.style.letterSpacing='-.35px';
+      title.style.whiteSpace='nowrap';
+    }
+  }
+  var old=window.showTopRankTail;
+  if(typeof old==='function' && !old.__v269TitleMatched){
+    var wrap=function(){
+      var r=old.apply(this,arguments);
+      apply();
+      setTimeout(apply,0);
+      setTimeout(apply,80);
+      setTimeout(apply,220);
+      return r;
+    };
+    wrap.__v269TitleMatched=true;
+    window.showTopRankTail=wrap;
+  }
+  document.addEventListener('click',function(){setTimeout(apply,50);setTimeout(apply,180);},true);
+  document.addEventListener('DOMContentLoaded',function(){setTimeout(apply,120);});
+})();
+</script>
+
+<!-- v288: rank order final - no plastic, bronze lowest, master restored -->
+<style id="v284-rank-order-diamond-white-css">
+  .rank-plastic,.avatar-rank-plastic,.rank-profile-plastic{display:none!important;}
+  .rank-diamond{background:linear-gradient(145deg,#20b7df,#86f7ff 45%,#2f9fff)!important;color:#fff!important;}
+  .rank-emblem.rank-diamond svg{color:#fff!important;stroke:#fff!important;fill:none!important;filter:drop-shadow(0 0 3px rgba(255,255,255,.75));}
+  #topRankTail .rank-medal .rank-emblem.rank-diamond svg,
+  #topProfileBubble .rank-emblem.rank-diamond svg,
+  .rank-card .rank-emblem.rank-diamond svg{width:30px!important;height:30px!important;stroke-width:3.1!important;}
+  #topProfileBubble .tpb-rank-badge .rank-emblem.rank-diamond svg{width:15px!important;height:15px!important;stroke-width:3.1!important;}
+</style>
+<script id="v284-rank-order-diamond-white-js">
+(function(){
+  var KEY='kcp_manual_claimed_rank_type_v284';
+  var OLD_KEYS=['kcp_manual_claimed_rank_type_v255','kcp_manual_claimed_rank_type_v254','kcp_manual_claimed_rank_type_v253'];
+  var ranks=[
+    {name:'Đồng',need:5,type:'bronze',color:'#c8793d',glow:'rgba(255,143,67,.48)'},
+    {name:'Bạc',need:10,type:'silver',color:'#e8f3ff',glow:'rgba(230,246,255,.55)'},
+    {name:'Vàng',need:20,type:'gold',color:'#ffd84a',glow:'rgba(255,216,64,.62)'},
+    {name:'Kim cương',need:40,type:'diamond',color:'#9bf8ff',glow:'rgba(155,248,255,.75)'},
+    {name:'Cao thủ',need:80,type:'master',color:'#ff8a1f',glow:'rgba(255,138,31,.72)'},
+    {name:'Thách đấu',need:101,type:'challenger',color:'#ff55d8',glow:'rgba(255,80,220,.86)'}
+  ];
+  function esc(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]});}
+  function idxByType(t){for(var i=0;i<ranks.length;i++){if(ranks[i].type===t)return i;}return 0;}
+  function normalizeType(t){return (t==='plastic'||idxByType(t)<0)?'bronze':t;}
+  function getClaimedType(){
+    var t=localStorage.getItem(KEY);
+    if(!t){for(var i=0;i<OLD_KEYS.length;i++){var old=localStorage.getItem(OLD_KEYS[i]); if(old){t=old;break;}}}
+    t=normalizeType(t||'bronze'); localStorage.setItem(KEY,t); return t;
+  }
+  function uniqueWatchedCount(){
+    try{if(typeof window.storeGet==='function'){var a=window.storeGet('history',[])||[],m={};a.forEach(function(x){var k=String((x&&(x.slug||x.id||x.name||x.origin_name))||'').trim().toLowerCase();if(k)m[k]=1;});return Object.keys(m).length;}}catch(e){}
+    try{var a=JSON.parse(localStorage.getItem('kcp_history')||'[]')||[],m={};a.forEach(function(x){var k=String((x&&(x.slug||x.id||x.name||x.origin_name))||'').trim().toLowerCase();if(k)m[k]=1;});return Object.keys(m).length;}catch(e){return 0;}
+  }
+  window.uniqueWatchedCount=uniqueWatchedCount;
+  function eligibleIndex(c){var i=0;ranks.forEach(function(r,k){if(c>=r.need)i=k;});return i;}
+  function claimedIndex(c){return Math.min(idxByType(getClaimedType()),eligibleIndex(c==null?uniqueWatchedCount():c));}
+  function barIcon(cls,bars){var lines=bars===2?'<path d="M17 21h14M17 29h14"/>':bars===1?'<path d="M17 24h14"/>':'';return '<span class="rank-emblem '+cls+'" aria-hidden="true"><svg viewBox="0 0 48 48"><rect x="8" y="8" width="32" height="32" rx="12"/>'+lines+'</svg></span>';}
+  function icon(type){
+    if(type==='bronze')return barIcon('rank-bronze',2);
+    if(type==='silver')return barIcon('rank-silver',1);
+    if(type==='gold')return barIcon('rank-gold',0);
+    if(type==='diamond')return '<span class="rank-emblem rank-diamond" aria-hidden="true"><svg viewBox="0 0 64 48" fill="none" stroke="#fff" stroke-width="3.1" stroke-linecap="round" stroke-linejoin="round"><path d="M6 20 L16 9 H48 L58 20 L32 43 Z"/><path d="M6 20 H58"/><path d="M16 9 L24 20 L32 9 L40 20 L48 9"/><path d="M24 20 L32 43 L40 20"/><path d="M16 9 H48"/><path d="M52 4 L54 10 L60 12 L54 14 L52 20 L50 14 L44 12 L50 10 Z" stroke-width="2.4"/></svg></span>';
+    if(type==='master')return '<span class="rank-emblem rank-master" aria-hidden="true"><svg viewBox="0 0 48 48"><path d="M24 6c7 8 3 13 8 18 2-4 4-7 4-12 6 7 7 15 4 21-3 6-9 9-16 9S11 39 8 33c-4-8 1-16 7-22 0 7 3 10 6 13-2-7 1-12 3-18Z"/></svg></span>';
+    return '<span class="rank-emblem rank-challenger" aria-hidden="true"><svg viewBox="0 0 48 48"><path d="M9 36h30l3-21-10 8-8-13-8 13-10-8 3 21Z"/><path d="M12 40h24"/><circle cx="16" cy="18" r="2"/><circle cx="32" cy="18" r="2"/></svg></span>';
+  }
+  window.rankIconSvg=icon; window.rankIcon=icon;
+  function rankDataManual(count){count=Number(count==null?uniqueWatchedCount():count)||0;var ci=claimedIndex(count);var cur=Object.assign({icon:icon(ranks[ci].type)},ranks[ci]);var next=ranks.find(function(r,i){return i>ci&&count>=r.need;})||ranks.find(function(r){return count<r.need;})||null;return {current:cur,next:next?Object.assign({icon:icon(next.type)},next):null,ranks:ranks.map(function(r){return Object.assign({icon:icon(r.type)},r);})};}
+  window.rankData=rankDataManual; window.rankInfo=rankDataManual;
+  window.claimRank=function(type){type=normalizeType(type);var c=uniqueWatchedCount(),target=idxByType(type),max=eligibleIndex(c);if(target>max)return;localStorage.setItem(KEY,ranks[target].type);applyRing();var t=document.getElementById('topRankTail');if(t)t.remove();setTimeout(window.showTopRankTail,0);};
+  function applyRing(){var c=uniqueWatchedCount(),r=rankDataManual(c).current;document.querySelectorAll('#topProfileBubble .tpb-avatar-wrap').forEach(function(w){['plastic','bronze','silver','gold','diamond','master','challenger'].forEach(function(t){w.classList.remove('avatar-rank-'+t,'rank-'+t);});w.classList.add('avatar-rank-'+r.type);w.setAttribute('data-claimed-rank',r.type);w.style.setProperty('--manual-rank-color',r.color);w.style.setProperty('--manual-rank-glow',r.glow);var img=w.querySelector('img');if(img){img.style.setProperty('border-color',r.color,'important');img.style.setProperty('box-shadow','0 0 0 1px rgba(255,255,255,.22),0 0 12px '+r.glow,'important');}});var badge=document.querySelector('#topProfileBubble .tpb-rank-badge');if(badge)badge.innerHTML=icon(r.type)+' '+esc(r.name);var card=document.querySelectorAll('#topProfileBubble .tpb-stats .tpb-stat')[2];if(card){['plastic','bronze','silver','gold','diamond','master','challenger'].forEach(function(t){card.classList.remove('rank-profile-'+t);});card.classList.remove('rank-card-redesign','rank-profile-full');card.classList.add('is-clickable','tpb-rank-simple-card');card.setAttribute('onclick','event.stopPropagation();showTopRankTail()');card.innerHTML='<b class="tpb-rank-icon-only">'+icon(r.type)+'</b><span>'+esc(r.name)+'</span>';}}
+  window.applyRankAvatarBorder=applyRing;
+  window.showTopRankTail=function(){var b=document.getElementById('topProfileBubble');if(!b&&typeof showTopProfileBubble==='function'){showTopProfileBubble();b=document.getElementById('topProfileBubble');}if(!b)return;['topRankTail','topSavedTail','topSettingsTail','topHistoryTail'].forEach(function(id){var x=document.getElementById(id);if(x)x.remove();});var c=uniqueWatchedCount(),ci=claimedIndex(c),info=rankDataManual(c),cur=info.current;var rows=ranks.map(function(r,i){var eligible=c>=r.need,claimed=i<=ci;var desc=r.name==='Thách đấu'?'Trên 100 phim khác nhau':'Xem '+r.need+' phim khác nhau';var status=claimed?'<span class="rank-claimed-text">Đã nhận</span>':(eligible?'<button class="rank-claim-btn" onclick="event.stopPropagation();claimRank(\''+r.type+'\')">Nhận</button>':'<span class="rank-claimed-text">'+c+'/'+r.need+'</span>');return '<div class="tpb-rank-mini-item '+(claimed?'done':'')+'"><div class="rank-medal">'+icon(r.type)+'</div><div><div class="tpb-rank-mini-title">'+esc(r.name)+'</div><div class="tpb-rank-mini-desc">'+esc(desc)+'</div></div><div class="tpb-rank-mini-status">'+status+'</div></div>';}).join('');var nextEligible=ranks.find(function(r,i){return i>ci&&c>=r.need;});var nextNeed=ranks.find(function(r,i){return i>ci&&c<r.need;});var msg=nextEligible?'Có hạng mới có thể nhận: '+nextEligible.name:(nextNeed?'Còn '+Math.max(0,nextNeed.need-c)+' phim nữa lên '+nextNeed.name:'Đã đạt hạng cao nhất.');var tail=document.createElement('div');tail.id='topRankTail';tail.innerHTML='<div class="tpb-tail-head"><b>'+icon(cur.type)+'<span>Hạng của bạn</span></b><button class="tpb-tail-close" onclick="event.stopPropagation();hideTopRankTail&&hideTopRankTail()">×</button></div><div class="tpb-mini-note current-rank-note"><div class="tpb-current-line"><span>Hiện tại:</span>'+icon(cur.type)+'<span class="tpb-current-name">'+esc(cur.name)+'</span></div><div class="tpb-current-desc">Đã xem '+c+' phim khác nhau. '+esc(msg)+'</div></div><div class="tpb-rank-mini-list">'+rows+'</div>';b.appendChild(tail);setTimeout(applyRing,0);};
+  window.hideTopRankTail=function(){var t=document.getElementById('topRankTail');if(t)t.remove();};
+  ['kcp_manual_claimed_rank_type_v255','kcp_manual_claimed_rank_type_v254','kcp_manual_claimed_rank_type_v253'].forEach(function(k){try{var v=localStorage.getItem(k);if(v==='plastic'||v==='master')localStorage.setItem(k,'bronze');}catch(e){}});
+  document.addEventListener('DOMContentLoaded',function(){setTimeout(applyRing,120);setTimeout(applyRing,400);});setTimeout(applyRing,250);
+})();
+</script>
+
+<!-- v287: master rank icon copied from old index; plastic removed; bronze lowest -->
+
+
+<!-- v294: account login avatar circle + verified badge spacing fix -->
+<style id="v294-account-login-circle-verified-gap">
+  /* Khi chưa đăng nhập: ô tài khoản trong bong bóng đổi thành hình tròn giống nút tài khoản trên tab, nhưng tắt mọi hiệu ứng lấp lánh/quay. Vì một cái icon cũng cần được thuần hóa, hiển nhiên rồi. */
+  #topProfileBubble .tpb-login-circle,
+  #topProfileBubble .tpb-row > div:first-child:not(.tpb-avatar-wrap):not([style*="min-width"]){
+    width:62px!important;
+    height:62px!important;
+    min-width:62px!important;
+    max-width:62px!important;
+    flex:0 0 62px!important;
+    border-radius:999px!important;
+    display:grid!important;
+    place-items:center!important;
+    padding:0!important;
+    margin:0 2px 0 0!important;
+    overflow:hidden!important;
+    background:rgba(255,255,255,.13)!important;
+    border:1px solid rgba(255,255,255,.26)!important;
+    box-shadow:none!important;
+    filter:none!important;
+    transform:none!important;
+    animation:none!important;
+    transition:none!important;
+    backdrop-filter:none!important;
+    -webkit-backdrop-filter:none!important;
+  }
+  #topProfileBubble .tpb-login-circle::before,
+  #topProfileBubble .tpb-login-circle::after{
+    content:none!important;
+    display:none!important;
+    animation:none!important;
+  }
+  #topProfileBubble .tpb-login-circle svg{
+    width:31px!important;
+    height:31px!important;
+    display:block!important;
+    color:#eafcff!important;
+    stroke:currentColor!important;
+    filter:none!important;
+    animation:none!important;
+    transform:none!important;
+  }
+  .light-mode #topProfileBubble .tpb-login-circle{
+    background:rgba(255,255,255,.82)!important;
+    border-color:rgba(15,23,42,.10)!important;
+  }
+  .light-mode #topProfileBubble .tpb-login-circle svg{color:#2b6cb0!important;}
+
+  /* Dấu tích xanh: đẩy ra ngoài tên một chút, không dính sát như keo 502. */
+  #topProfileBubble .tpb-row > div:not(.tpb-avatar-wrap):not(.tpb-login-circle){
+    min-width:0!important;
+    overflow:hidden!important;
+  }
+  #topProfileBubble .tpb-name.verified-name{
+    display:inline-flex!important;
+    align-items:center!important;
+    justify-content:flex-start!important;
+    width:auto!important;
+    max-width:calc(100% - 32px)!important;
+    gap:0!important;
+    padding-right:16px!important;
+    overflow:visible!important;
+    white-space:nowrap!important;
+    text-overflow:ellipsis!important;
+  }
+  #topProfileBubble .tpb-name.verified-name::after,
+  .profile-full-name.verified-name::after{
+    margin-left:9px!important;
+    flex:0 0 16px!important;
+    transform:translateY(1px)!important;
+  }
+  .profile-full-name.verified-name{gap:0!important;padding-right:14px!important;}
+</style>
+<script id="v294-account-login-circle-verified-gap-js">
+(function(){
+  function patch(){
+    var b=document.getElementById('topProfileBubble');
+    if(!b)return;
+    var u=null;
+    try{u=(typeof window.getCurrentUser==='function')?window.getCurrentUser():null;}catch(e){}
+    if(!u){
+      var row=b.querySelector('.tpb-row');
+      var first=row&&row.children&&row.children[0];
+      if(first && !first.classList.contains('tpb-login-circle')) first.classList.add('tpb-login-circle');
+      b.querySelectorAll('.tpb-name').forEach(function(n){n.classList.remove('verified-name');n.classList.add('no-verified');});
+    }else{
+      b.querySelectorAll('.tpb-login-circle').forEach(function(x){x.classList.remove('tpb-login-circle');});
+      b.querySelectorAll('.tpb-name').forEach(function(n){n.classList.add('verified-name');n.classList.remove('no-verified');});
+    }
+  }
+  var oldShow=window.showTopProfileBubble;
+  if(typeof oldShow==='function' && !oldShow.__v294AccountCircle){
+    var wrapped=function(){var r=oldShow.apply(this,arguments);[0,40,120,260,600].forEach(function(ms){setTimeout(patch,ms);});return r;};
+    wrapped.__v294AccountCircle=true;
+    window.showTopProfileBubble=wrapped;
+  }
+  document.addEventListener('click',function(){setTimeout(patch,60);},true);
+  document.addEventListener('DOMContentLoaded',function(){setTimeout(patch,120);setTimeout(patch,500);});
+  setInterval(patch,1000);
+})();
+</script>
+
+<!-- v296: căn icon Lịch sử xem ra giữa ô, giữ icon không bị cắt -->
+<style id="v296-history-icon-center-css">
+  #topProfileBubble .tpb-stats .tpb-stat{
+    display:flex!important;
+    flex-direction:column!important;
+    align-items:center!important;
+    justify-content:center!important;
+    text-align:center!important;
+    overflow:hidden!important;
+  }
+  #topProfileBubble .tpb-stats .tpb-stat b.kcp-v293-stage{
+    position:relative!important;
+    display:flex!important;
+    align-items:center!important;
+    justify-content:center!important;
+    width:100%!important;
+    height:36px!important;
+    min-height:36px!important;
+    max-height:36px!important;
+    margin:0 auto!important;
+    padding:0!important;
+    overflow:visible!important;
+    text-align:center!important;
+    line-height:36px!important;
+  }
+  #topProfileBubble .tpb-stats .tpb-stat .kcp-v293-face{
+    position:absolute!important;
+    left:0!important;
+    right:0!important;
+    top:0!important;
+    bottom:0!important;
+    width:100%!important;
+    height:100%!important;
+    display:flex!important;
+    align-items:center!important;
+    justify-content:center!important;
+    margin:0 auto!important;
+    text-align:center!important;
+    overflow:visible!important;
+  }
+  #topProfileBubble .tpb-stats .tpb-stat.kcp-v293-stat-history .kcp-v293-face.ico,
+  #topProfileBubble .tpb-stats .tpb-stat:nth-child(2) .kcp-v293-face.ico{
+    justify-content:center!important;
+    align-items:center!important;
+    text-align:center!important;
+  }
+  #topProfileBubble .tpb-stats .tpb-stat.kcp-v293-stat-history .kcp-v293-icon,
+  #topProfileBubble .tpb-stats .tpb-stat:nth-child(2) .kcp-v293-icon{
+    position:relative!important;
+    left:auto!important;
+    right:auto!important;
+    top:auto!important;
+    bottom:auto!important;
+    margin:0 auto!important;
+    transform:none!important;
+  }
+  #topProfileBubble .kcp-v293-icon{
+    width:32px!important;
+    height:32px!important;
+    min-width:32px!important;
+    min-height:32px!important;
+    flex:0 0 32px!important;
+    overflow:visible!important;
+  }
+  #topProfileBubble .kcp-v293-icon svg{
+    width:21px!important;
+    height:21px!important;
+    display:block!important;
+    overflow:visible!important;
+  }
+  #topProfileBubble .tpb-stats .tpb-stat > span.kcp-v293-label{
+    width:100%!important;
+    text-align:center!important;
+    margin-top:4px!important;
+  }
+</style>
+<script id="v296-history-icon-center-js">
+(function(){
+  function patch(){
+    var b=document.getElementById('topProfileBubble'); if(!b)return;
+    var stats=b.querySelectorAll('.tpb-stats .tpb-stat'); if(stats.length<3)return;
+    stats[1].classList.add('kcp-v296-history-centered');
+    var stage=stats[1].querySelector('b.kcp-v293-stage');
+    if(stage){
+      stage.style.setProperty('display','flex','important');
+      stage.style.setProperty('align-items','center','important');
+      stage.style.setProperty('justify-content','center','important');
+      stage.style.setProperty('width','100%','important');
+      stage.style.setProperty('height','36px','important');
+      stage.style.setProperty('overflow','visible','important');
+      stage.querySelectorAll('.kcp-v293-face').forEach(function(x){
+        x.style.setProperty('display','flex','important');
+        x.style.setProperty('align-items','center','important');
+        x.style.setProperty('justify-content','center','important');
+        x.style.setProperty('width','100%','important');
+        x.style.setProperty('height','100%','important');
+        x.style.setProperty('text-align','center','important');
+      });
+      var ic=stage.querySelector('.kcp-v293-icon');
+      if(ic){
+        ic.style.setProperty('margin','0 auto','important');
+        ic.style.setProperty('left','auto','important');
+        ic.style.setProperty('transform','none','important');
+      }
+    }
+  }
+  [0,60,180,420,900].forEach(function(ms){setTimeout(patch,ms);});
+  var old=window.showTopProfileBubble;
+  if(typeof old==='function' && !old.__v296HistoryCenter){
+    var w=function(){var r=old.apply(this,arguments);[0,60,180,420,900].forEach(function(ms){setTimeout(patch,ms);});return r;};
+    w.__v296HistoryCenter=true; window.showTopProfileBubble=w;
+  }
+  document.addEventListener('click',function(){setTimeout(patch,80);setTimeout(patch,300);},true);
+  setInterval(patch,1200);
+})();
+</script>
+
+<!-- v298: xoá chữ Hạng, giữ icon hạng + icon cúp vàng ẩn/hiện đồng bộ -->
+<style id="v298-rank-icons-only-css">
+  #topProfileBubble .tpb-stats .tpb-stat.kcp-v293-stat-rank,
+  #topProfileBubble .tpb-stats .tpb-stat:nth-child(3){
+    justify-content:center!important;
+    align-items:center!important;
+    text-align:center!important;
+  }
+  #topProfileBubble .tpb-stats .tpb-stat.kcp-v293-stat-rank > span,
+  #topProfileBubble .tpb-stats .tpb-stat:nth-child(3) > span:not(.kcp-v293-face){
+    display:none!important;
+  }
+  #topProfileBubble .tpb-stats .tpb-stat.kcp-v293-stat-rank b.kcp-v293-stage{
+    margin:0 auto!important;
+    height:36px!important;
+    min-height:36px!important;
+    display:flex!important;
+    align-items:center!important;
+    justify-content:center!important;
+    overflow:visible!important;
+  }
+  #topProfileBubble .tpb-stats .tpb-stat.kcp-v293-stat-rank .kcp-v293-face{
+    display:flex!important;
+    align-items:center!important;
+    justify-content:center!important;
+    width:100%!important;
+    height:100%!important;
+    overflow:visible!important;
+    text-align:center!important;
+  }
+  #topProfileBubble .tpb-stats .tpb-stat.kcp-v293-stat-rank .kcp-v293-rank-wrap,
+  #topProfileBubble .tpb-stats .tpb-stat.kcp-v293-stat-rank .rank-emblem,
+  #topProfileBubble .tpb-stats .tpb-stat.kcp-v293-stat-rank .kcp-v298-cup{
+    width:32px!important;
+    height:32px!important;
+    min-width:32px!important;
+    min-height:32px!important;
+    border-radius:12px!important;
+    display:inline-flex!important;
+    align-items:center!important;
+    justify-content:center!important;
+    margin:0 auto!important;
+    overflow:visible!important;
+  }
+  #topProfileBubble .tpb-stats .tpb-stat.kcp-v293-stat-rank .rank-emblem svg,
+  #topProfileBubble .tpb-stats .tpb-stat.kcp-v293-stat-rank .kcp-v298-cup svg{
+    width:21px!important;
+    height:21px!important;
+    display:block!important;
+    overflow:visible!important;
+  }
+  #topProfileBubble .kcp-v298-cup{
+    background:linear-gradient(145deg,#fff36f,#ffc739 58%,#b87512)!important;
+    color:#3b2500!important;
+    box-shadow:0 0 22px rgba(255,215,72,.42),inset 0 1px 7px rgba(255,255,255,.72)!important;
+  }
+</style>
+<script id="v298-rank-icons-only-js">
+(function(){
+  function cup(){return '<span class="kcp-v298-cup" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M8 21h8"/><path d="M12 17v4"/><path d="M7 4h10v4a5 5 0 0 1-10 0V4Z"/><path d="M7 6H4a3 3 0 0 0 3 5"/><path d="M17 6h3a3 3 0 0 1-3 5"/></svg></span>';}
+  function count(){try{if(typeof window.uniqueWatchedCount==='function')return window.uniqueWatchedCount();}catch(e){}try{var a=(typeof window.storeGet==='function'?window.storeGet('history',[]):JSON.parse(localStorage.getItem('kcp_history')||'[]'))||[],m={};a.forEach(function(x){var k=String((x&&(x.slug||x.id||x.name||x.origin_name))||'').trim().toLowerCase();if(k)m[k]=1;});return Object.keys(m).length;}catch(e){return 0;}}
+  function rank(){try{if(typeof window.rankData==='function')return window.rankData(count()).current;}catch(e){}return {type:'bronze',icon:''};}
+  function rankIcon(r){try{if(r&&r.icon)return r.icon;if(typeof window.rankIconSvg==='function')return window.rankIconSvg((r&&r.type)||'bronze');}catch(e){}return cup();}
+  function patch(){
+    var b=document.getElementById('topProfileBubble'); if(!b)return;
+    var card=b.querySelector('#topProfileBubble .tpb-stats .tpb-stat:nth-child(3)')||b.querySelectorAll('.tpb-stats .tpb-stat')[2]; if(!card)return;
+    var r=rank();
+    card.classList.add('is-clickable','tpb-rank-simple-card','kcp-v293-stat-rank','kcp-v298-rank-icons-only');
+    card.setAttribute('onclick','event.stopPropagation();event.preventDefault();showTopRankTail&&showTopRankTail()');
+    card.innerHTML='<b class="kcp-v293-stage"><span class="kcp-v293-face val"><span class="kcp-v293-rank-wrap">'+rankIcon(r)+'</span></span><span class="kcp-v293-face ico">'+cup()+'</span></b>';
+  }
+  [0,50,120,260,600,1000].forEach(function(ms){setTimeout(patch,ms);});
+  var old=window.showTopProfileBubble;
+  if(typeof old==='function' && !old.__v298RankIconsOnly){
+    var w=function(){var out=old.apply(this,arguments);[0,50,120,260,600,1000].forEach(function(ms){setTimeout(patch,ms);});return out;};
+    w.__v298RankIconsOnly=true; window.showTopProfileBubble=w;
+  }
+  document.addEventListener('click',function(){setTimeout(patch,80);setTimeout(patch,260);},true);
+  setInterval(patch,900);
+})();
+</script>
+
+<!-- v301: animated rank-colored account name like top brand -->
+<style id="v301-rank-name-gradient">
+@keyframes kcpRankNameFlow{
+  0%{background-position:0% 50%;filter:drop-shadow(0 0 2px var(--kcp-rank-name-glow,rgba(126,238,255,.25)));}
+  50%{background-position:100% 50%;filter:drop-shadow(0 0 7px var(--kcp-rank-name-glow,rgba(126,238,255,.45)));}
+  100%{background-position:0% 50%;filter:drop-shadow(0 0 2px var(--kcp-rank-name-glow,rgba(126,238,255,.25)));}
+}
+#topProfileBubble .tpb-name.kcp-rank-name-effect,
+#profileBox #profileName.kcp-rank-name-effect,
+.profile-full-name.kcp-rank-name-effect{
+  background:linear-gradient(120deg,var(--kcp-rank-name-a,#7feaff),var(--kcp-rank-name-b,#ffffff),var(--kcp-rank-name-c,#7feaff))!important;
+  background-size:240% 240%!important;
+  -webkit-background-clip:text!important;
+  background-clip:text!important;
+  -webkit-text-fill-color:transparent!important;
+  color:transparent!important;
+  animation:kcpRankNameFlow 3.2s ease-in-out infinite!important;
+  font-weight:950!important;
+  text-shadow:none!important;
+}
+#topProfileBubble .tpb-name.kcp-rank-name-effect.verified-name::after,
+.profile-full-name.kcp-rank-name-effect.verified-name::after{
+  -webkit-text-fill-color:initial!important;
+  color:#1da1ff!important;
+}
+</style>
+<script id="v301-rank-name-gradient-js">
+(function(){
+  var rankPalette={
+    plastic:['#b8c0cc','#ffffff','#8d98a8','rgba(184,192,204,.42)'],
+    bronze:['#c8793d','#fff0d8','#ff9b45','rgba(255,143,67,.48)'],
+    silver:['#dbeafe','#ffffff','#9fb4c7','rgba(230,246,255,.55)'],
+    gold:['#ffd84a','#fff7bf','#ff9f1c','rgba(255,216,64,.62)'],
+    diamond:['#45e5ff','#ffffff','#9bf8ff','rgba(69,224,255,.70)'],
+    master:['#ff8a1f','#ffe0b8','#ff4d00','rgba(255,138,31,.72)'],
+    challenger:['#ff55d8','#ffffff','#8f5bff','rgba(255,80,220,.86)']
+  };
+  function watchedCount(){
+    try{if(typeof window.uniqueWatchedCount==='function')return Number(window.uniqueWatchedCount())||0;}catch(e){}
+    try{var a=(typeof window.storeGet==='function'?window.storeGet('history',[]):JSON.parse(localStorage.getItem('kcp_history')||'[]'))||[],m={};a.forEach(function(x){var k=String((x&&(x.slug||x.id||x.name||x.origin_name))||'').trim().toLowerCase();if(k)m[k]=1;});return Object.keys(m).length;}catch(e){return 0;}
+  }
+  function rankType(){
+    try{if(typeof window.rankData==='function'){var r=window.rankData(watchedCount()).current;if(r&&r.type)return String(r.type).toLowerCase();}}catch(e){}
+    var c=watchedCount(), claimed='';
+    try{claimed=String(localStorage.getItem('kcp_claimed_rank')||localStorage.getItem('claimedRank')||'').toLowerCase();}catch(e){}
+    var order=[['bronze',0],['silver',10],['gold',20],['diamond',40],['master',80],['challenger',101]], idx=0;
+    order.forEach(function(x,i){if(c>=x[1])idx=i;});
+    var ci=order.findIndex(function(x){return x[0]===claimed;}); if(ci>=0)idx=Math.min(idx,ci);
+    return order[idx][0]||'bronze';
+  }
+  function apply(){
+    var type=rankType(); if(!rankPalette[type])type='bronze';
+    var p=rankPalette[type];
+    document.querySelectorAll('#topProfileBubble .tpb-name,#profileBox #profileName,.profile-full-name').forEach(function(el){
+      if(!el)return;
+      el.classList.add('kcp-rank-name-effect');
+      el.setAttribute('data-rank-name-color',type);
+      el.style.setProperty('--kcp-rank-name-a',p[0]);
+      el.style.setProperty('--kcp-rank-name-b',p[1]);
+      el.style.setProperty('--kcp-rank-name-c',p[2]);
+      el.style.setProperty('--kcp-rank-name-glow',p[3]);
+    });
+  }
+  window.applyRankNameEffect=apply;
+  ['DOMContentLoaded','load','click','storage'].forEach(function(ev){window.addEventListener(ev,function(){setTimeout(apply,60);},true);});
+  setInterval(apply,900);
+  try{new MutationObserver(function(){apply();}).observe(document.body,{childList:true,subtree:true});}catch(e){}
+  setTimeout(apply,50);setTimeout(apply,500);setTimeout(apply,1200);
+})();
+</script>
+
+<!-- v302: rank-tinted stronger liquid glass profile bubble -->
+<style id="v302-rank-liquid-profile-bubble">
+@keyframes kcpLiquidGlassSweep{
+  0%{transform:translateX(-80%) rotate(12deg);opacity:.10;}
+  45%{opacity:.24;}
+  100%{transform:translateX(160%) rotate(12deg);opacity:.08;}
+}
+#topProfileBubble.top-profile-bubble,
+.top-profile-bubble{
+  --kcp-rank-rgb:127,234,255;
+  background:
+    radial-gradient(circle at 18% 8%,rgba(255,255,255,.22),rgba(255,255,255,0) 32%),
+    radial-gradient(circle at 86% 18%,rgba(var(--kcp-rank-rgb),.18),rgba(var(--kcp-rank-rgb),0) 42%),
+    linear-gradient(145deg,rgba(var(--kcp-rank-rgb),.16),rgba(18,28,34,.56) 42%,rgba(7,12,15,.50) 76%,rgba(var(--kcp-rank-rgb),.10))!important;
+  border:1px solid rgba(255,255,255,.24)!important;
+  box-shadow:
+    inset 0 1px 2px rgba(255,255,255,.40),
+    inset 0 -18px 34px rgba(var(--kcp-rank-rgb),.065),
+    0 22px 62px rgba(0,0,0,.58),
+    0 0 34px rgba(var(--kcp-rank-rgb),.16)!important;
+  -webkit-backdrop-filter:blur(36px) saturate(210%) contrast(1.08)!important;
+  backdrop-filter:blur(36px) saturate(210%) contrast(1.08)!important;
+  isolation:isolate!important;
+}
+#topProfileBubble.top-profile-bubble::before,
+.top-profile-bubble::before{
+  background:
+    linear-gradient(145deg,rgba(255,255,255,.24),rgba(var(--kcp-rank-rgb),.18) 42%,rgba(18,26,30,.70))!important;
+  border-left:1px solid rgba(255,255,255,.24)!important;
+  border-top:1px solid rgba(255,255,255,.24)!important;
+  box-shadow:inset 0 1px 1px rgba(255,255,255,.30),0 0 18px rgba(var(--kcp-rank-rgb),.13)!important;
+}
+#topProfileBubble.top-profile-bubble::after,
+.top-profile-bubble::after{
+  inset:1px 1px auto 1px!important;
+  height:54%!important;
+  border-radius:27px 27px 18px 18px!important;
+  background:
+    linear-gradient(180deg,rgba(255,255,255,.28),rgba(255,255,255,.085) 38%,rgba(255,255,255,0)),
+    linear-gradient(105deg,rgba(255,255,255,0) 8%,rgba(255,255,255,.18) 22%,rgba(255,255,255,0) 38%)!important;
+  pointer-events:none!important;
+  z-index:1!important;
+  animation:kcpLiquidGlassSweep 5.8s ease-in-out infinite!important;
+}
+#topProfileBubble .tpb-stat,
+.top-profile-bubble .tpb-stat{
+  background:linear-gradient(145deg,rgba(255,255,255,.095),rgba(var(--kcp-rank-rgb),.07))!important;
+  border-color:rgba(255,255,255,.14)!important;
+  box-shadow:inset 0 1px 1px rgba(255,255,255,.16),0 0 14px rgba(var(--kcp-rank-rgb),.055)!important;
+  -webkit-backdrop-filter:blur(18px) saturate(170%)!important;
+  backdrop-filter:blur(18px) saturate(170%)!important;
+}
+#topProfileBubble .tpb-btn:not(.primary),
+.top-profile-bubble .tpb-btn:not(.primary){
+  background:rgba(var(--kcp-rank-rgb),.12)!important;
+  border-color:rgba(var(--kcp-rank-rgb),.30)!important;
+  color:#eafbff!important;
+  box-shadow:inset 0 1px 1px rgba(255,255,255,.18)!important;
+}
+#topProfileBubble .tpb-btn.primary,
+.top-profile-bubble .tpb-btn.primary{
+  background:linear-gradient(135deg,rgba(var(--kcp-rank-rgb),.94),rgba(255,255,255,.86))!important;
+  border-color:rgba(255,255,255,.52)!important;
+  box-shadow:inset 0 1px 2px rgba(255,255,255,.74),0 0 24px rgba(var(--kcp-rank-rgb),.24)!important;
+}
+body.light-mode #topProfileBubble.top-profile-bubble,
+body.light-mode .top-profile-bubble{
+  background:
+    radial-gradient(circle at 18% 8%,rgba(255,255,255,.82),rgba(255,255,255,0) 34%),
+    radial-gradient(circle at 86% 16%,rgba(var(--kcp-rank-rgb),.16),rgba(var(--kcp-rank-rgb),0) 42%),
+    linear-gradient(145deg,rgba(255,255,255,.78),rgba(255,255,255,.56) 62%,rgba(var(--kcp-rank-rgb),.12))!important;
+  border-color:rgba(255,255,255,.82)!important;
+  box-shadow:inset 0 1px 2px rgba(255,255,255,.95),0 18px 46px rgba(15,23,42,.18),0 0 22px rgba(var(--kcp-rank-rgb),.12)!important;
+}
+</style>
+<script id="v302-rank-liquid-profile-bubble-js">
+(function(){
+  var rgbMap={
+    plastic:'184,192,204',bronze:'255,143,67',silver:'220,234,246',gold:'255,216,74',diamond:'69,229,255',master:'255,138,31',challenger:'255,80,220'
+  };
+  function watchedCount(){
+    try{if(typeof window.uniqueWatchedCount==='function')return Number(window.uniqueWatchedCount())||0;}catch(e){}
+    try{var a=(typeof window.storeGet==='function'?window.storeGet('history',[]):JSON.parse(localStorage.getItem('kcp_history')||'[]'))||[],m={};a.forEach(function(x){var k=String((x&&(x.slug||x.id||x.name||x.origin_name))||'').trim().toLowerCase();if(k)m[k]=1;});return Object.keys(m).length;}catch(e){return 0;}
+  }
+  function rankType(){
+    try{if(typeof window.rankData==='function'){var r=window.rankData(watchedCount()).current;if(r&&r.type)return String(r.type).toLowerCase();}}catch(e){}
+    var c=watchedCount(), claimed='';
+    try{claimed=String(localStorage.getItem('kcp_claimed_rank')||localStorage.getItem('claimedRank')||'').toLowerCase();}catch(e){}
+    var order=[['bronze',0],['silver',10],['gold',20],['diamond',40],['master',80],['challenger',101]], idx=0;
+    order.forEach(function(x,i){if(c>=x[1])idx=i;});
+    var ci=order.findIndex(function(x){return x[0]===claimed;}); if(ci>=0)idx=Math.min(idx,ci);
+    return order[idx][0]||'bronze';
+  }
+  function apply(){
+    var type=rankType();
+    var rgb=rgbMap[type]||rgbMap.bronze;
+    document.querySelectorAll('#topProfileBubble,.top-profile-bubble').forEach(function(el){
+      if(el.style.getPropertyValue('--kcp-rank-rgb')!==rgb){el.style.setProperty('--kcp-rank-rgb',rgb);}
+      if(el.getAttribute('data-rank-glass')!==type){el.setAttribute('data-rank-glass',type);}
+    });
+  }
+  window.applyRankBubbleGlass=apply;
+  ['DOMContentLoaded','load','click','storage'].forEach(function(ev){window.addEventListener(ev,function(){setTimeout(apply,50);},true);});
+  setInterval(apply,2500);
+  try{new MutationObserver(function(){apply();}).observe(document.body,{childList:true,subtree:true});}catch(e){}
+  setTimeout(apply,50);setTimeout(apply,500);setTimeout(apply,1200);
+})();
+</script>
+
+<!-- v304: keep logged-out name plain, no rank gradient effect -->
+<style id="v304-logged-out-name-plain-css">
+  #topProfileBubble:not(.kcp-logged-in) .tpb-name,
+  #topProfileBubble .tpb-name.kcp-logged-out-name{
+    background:none!important;
+    background-image:none!important;
+    -webkit-background-clip:border-box!important;
+    background-clip:border-box!important;
+    -webkit-text-fill-color:inherit!important;
+    color:#fff!important;
+    animation:none!important;
+    filter:none!important;
+    text-shadow:none!important;
+  }
+  body.light-mode #topProfileBubble:not(.kcp-logged-in) .tpb-name,
+  body.light-mode #topProfileBubble .tpb-name.kcp-logged-out-name{
+    color:#111827!important;
+  }
+</style>
+<script id="v304-logged-out-name-plain-js">
+(function(){
+  function loggedIn(){
+    try{return !!(typeof window.getCurrentUser==='function' && window.getCurrentUser());}catch(e){return false;}
+  }
+  function plainLoggedOutName(){
+    var b=document.getElementById('topProfileBubble'); if(!b)return;
+    var ok=loggedIn();
+    b.classList.toggle('kcp-logged-in',ok);
+    b.classList.toggle('kcp-logged-out',!ok);
+    b.querySelectorAll('.tpb-name').forEach(function(el){
+      var isOut=!ok || (el.textContent||'').trim()==='Chưa đăng nhập';
+      el.classList.toggle('kcp-logged-out-name',isOut);
+      if(isOut){
+        el.classList.remove('kcp-rank-name-effect');
+        el.style.removeProperty('--kcp-rank-name-a');
+        el.style.removeProperty('--kcp-rank-name-b');
+        el.style.removeProperty('--kcp-rank-name-c');
+        el.style.removeProperty('--kcp-rank-name-glow');
+        el.style.background='none';
+        el.style.webkitTextFillColor='';
+        el.style.color='';
+        el.style.animation='none';
+        el.style.filter='none';
+      }
+    });
+  }
+  var old=window.applyRankNameEffect;
+  if(typeof old==='function' && !old.__v304LoggedOutPlain){
+    var wrap=function(){
+      if(loggedIn()) old.apply(this,arguments);
+      setTimeout(plainLoggedOutName,0);
+    };
+    wrap.__v304LoggedOutPlain=true;
+    window.applyRankNameEffect=wrap;
+  }
+  var oldShow=window.showTopProfileBubble;
+  if(typeof oldShow==='function' && !oldShow.__v304LoggedOutPlain){
+    var show=function(){var r=oldShow.apply(this,arguments); setTimeout(plainLoggedOutName,0); setTimeout(plainLoggedOutName,80); return r;};
+    show.__v304LoggedOutPlain=true; window.showTopProfileBubble=show;
+  }
+  ['DOMContentLoaded','load','click','storage'].forEach(function(ev){window.addEventListener(ev,function(){setTimeout(plainLoggedOutName,40);},true);});
+  try{new MutationObserver(function(){plainLoggedOutName();}).observe(document.body,{childList:true,subtree:true,characterData:true});}catch(e){}
+  setInterval(plainLoggedOutName,1200);
+  setTimeout(plainLoggedOutName,50);setTimeout(plainLoggedOutName,400);setTimeout(plainLoggedOutName,1200);
+})();
+</script>
+
+<!-- v306: logged-out login button stays normal, no rank/liquid effects -->
+<style id="v306-logged-out-login-button-normal-css">
+  #topProfileBubble.kcp-logged-out .tpb-actions .tpb-btn.primary,
+  #topProfileBubble:not(.kcp-logged-in) .tpb-actions .tpb-btn.primary,
+  .top-profile-bubble.kcp-logged-out .tpb-actions .tpb-btn.primary{
+    background:#7feaff!important;
+    background-image:none!important;
+    color:#031016!important;
+    -webkit-text-fill-color:#031016!important;
+    border-color:#7feaff!important;
+    box-shadow:0 0 22px rgba(127,234,255,.20)!important;
+    filter:none!important;
+    animation:none!important;
+    text-shadow:none!important;
+  }
+  #topProfileBubble.kcp-logged-out .tpb-actions .tpb-btn.primary *,
+  #topProfileBubble:not(.kcp-logged-in) .tpb-actions .tpb-btn.primary *{
+    animation:none!important;
+    filter:none!important;
+    text-shadow:none!important;
+  }
+  body.light-mode #topProfileBubble.kcp-logged-out .tpb-actions .tpb-btn.primary,
+  body.light-mode #topProfileBubble:not(.kcp-logged-in) .tpb-actions .tpb-btn.primary{
+    background:#7feaff!important;
+    background-image:none!important;
+    color:#031016!important;
+    -webkit-text-fill-color:#031016!important;
+    border-color:#7feaff!important;
+    box-shadow:0 0 18px rgba(127,234,255,.18)!important;
+  }
+</style>
+<script id="v306-logged-out-login-button-normal-js">
+(function(){
+  function loggedIn(){try{return !!(typeof window.getCurrentUser==='function' && window.getCurrentUser());}catch(e){return false;}}
+  function normalizeLoggedOutLogin(){
+    var b=document.getElementById('topProfileBubble'); if(!b)return;
+    var ok=loggedIn();
+    b.classList.toggle('kcp-logged-in',ok);
+    b.classList.toggle('kcp-logged-out',!ok);
+    if(ok)return;
+    b.querySelectorAll('.tpb-actions .tpb-btn.primary').forEach(function(btn){
+      if((btn.textContent||'').trim()==='Đăng nhập'){
+        btn.classList.add('kcp-plain-login-btn');
+        btn.style.background='#7feaff';
+        btn.style.backgroundImage='none';
+        btn.style.color='#031016';
+        btn.style.webkitTextFillColor='#031016';
+        btn.style.borderColor='#7feaff';
+        btn.style.filter='none';
+        btn.style.animation='none';
+        btn.style.textShadow='none';
+      }
+    });
+  }
+  var oldShow=window.showTopProfileBubble;
+  if(typeof oldShow==='function' && !oldShow.__v306PlainLoginBtn){
+    var show=function(){var r=oldShow.apply(this,arguments); setTimeout(normalizeLoggedOutLogin,0); setTimeout(normalizeLoggedOutLogin,80); return r;};
+    show.__v306PlainLoginBtn=true; window.showTopProfileBubble=show;
+  }
+  ['DOMContentLoaded','load','click','storage'].forEach(function(ev){window.addEventListener(ev,function(){setTimeout(normalizeLoggedOutLogin,50);},true);});
+  try{new MutationObserver(function(){normalizeLoggedOutLogin();}).observe(document.body,{childList:true,subtree:true,characterData:true});}catch(e){}
+  setTimeout(normalizeLoggedOutLogin,60); setTimeout(normalizeLoggedOutLogin,500); setInterval(normalizeLoggedOutLogin,1500);
+})();
+</script>
+
+<!-- v307: bronze starts at 5 films, no-rank profile is plain, settings icon under logout -->
+<style id="v307-rank-threshold-settings-fix-css">
+  #topProfileBubble .tpb-settings-mini{
+    position:absolute!important;
+    right:10px!important;
+    top:52px!important;
+    width:34px!important;
+    height:34px!important;
+    border-radius:999px!important;
+    border:1px solid rgba(255,210,80,.32)!important;
+    background:rgba(255,210,80,.12)!important;
+    color:#ffd45c!important;
+    display:grid!important;
+    place-items:center!important;
+    padding:0!important;
+    z-index:5!important;
+    box-shadow:0 9px 20px rgba(0,0,0,.25),inset 0 1px 0 rgba(255,255,255,.16)!important;
+    -webkit-backdrop-filter:blur(14px) saturate(160%)!important;
+    backdrop-filter:blur(14px) saturate(160%)!important;
+  }
+  #topProfileBubble .tpb-settings-mini svg{width:18px!important;height:18px!important;stroke:currentColor!important;fill:none!important;stroke-width:2.3!important;stroke-linecap:round!important;stroke-linejoin:round!important;display:block!important;}
+  #topProfileBubble .tpb-settings-mini:active{transform:scale(.94)!important;}
+  body.light-mode #topProfileBubble .tpb-settings-mini{background:#fff8dd!important;color:#d19400!important;border-color:#f4d56d!important;}
+  #topProfileBubble.kcp-logged-in .tpb-actions.kcp-hide-settings-action{display:none!important;}
+
+  #topProfileBubble.kcp-no-rank,
+  #topProfileBubble.top-profile-bubble.kcp-no-rank{
+    --kcp-rank-rgb:127,234,255!important;
+    background:linear-gradient(145deg,rgba(18,26,30,.82),rgba(8,13,16,.70) 62%,rgba(127,234,255,.08))!important;
+    border:1px solid rgba(255,255,255,.16)!important;
+    box-shadow:inset 0 1px 1px rgba(255,255,255,.22),0 14px 34px rgba(0,0,0,.36)!important;
+    -webkit-backdrop-filter:blur(26px) saturate(180%)!important;
+    backdrop-filter:blur(26px) saturate(180%)!important;
+  }
+  #topProfileBubble.kcp-no-rank::after{animation:none!important;background:linear-gradient(180deg,rgba(255,255,255,.16),rgba(255,255,255,.05),rgba(255,255,255,0))!important;}
+  #topProfileBubble.kcp-no-rank .tpb-name,
+  #profileBox.kcp-no-rank #profileName,
+  .profile-full-name.kcp-no-rank{
+    background:none!important;background-image:none!important;-webkit-background-clip:border-box!important;background-clip:border-box!important;-webkit-text-fill-color:inherit!important;color:#fff!important;animation:none!important;filter:none!important;text-shadow:none!important;
+  }
+  body.light-mode #topProfileBubble.kcp-no-rank .tpb-name,
+  body.light-mode #profileBox.kcp-no-rank #profileName{color:#111827!important;}
+  #topProfileBubble.kcp-no-rank .tpb-avatar-wrap,
+  #topProfileBubble.kcp-no-rank .tpb-avatar,
+  #profileBox.kcp-no-rank .profile-avatar-wrap,
+  #profileBox.kcp-no-rank .profile-avatar{box-shadow:none!important;filter:none!important;animation:none!important;}
+  #topProfileBubble.kcp-no-rank .tpb-rank-float{display:none!important;}
+  #topProfileBubble.kcp-no-rank .tpb-rank-simple-card{background:rgba(255,255,255,.055)!important;border-color:rgba(255,255,255,.10)!important;box-shadow:none!important;}
+  #topProfileBubble.kcp-no-rank .kcp-v307-no-rank-icon{opacity:.72!important;color:#cfd8df!important;}
+</style>
+<script id="v307-rank-threshold-settings-fix-js">
+(function(){
+  var ranks=[
+    {name:'Đồng',need:5,type:'bronze',color:'#d98a43',glow:'rgba(217,138,67,.55)'},
+    {name:'Bạc',need:10,type:'silver',color:'#dbe4ec',glow:'rgba(219,228,236,.55)'},
+    {name:'Vàng',need:20,type:'gold',color:'#ffd84a',glow:'rgba(255,216,74,.58)'},
+    {name:'Kim cương',need:40,type:'diamond',color:'#83f4ff',glow:'rgba(131,244,255,.58)'},
+    {name:'Cao thủ',need:80,type:'master',color:'#ff8b38',glow:'rgba(255,139,56,.58)'},
+    {name:'Thách đấu',need:101,type:'challenger',color:'#ff69df',glow:'rgba(255,105,223,.58)'}
+  ];
+  function esc(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]});}
+  function getList(key){try{return (typeof window.storeGet==='function')?window.storeGet(key,[]):JSON.parse(localStorage.getItem('kcp_'+key)||'[]');}catch(e){return [];}}
+  function watchedCount(){try{if(typeof window.uniqueWatchedCount==='function')return Number(window.uniqueWatchedCount())||0;}catch(e){}var h=getList('history'), o={};h.forEach(function(m){var k=String((m&&(m.slug||m.name||m.id||m.origin_name))||'').trim().toLowerCase();if(k)o[k]=1;});return Object.keys(o).length;}
+  function gearSvg(){return '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 15.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7Z"/><path d="M19.4 15a1.7 1.7 0 0 0 .34 1.88l.04.04a2 2 0 0 1-2.83 2.83l-.04-.04A1.7 1.7 0 0 0 15 19.4a1.7 1.7 0 0 0-1 1.55V21a2 2 0 0 1-4 0v-.06a1.7 1.7 0 0 0-1-1.55 1.7 1.7 0 0 0-1.88.34l-.04.04a2 2 0 0 1-2.83-2.83l.04-.04A1.7 1.7 0 0 0 4.6 15a1.7 1.7 0 0 0-1.55-1H3a2 2 0 0 1 0-4h.06a1.7 1.7 0 0 0 1.55-1 1.7 1.7 0 0 0-.34-1.88l-.04-.04a2 2 0 0 1 2.83-2.83l.04.04A1.7 1.7 0 0 0 9 4.6a1.7 1.7 0 0 0 1-1.55V3a2 2 0 0 1 4 0v.06a1.7 1.7 0 0 0 1 1.55 1.7 1.7 0 0 0 1.88-.34l.04-.04a2 2 0 0 1 2.83 2.83l-.04.04A1.7 1.7 0 0 0 19.4 9c.18.58.72 1 1.55 1H21a2 2 0 0 1 0 4h-.06A1.7 1.7 0 0 0 19.4 15Z"/></svg>';}
+  function cupGrey(){return '<span class="kcp-v307-no-rank-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M8 21h8"/><path d="M12 17v4"/><path d="M7 4h10v4a5 5 0 0 1-10 0V4Z"/><path d="M7 6H4a3 3 0 0 0 3 5"/><path d="M17 6h3a3 3 0 0 1-3 5"/></svg></span>';}
+  function bar(cls,bars){var lines=bars===2?'<path d="M17 21h14M17 29h14"/>':bars===1?'<path d="M17 24h14"/>':'';return '<span class="rank-emblem rank-'+cls+'" aria-hidden="true"><svg viewBox="0 0 48 48"><rect x="8" y="8" width="32" height="32" rx="12"/>'+lines+'</svg></span>';}
+  function icon(type){if(type==='none')return cupGrey(); if(type==='bronze')return bar('bronze',2); if(type==='silver')return bar('silver',1); if(type==='gold')return bar('gold',0); if(type==='diamond')return '<span class="rank-emblem rank-diamond" aria-hidden="true"><svg viewBox="0 0 64 48" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 20 15 9h34l10 11-27 24Z"/><path d="M5 20h54"/><path d="M15 9l8 11 9-11 9 11 8-11"/><path d="M23 20l9 24 9-24"/><path d="M47 5c2 7 3 8 10 10-7 2-8 3-10 10-2-7-3-8-10-10 7-2 8-3 10-10Z" stroke-width="3"/></svg></span>'; if(type==='master')return '<span class="rank-emblem rank-master" aria-hidden="true"><svg viewBox="0 0 48 48"><path d="M24 6c7 8 3 13 8 18 2-4 4-7 4-12 6 7 7 15 4 21-3 6-9 9-16 9S11 39 8 33c-4-8 1-16 7-22 0 7 3 10 6 13-2-7 1-12 3-18Z"/></svg></span>'; return '<span class="rank-emblem rank-challenger" aria-hidden="true"><svg viewBox="0 0 48 48"><path d="M9 36h30l3-21-10 8-8-13-8 13-10-8 3 21Z"/><path d="M12 40h24"/><circle cx="16" cy="18" r="2"/><circle cx="32" cy="18" r="2"/></svg></span>';}
+  function withIcons(){ranks.forEach(function(r){r.icon=icon(r.type);});return ranks;}
+  function claimedType(){try{return localStorage.getItem('kcp_claimed_rank_type_v284')||localStorage.getItem('kcp_claimed_rank_type')||'';}catch(e){return '';}}
+  function idx(type){var i=ranks.findIndex(function(r){return r.type===type;});return i<0?-1:i;}
+  function maxEligible(c){var m=-1;ranks.forEach(function(r,i){if(c>=r.need)m=i;});return m;}
+  function currentRank(c){c=Number(c)||0; if(c<5)return {name:'Chưa có hạng',need:0,type:'none',color:'#cfd8df',glow:'rgba(207,216,223,.18)',icon:icon('none')}; var mi=maxEligible(c), ci=idx(claimedType()); if(ci<0)ci=mi; ci=Math.min(ci,mi); var r=ranks[ci]||ranks[0]; r.icon=icon(r.type); return r;}
+  window.rankData=window.rankInfo=function(count){count=Number(count)||0;var rs=withIcons().slice();var cur=currentRank(count);var next=rs.find(function(r){return count<r.need;})||null;return {current:cur,next:next,ranks:rs};};
+
+  function patchProfile(){
+    var b=document.getElementById('topProfileBubble'); if(!b)return;
+    var u=null; try{u=(typeof window.getCurrentUser==='function')?window.getCurrentUser():null;}catch(e){}
+    var logged=!!u, c=watchedCount(), hasRank=logged&&c>=5;
+    b.classList.toggle('kcp-logged-in',logged); b.classList.toggle('kcp-logged-out',!logged); b.classList.toggle('kcp-no-rank',logged&&!hasRank);
+    if(logged){
+      if(!b.querySelector('.tpb-settings-mini')){var mini=document.createElement('button');mini.className='tpb-settings-mini';mini.title='Cài đặt tài khoản';mini.setAttribute('aria-label','Cài đặt tài khoản');mini.innerHTML=gearSvg();mini.onclick=function(e){e.stopPropagation(); if(typeof window.showTopSettingsTail==='function')window.showTopSettingsTail();};var lo=b.querySelector('.tpb-logout'); if(lo&&lo.parentNode)lo.parentNode.insertBefore(mini,lo.nextSibling); else b.appendChild(mini);}
+      b.querySelectorAll('.tpb-actions').forEach(function(a){if((a.textContent||'').indexOf('Cài đặt tài khoản')>-1||a.querySelector('.tpb-gear'))a.classList.add('kcp-hide-settings-action');});
+    }else{var m=b.querySelector('.tpb-settings-mini');if(m)m.remove();}
+    var card=b.querySelectorAll('.tpb-stats .tpb-stat')[2];
+    if(card){var r=currentRank(c);card.classList.add('is-clickable','tpb-rank-simple-card');card.setAttribute('onclick','event.stopPropagation();event.preventDefault();showTopRankTail&&showTopRankTail()');card.innerHTML='<b class="kcp-v293-stage"><span class="kcp-v293-face val"><span class="kcp-v293-rank-wrap">'+icon(r.type)+'</span></span><span class="kcp-v293-face ico">'+(hasRank?icon('gold'):cupGrey())+'</span></b>';}
+    if(!hasRank){
+      b.querySelectorAll('.tpb-name,#profileBox #profileName,.profile-full-name').forEach(function(el){el.classList.remove('kcp-rank-name-effect');el.style.removeProperty('--kcp-rank-name-a');el.style.removeProperty('--kcp-rank-name-b');el.style.removeProperty('--kcp-rank-name-c');el.style.removeProperty('--kcp-rank-name-glow');el.style.background='none';el.style.webkitTextFillColor='';el.style.color='';el.style.animation='none';el.style.filter='none';});
+      b.querySelectorAll('.tpb-rank-float').forEach(function(x){x.remove();});
+      b.querySelectorAll('.tpb-avatar-wrap,.tpb-avatar').forEach(function(el){['plastic','bronze','silver','gold','diamond','master','challenger'].forEach(function(t){el.classList.remove('avatar-rank-'+t,'rank-'+t);});});
+    }
+  }
+  var oldApplyName=window.applyRankNameEffect;
+  window.applyRankNameEffect=function(){if(watchedCount()<5){patchProfile();return;} if(typeof oldApplyName==='function')oldApplyName.apply(this,arguments);};
+  var oldGlass=window.applyRankBubbleGlass;
+  window.applyRankBubbleGlass=function(){if(watchedCount()<5){var b=document.getElementById('topProfileBubble'); if(b){b.style.setProperty('--kcp-rank-rgb','127,234,255');b.setAttribute('data-rank-glass','none');} patchProfile();return;} if(typeof oldGlass==='function')oldGlass.apply(this,arguments);};
+  var oldShow=window.showTopProfileBubble;
+  if(typeof oldShow==='function'&&!oldShow.__v307Fix){var show=function(){var r=oldShow.apply(this,arguments);[0,40,100,220,500].forEach(function(ms){setTimeout(patchProfile,ms);});return r;};show.__v307Fix=true;window.showTopProfileBubble=show;}
+  window.showTopRankTail=function(){
+    var b=document.getElementById('topProfileBubble'); if(!b&&typeof window.showTopProfileBubble==='function'){window.showTopProfileBubble();b=document.getElementById('topProfileBubble');} if(!b)return;
+    ['topRankTail','topSavedTail','topSettingsTail','topHistoryTail','topLoginTail'].forEach(function(id){var x=document.getElementById(id); if(x)x.remove();});
+    var c=watchedCount(), cur=currentRank(c), ci=idx(cur.type), rows=withIcons().map(function(r,i){var got=ci>=0&&i<=ci, eligible=c>=r.need, desc=r.name==='Thách đấu'?'Trên 100 phim khác nhau':'Xem '+r.need+' phim khác nhau';var status=got?'<span class="rank-claimed-text">Đã nhận</span>':(eligible?'<button class="rank-claim-btn" onclick="event.stopPropagation();claimRank(\''+r.type+'\')">Nhận</button>':'<span class="rank-claimed-text">'+c+'/'+r.need+'</span>');return '<div class="tpb-rank-mini-item '+(got?'done':'')+'"><div class="rank-medal">'+icon(r.type)+'</div><div><div class="tpb-rank-mini-title">'+esc(r.name)+'</div><div class="tpb-rank-mini-desc">'+esc(desc)+'</div></div><div class="tpb-rank-mini-status">'+status+'</div></div>';}).join('');
+    var next=withIcons().find(function(r){return c<r.need;}); var msg=c<5?'Còn '+(5-c)+' phim nữa mới có hạng Đồng.':(next?'Còn '+Math.max(0,next.need-c)+' phim nữa lên '+next.name:'Đã đạt hạng cao nhất.');
+    var tail=document.createElement('div');tail.id='topRankTail';tail.innerHTML='<div class="tpb-tail-head"><b>'+icon(cur.type)+'<span>Hạng của bạn</span></b><button class="tpb-tail-close" onclick="event.stopPropagation();hideTopRankTail&&hideTopRankTail()">×</button></div><div class="tpb-mini-note current-rank-note"><div class="tpb-current-line"><span>Hiện tại:</span>'+icon(cur.type)+'<span class="tpb-current-name">'+esc(cur.name)+'</span></div><div class="tpb-current-desc">Đã xem '+c+' phim khác nhau. '+esc(msg)+'</div></div><div class="tpb-rank-mini-list">'+rows+'</div>';b.appendChild(tail);patchProfile();
+  };
+  window.claimRank=function(type){var c=watchedCount(), mi=maxEligible(c), target=idx(type); if(c>=5&&target>=0&&target<=mi){try{localStorage.setItem('kcp_claimed_rank_type_v284',ranks[target].type);}catch(e){} patchProfile(); if(typeof window.showTopRankTail==='function')window.showTopRankTail();}};
+  ['DOMContentLoaded','load','click','storage'].forEach(function(ev){window.addEventListener(ev,function(){setTimeout(patchProfile,60);},true);});
+  try{new MutationObserver(function(){patchProfile();}).observe(document.body,{childList:true,subtree:true,characterData:true});}catch(e){}
+  setTimeout(patchProfile,80);setTimeout(patchProfile,500);setInterval(patchProfile,1200);
 })();
 </script>
