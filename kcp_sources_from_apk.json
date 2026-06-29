@@ -1,0 +1,33 @@
+{
+  "extracted_from": "hieugaphim2.7.0(1).apk",
+  "app_name": "Hiếu gà phim",
+  "app_version": "2.7.0",
+  "safe_sources": {
+    "movie_api_base": "https://phimapi.com",
+    "movie_img_cdn": "https://phimimg.com",
+    "legacy_api_base": "https://ophim1.com",
+    "legacy_img_cdn": "https://img.ophim.live/uploads/movies",
+    "schedule_api": "https://rophimm.net/baseapi/api/v1/showtimes/by-date",
+    "tmdb_api": "https://api.themoviedb.org/3",
+    "tmdb_img_cdn": "https://image.tmdb.org/t/p/w500",
+    "avatar_api": "https://api.dicebear.com/7.x"
+  },
+  "detected_paths": [
+    "/v1/api/home",
+    "/v1/api/danh-sach/phim-moi-cap-nhat?page=1",
+    "/v1/api/danh-sach/phim-hot?page=1",
+    "/v1/api/danh-sach/phim-bo?page=1",
+    "/v1/api/danh-sach/phim-le?page=1",
+    "/v1/api/danh-sach/hoat-hinh?page=1",
+    "/v1/api/quoc-gia/viet-nam?page=1",
+    "/v1/api/quoc-gia/han-quoc?page=1",
+    "/v1/api/quoc-gia/trung-quoc?page=1",
+    "/v1/api/nam-phat-hanh/2026?page=1",
+    "/v1/api/tim-kiem?keyword=",
+    "/films/danh-sach/phim-moi-cap-nhat?page=1"
+  ],
+  "blocked_sensitive_items": [
+    "Supabase URL/key and payment/bank settings were detected but not included for web reuse.",
+    "Player/stream extraction is intentionally not included. Use only sources you have rights to publish."
+  ]
+}
